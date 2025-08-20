@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --accent: #ffbe5e;
+  --white: #fff;
+  --background: #000000;
+  --secondary: #0d0d0d;
+  --dark: #202020;
+  --muted: #ffffffc2;
+  --gray: #2b2b2b;
+  --outline: #1c1c1c;
+  --black: #000000;
+  --horizontal-padding: 14px;
+  --top-padding: calc(
+    var(--tg-viewport-content-safe-area-inset-top, 0px) +
+      var(--tg-viewport-safe-area-inset-top, 0px) + 16px
+  );
+}
+
+@theme {
+  --color-accent: var(--accent);
+  --color-white: var(--white);
+  --color-background: var(--background);
+  --color-secondary: var(--secondary);
+  --color-dark: var(--dark);
+  --color-muted: var(--muted);
+  --color-gray: var(--gray);
+  --color-outline: var(--outline);
+  --color-black: var(--black);
+  --font-sans: "Figtree", sans-serif;
+
+  --drop-shadow-outline: 0px 0px 2px #000;
+}
+
+@layer base {
+  body {
+    @apply font-sans w-[100vw] h-[100vh] p-0 m-0 overflow-hidden select-none bg-background text-white;
+  }
+
+  * {
+    user-select: none !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  *::-webkit-scrollbar {
+    user-select: none !important;
+    display: none;
+  }
+
+  p {
+    @apply text-sm font-medium leading-[135%] text-white;
+  }
+
+  h1 {
+    @apply text-[32px] font-semibold leading-[135%] text-white;
+  }
+
+  h2 {
+    @apply text-2xl font-medium leading-[135%] text-white;
+  }
+
+  small {
+    @apply text-[10px] font-medium leading-[135%] text-white;
+  }
+
+  b {
+    @apply text-base font-semibold leading-[100%] text-white;
+  }
+
+  h2 {
+    @apply text-[39px] font-medium leading-[120%] text-white;
+  }
+
+  h3 {
+    @apply text-[24px] font-medium leading-[120%] text-white;
+  }
+}
+
+@layer components {
+  .accent-gradient {
+    background: linear-gradient(304deg, #ffe7a7 43.81%, #ffae2b 90%);
+  }
+}

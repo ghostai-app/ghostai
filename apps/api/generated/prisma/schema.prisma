@@ -1,0 +1,118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../generated/prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "linux-musl-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+
+  @@map("admins")
+}
+
+model User {
+  id               Int      @id @default(autoincrement())
+  photoUrl         String?  @map("photo_url")
+  telegramLanguage String   @default("en") @map("telegram_language")
+  telegramId       String   @unique @map("telegram_id")
+  username         String?
+  firstName        String   @map("first_name")
+  lastName         String?  @map("last_name")
+  createdAt        DateTime @default(now()) @map("created_at")
+  lastLoginAt      DateTime @default(now()) @map("last_login_at")
+  balance          Float    @default(0)
+  isPremium        Boolean  @default(false)
+  walletAddress    String?  @map("wallet_address")
+  ticketCount      Int      @default(0) @map("ticket_count")
+  streak           Int      @default(1) @map("streak")
+  dailyAvaliable   Boolean  @default(true) @map("daily_avaliable")
+
+  /**
+   * Mining
+   */
+  miningTimeInSeconds Int   @default(10800) @map("mining_time_in_seconds")
+  miningProfit        Float @default(1000) @map("profit_per_second")
+
+  invitedUsers Friend[]   @relation("InviterFriends")
+  friend       Friend?    @relation("UserFriend")
+  minings      Mining[]
+  userTasks    UserTask[]
+
+  @@map("users")
+}
+
+model Friend {
+  id        Int      @id @default(autoincrement())
+  inviterId Int      @map("inviter_id")
+  userId    Int      @unique @map("user_id")
+  earned    Float    @default(0)
+  createdOn DateTime @default(now()) @map("created_on")
+
+  // Relations
+  inviter User @relation("InviterFriends", fields: [inviterId], references: [id], onDelete: Cascade)
+  user    User @relation("UserFriend", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("friends")
+}
+
+model Mining {
+  id         Int       @id @default(autoincrement())
+  userId     Int       @map("user_id")
+  amount     Float     @default(0)
+  startedAt  DateTime  @default(now()) @map("started_at")
+  expiresAt  DateTime  @map("expires_at")
+  finishedAt DateTime? @map("finished_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("mining")
+}
+
+model Task {
+  id        Int      @id @default(autoincrement())
+  title     String
+  reward    Float
+  imageUrl  String   @map("image_url")
+  link      String?
+  channelId String?  @map("channel_id")
+  createdOn DateTime @default(now()) @map("created_on")
+  type      TaskType @default(DEFAULT)
+
+  userTasks UserTask[]
+
+  @@map("tasks")
+}
+
+model UserTask {
+  id        Int        @id @default(autoincrement())
+  userId    Int        @map("user_id")
+  taskId    Int        @map("task_id")
+  status    TaskStatus @default(IN_PROGRESS)
+  createdAt DateTime   @default(now()) @map("completed_on")
+
+  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, taskId])
+  @@map("user_tasks")
+}
+
+enum TaskType {
+  DEFAULT
+  PARTNER
+}
+
+enum TaskStatus {
+  IN_PROGRESS
+  COMPLETED
+}
