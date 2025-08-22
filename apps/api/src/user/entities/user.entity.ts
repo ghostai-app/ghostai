@@ -33,6 +33,9 @@ export class UserEntity implements User {
   balance: number;
 
   @ApiProperty()
+  crystal: number;
+
+  @ApiProperty()
   miningTimeInSeconds: number;
 
   @ApiProperty()
@@ -44,8 +47,8 @@ export class UserEntity implements User {
   @ApiProperty()
   walletAddress: string | null;
 
-  @ApiProperty()
-  ticketCount: number;
+  // @ApiProperty()
+  // ticketCount: number;
 
   @ApiProperty()
   streak: number;

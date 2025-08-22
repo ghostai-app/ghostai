@@ -13,4 +13,5 @@ export interface IUser {
   ticketCount: number;
   dailyAvaliable: boolean;
   streak: number;
+  crystal: number;
 }

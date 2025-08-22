@@ -137,9 +137,9 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt',
   lastLoginAt: 'lastLoginAt',
   balance: 'balance',
+  crystal: 'crystal',
   isPremium: 'isPremium',
   walletAddress: 'walletAddress',
-  ticketCount: 'ticketCount',
   streak: 'streak',
   dailyAvaliable: 'dailyAvaliable',
   miningTimeInSeconds: 'miningTimeInSeconds',
@@ -211,6 +211,24 @@ exports.Prisma.BattleScalarFieldEnum = {
   createdOn: 'createdOn'
 };
 
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt',
+  heroId: 'heroId',
+  priceType: 'priceType',
+  type: 'type'
+};
+
+exports.Prisma.UserProductScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  productId: 'productId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -241,6 +259,15 @@ exports.BattleStatus = exports.$Enums.BattleStatus = {
   FINISHED: 'FINISHED'
 };
 
+exports.PriceType = exports.$Enums.PriceType = {
+  TOKEN: 'TOKEN',
+  CRYSTAL: 'CRYSTAL'
+};
+
+exports.ProductType = exports.$Enums.ProductType = {
+  HERO: 'HERO'
+};
+
 exports.Prisma.ModelName = {
   Admin: 'Admin',
   User: 'User',
@@ -250,7 +277,9 @@ exports.Prisma.ModelName = {
   UserTask: 'UserTask',
   Hero: 'Hero',
   UserHero: 'UserHero',
-  Battle: 'Battle'
+  Battle: 'Battle',
+  Product: 'Product',
+  UserProduct: 'UserProduct'
 };
 
 /**

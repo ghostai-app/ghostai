@@ -23,7 +23,33 @@ export const Provider = ({ children }: PropsWithChildren) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster containerClassName="!top-[calc(var(--top-padding)+16px)]" />
+      <Toaster
+        toastOptions={{
+          style: {
+            backgroundColor: "var(--dark)",
+            color: "var(--white)",
+            fontWeight: 500,
+            width: "100%",
+            border: "var(--outline)",
+            borderWidth: 1,
+            borderRadius: "14px",
+            minHeight: "50px",
+          },
+          success: {
+            iconTheme: {
+              primary: "var(--green)",
+              secondary: "var(--dark)",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "var(--red)",
+              secondary: "var(--dark)",
+            },
+          },
+        }}
+        containerClassName="!top-[calc(var(--top-padding)+16px)]"
+      />
       {children}
     </QueryClientProvider>
   );

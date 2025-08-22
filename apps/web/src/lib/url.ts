@@ -1,6 +1,7 @@
 export const PUBLIC_URL = {
   root: (url = "") => `${url ? url : ""}`,
 
+  checkIn: () => PUBLIC_URL.root("/check-in"),
   home: () => PUBLIC_URL.root("/home"),
   earn: () => PUBLIC_URL.root("/earn"),
   battle: () => PUBLIC_URL.root("/battle"),

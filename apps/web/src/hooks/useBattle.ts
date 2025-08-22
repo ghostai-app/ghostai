@@ -1,12 +1,15 @@
 import { ENV, PUBLIC_URL } from "@/lib";
 import { getAccessToken } from "@/services";
 import { IBattle } from "@/types";
+import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { io, Socket } from "socket.io-client";
+import { getUserQueryOptions } from "./api";
 
 export const useBattle = (heroId: number) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -18,8 +21,6 @@ export const useBattle = (heroId: number) => {
     const setupSocket = async () => {
       try {
         const token = getAccessToken();
-
-        console.log("token", token);
 
         if (!token) throw new Error("Token is empty");
 
@@ -38,12 +39,15 @@ export const useBattle = (heroId: number) => {
         });
 
         socket.on("battleUpdate", (battle: IBattle) => {
+          console.log("battleUpdate", battle);
+
           setBattle(battle);
           setIsLoading(false);
         });
 
         socket.on("battleFinish", (battle: IBattle) => {
           navigate(PUBLIC_URL.battleFinish(battle.id));
+          queryClient.invalidateQueries(getUserQueryOptions());
           setIsLoading(false);
         });
 

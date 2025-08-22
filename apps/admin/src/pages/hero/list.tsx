@@ -20,7 +20,7 @@ export const HeroList = () => {
       mode: "server",
       initial: [
         {
-          field: "createdOn",
+          field: "createdAt",
           order: "desc",
         },
       ],
@@ -71,8 +71,8 @@ export const HeroList = () => {
           )}
         />
         <Table.Column
-          dataIndex="createdOn"
-          title="Created On"
+          dataIndex="createdAt"
+          title="Created At"
           sorter
           render={(value) => new Date(value).toLocaleString()}
         />

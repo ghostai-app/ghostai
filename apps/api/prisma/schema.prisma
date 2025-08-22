@@ -30,10 +30,11 @@ model User {
   lastName      String?   @map("last_name")
   createdAt     DateTime  @default(now()) @map("created_at")
   lastLoginAt    DateTime  @default(now()) @map("last_login_at")
-  balance       Float     @default(0)
+  balance       Int     @default(0)
+  crystal       Int     @default(0)
   isPremium     Boolean   @default(false)
   walletAddress String?   @map("wallet_address")
-  ticketCount   Int       @default(0) @map("ticket_count")
+  // ticketCount   Int       @default(0) @map("ticket_count")
   streak        Int       @default(1) @map("streak")
   dailyAvaliable Boolean   @default(true) @map("daily_avaliable")
 
@@ -49,6 +50,7 @@ model User {
   battlesAsPlayer1 Battle[] @relation("Player1Battles")
   battlesAsPlayer2 Battle[] @relation("Player2Battles")
   wonBattles Battle[] @relation("WonBattles")
+  userProducts UserProduct[]
 
   @@map("users")
 }
@@ -173,4 +175,39 @@ model Battle {
   player2Hero Hero? @relation("Player2HeroBattles", fields: [player2HeroId], references: [id], onDelete: SetNull)
 
   @@map("battles")
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  name String
+  price Int
+  imageUrl String @map("image_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  heroId Int? @map("hero_id")
+  priceType PriceType @default(TOKEN)
+  type ProductType @default(HERO)
+  userProducts UserProduct[]
+  
+  @@map("products")
+}
+
+enum ProductType {
+  HERO
+}
+
+model UserProduct {
+  id Int @id @default(autoincrement())
+  userId Int @map("user_id")
+  productId Int @map("product_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@map("user_products")
+}
+
+enum PriceType {
+  TOKEN
+  CRYSTAL
 }

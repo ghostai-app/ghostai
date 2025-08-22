@@ -18,6 +18,7 @@ import { UserEntity } from 'src/user/entities/user.entity';
 import { BattleService, BattleWebSocketService } from './battle.service';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
+import { Battle } from 'generated/prisma';
 
 interface JwtPayload {
   telegramId: string;
@@ -49,7 +50,6 @@ export class BattleGateway
     this.battleService.setWebSocketService(this);
   }
 
-  /* Получение пользователя по JWT токену */
   async getUserFromToken(token: string): Promise<UserEntity> {
     const accessToken = token?.replace('Bearer ', '');
 
@@ -58,10 +58,8 @@ export class BattleGateway
     }
 
     const payload = await this.jwtService.verifyAsync<JwtPayload>(accessToken);
-
     const user = await this.userService.getByTelegramId(payload.telegramId);
 
-    // console.log('user', user);
     if (!user || !user.id) {
       throw new BadRequestException();
     }
@@ -85,10 +83,12 @@ export class BattleGateway
 
       if (!battle) {
         await this.battleService.addToQueue(heroId, user);
-
         battle = await this.battleService.getActiveBattle(user.id);
       }
-      client.emit('battleUpdate', battle);
+
+      if (battle) {
+        client.emit('battleUpdate', battle);
+      }
     } catch (error) {
       this.logger.error((error as Error).message);
       client.emit('error', { message: 'Ошибка аутентификации' });
@@ -101,22 +101,24 @@ export class BattleGateway
 
     if (user && user.id) {
       this.clients.delete(user.id);
-
       await this.battleService.leaveQueue(user);
     }
   }
 
-  async battleUpdate(battleId: number): Promise<void> {
-    const battle = await this.battleService.getBattleStatus(battleId);
+  async battleUpdate(battle: Battle): Promise<void> {
     if (!battle) return;
 
     for (const playerId of [battle.player1Id, battle.player2Id]) {
       if (playerId) {
         const client = this.clients.get(playerId);
         if (client) {
-          const activeBattle =
-            await this.battleService.getActiveBattle(playerId);
-          client.emit('battleUpdate', activeBattle);
+          const battleData = this.battleService.transformBattleForUser(
+            battle,
+            playerId,
+          );
+          if (battleData) {
+            client.emit('battleUpdate', battleData);
+          }
         }
       }
     }
@@ -129,7 +131,6 @@ export class BattleGateway
     for (const playerId of [battle.player1Id, battle.player2Id]) {
       if (playerId) {
         const client = this.clients.get(playerId);
-
         if (client) {
           client.emit('battleFinish', battle);
         }
@@ -144,7 +145,6 @@ export class BattleGateway
     for (const playerId of [battle.player1Id, battle.player2Id]) {
       if (playerId) {
         const client = this.clients.get(playerId);
-
         if (client) {
           client.emit('battleStarting', battle);
         }

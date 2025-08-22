@@ -9,3 +9,4 @@ export * from "./roulette";
 export * from "./check-in";
 export * from "./hero";
 export * from "./battle";
+export * from "./product";

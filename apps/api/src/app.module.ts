@@ -16,10 +16,10 @@ import { join } from 'path';
 import { TaskModule } from './task/task.module';
 import { LeaderModule } from './leader/leader.module';
 import { WalletModule } from './wallet/wallet.module';
-import { RouletteModule } from './roulette/roulette.module';
 import { CheckInModule } from './check-in/check-in.module';
 import { BattleModule } from './battle/battle.module';
 import { HeroModule } from './hero/hero.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -53,10 +53,10 @@ import { HeroModule } from './hero/hero.module';
       },
     }),
     WalletModule,
-    RouletteModule,
     CheckInModule,
     BattleModule,
     HeroModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],

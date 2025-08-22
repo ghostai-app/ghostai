@@ -7,16 +7,20 @@ import {
 import { checkInService } from "@/services";
 import { getUserQueryOptions } from "./user";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { PUBLIC_URL } from "@/lib";
 
 export const getCheckInQueryOptions = () => {
   return queryOptions({
     queryKey: ["check-in"],
-    queryFn: checkInService.getCheckIn,
+    queryFn: () => checkInService.getCheckIn(),
     staleTime: Infinity,
   });
 };
 
 export const useClaimCheckIn = () => {
+  const navigate = useNavigate();
+
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["claim-check-in"],

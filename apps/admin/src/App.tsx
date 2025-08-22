@@ -33,12 +33,17 @@ import {
   BankOutlined,
   GiftOutlined,
   CrownOutlined,
+  ShoppingOutlined,
 } from "@ant-design/icons";
 import { TaskCreate, TaskList, TaskShow, TaskEdit } from "./pages/task";
 import { HeroCreate } from "./pages/hero/create";
 import { HeroList } from "./pages/hero/list";
 import { HeroShow } from "./pages/hero/show";
 import { HeroEdit } from "./pages/hero/edit";
+import { ProductCreate } from "./pages/product/create";
+import { ProductList } from "./pages/product/list";
+import { ProductShow } from "./pages/product/show";
+import { ProductEdit } from "./pages/product/edit";
 
 const { Text } = Typography;
 
@@ -94,6 +99,17 @@ function App() {
                     icon: <CrownOutlined />,
                   },
                 },
+                {
+                  name: "product",
+                  list: "/product",
+                  show: "/product/show/:id",
+                  edit: "/product/edit/:id",
+                  create: "/product/create",
+                  meta: {
+                    canDelete: true,
+                    icon: <ShoppingOutlined />,
+                  },
+                },
               ]}
               options={{
                 syncWithLocation: true,
@@ -111,7 +127,7 @@ function App() {
                       <ThemedLayoutV2
                         Header={Header}
                         Sider={(props) => <ThemedSiderV2 {...props} fixed />}
-                        Title={() => <Text strong>PENGU</Text>}
+                        Title={() => <Text strong>GHOSTAI</Text>}
                       >
                         <Outlet />
                       </ThemedLayoutV2>
@@ -135,6 +151,12 @@ function App() {
                     <Route path="show/:id" element={<HeroShow />} />
                     <Route path="edit/:id" element={<HeroEdit />} />
                     <Route path="create" element={<HeroCreate />} />
+                  </Route>
+                  <Route path="/product">
+                    <Route index element={<ProductList />} />
+                    <Route path="show/:id" element={<ProductShow />} />
+                    <Route path="edit/:id" element={<ProductEdit />} />
+                    <Route path="create" element={<ProductCreate />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>

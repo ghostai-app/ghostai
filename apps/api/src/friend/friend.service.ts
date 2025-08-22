@@ -35,6 +35,7 @@ export class FriendService {
       data: {
         inviterId: inviter.id,
         userId: user.id,
+        earned: bonus,
       },
     });
 

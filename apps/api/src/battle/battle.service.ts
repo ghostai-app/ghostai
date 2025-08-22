@@ -2,11 +2,12 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { GetUserBattleEntity } from './entities/get-user-battle.entity';
 import { UserEntity } from 'src/user/entities/user.entity';
-import { BattleStatus } from 'generated/prisma';
+import { Battle, BattleStatus } from 'generated/prisma';
 
 export interface BattleWebSocketService {
-  battleUpdate(battleId: number): Promise<void>;
+  battleUpdate(battle: Battle): Promise<void>;
   battleFinish(battleId: number): Promise<void>;
+  battleStarting(battleId: number): Promise<void>;
 }
 
 @Injectable()
@@ -43,7 +44,9 @@ export class BattleService {
         },
       });
 
-      if (existingBattle) return existingBattle;
+      if (existingBattle) {
+        return existingBattle;
+      }
 
       const pendingBattle = await prisma.battle.findFirst({
         where: {
@@ -62,9 +65,16 @@ export class BattleService {
             player2Health: hero.hero.health,
             status: 'IN_PROGRESS',
           },
+          include: {
+            player1: true,
+            player2: true,
+            player1Hero: true,
+            player2Hero: true,
+          },
         });
 
-        await this.wsService?.battleUpdate(battle.id);
+        await this.wsService?.battleUpdate(battle);
+        await this.wsService?.battleStarting(battle.id);
 
         return battle;
       } else {
@@ -83,9 +93,15 @@ export class BattleService {
             player1Health: hero.hero.health,
             status: 'PENDING',
           },
+          include: {
+            player1: true,
+            player2: true,
+            player1Hero: true,
+            player2Hero: true,
+          },
         });
 
-        await this.wsService?.battleUpdate(newBattle.id);
+        await this.wsService?.battleUpdate(newBattle);
 
         return newBattle;
       }
@@ -142,6 +158,42 @@ export class BattleService {
         player2: true,
       },
     });
+  }
+
+  // Преобразование Battle в GetUserBattleEntity для конкретного пользователя
+  transformBattleForUser(
+    battle: Battle & {
+      player1?: { username: string | null };
+      player2?: { username: string | null };
+      player1Hero?: any;
+      player2Hero?: any;
+    },
+    userId: number,
+  ): GetUserBattleEntity | null {
+    if (!battle || !battle.player1Hero || !battle.player2Hero) {
+      return null;
+    }
+
+    const isPlayer1 = battle.player1Id === userId;
+
+    return {
+      id: battle.id,
+      status: battle.status,
+      userName: isPlayer1
+        ? battle.player1?.username || ''
+        : battle.player2?.username || '',
+      userHealth: isPlayer1
+        ? battle.player1Health || 0
+        : battle.player2Health || 0,
+      userHero: isPlayer1 ? battle.player1Hero : battle.player2Hero,
+      enemyName: isPlayer1
+        ? battle.player2?.username || ''
+        : battle.player1?.username || '',
+      enemyHealth: isPlayer1
+        ? battle.player2Health || 0
+        : battle.player1Health || 0,
+      enemyHero: isPlayer1 ? battle.player2Hero : battle.player1Hero,
+    };
   }
 
   // Получение текущего боя пользователя
@@ -243,11 +295,20 @@ export class BattleService {
         const loserId = isPlayer1 ? battle.player2Id : battle.player1Id;
 
         if (loserId) {
+          // Получаем текущий баланс проигравшего
+          const loser = await prisma.user.findUnique({
+            where: { id: loserId },
+            select: { balance: true },
+          });
+
+          const currentBalance = loser?.balance || 0;
+          const penalty = Math.min(500, currentBalance); // Не больше чем есть на балансе
+
           // Сбрасываем стрик проигравшего
           await prisma.user.update({
             where: { id: loserId },
             data: {
-              balance: { decrement: 500 },
+              balance: { decrement: penalty },
               streak: 0,
             },
           });
@@ -264,7 +325,7 @@ export class BattleService {
 
         await this.wsService?.battleFinish(battleId);
       } else {
-        await this.wsService?.battleUpdate(battleId);
+        await this.wsService?.battleUpdate(battle);
       }
 
       return updatedBattle;

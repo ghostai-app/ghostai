@@ -12,8 +12,8 @@ export class CheckInController {
   @ApiOkResponse()
   @ApiBearerAuth()
   @Auth()
-  getCheckIn(@Req() req: { user: UserEntity }) {
-    return this.checkInService.getCheckIn(req.user);
+  getCheckIn() {
+    return this.checkInService.getCheckIn();
   }
 
   @Post()

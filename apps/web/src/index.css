@@ -15,6 +15,8 @@
   --outline: #1c1c1c;
   --black: #000000;
   --horizontal-padding: 14px;
+  --red: #eb1f22;
+  --green: #3dba2d;
   --top-padding: calc(
     var(--tg-viewport-content-safe-area-inset-top, 0px) +
       var(--tg-viewport-safe-area-inset-top, 0px) + 16px
@@ -31,6 +33,8 @@
   --color-gray: var(--gray);
   --color-outline: var(--outline);
   --color-black: var(--black);
+  --color-red: var(--red);
+  --color-green: var(--green);
   --font-sans: "Figtree", sans-serif;
 
   --drop-shadow-outline: 0px 0px 2px #000;
