@@ -1,2 +1,3 @@
-export { UserForm } from "./UserForm";
-export { TaskForm } from "./TaskForm";
+export * from "./TaskForm";
+export * from "./UserForm";
+export * from "./HeroForm";

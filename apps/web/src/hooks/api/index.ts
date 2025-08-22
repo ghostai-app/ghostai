@@ -7,3 +7,5 @@ export * from "./leader";
 export * from "./wallet";
 export * from "./roulette";
 export * from "./check-in";
+export * from "./hero";
+export * from "./battle";

@@ -45,7 +45,11 @@ model User {
   friend         Friend?    @relation("UserFriend")
   minings         Mining[]
   userTasks UserTask[]
-  
+  userHeroes UserHero[]
+  battlesAsPlayer1 Battle[] @relation("Player1Battles")
+  battlesAsPlayer2 Battle[] @relation("Player2Battles")
+  wonBattles Battle[] @relation("WonBattles")
+
   @@map("users")
 }
 
@@ -115,3 +119,58 @@ enum TaskStatus {
   COMPLETED
 }
 
+model Hero {
+  id        Int      @id @default(autoincrement())
+  health    Int
+  attack    Int
+  name      String   @unique
+  imageUrl  String   @map("image_url")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  battlesAsPlayer1 Battle[] @relation("Player1HeroBattles")
+  battlesAsPlayer2 Battle[] @relation("Player2HeroBattles")
+  userHeroes UserHero[]
+
+  @@map("heroes")
+}
+
+model UserHero {
+  id        Int      @id @default(autoincrement())
+  heroId    Int      @map("hero_id")
+  userId    Int      @map("user_id")
+  createdOn DateTime @default(now()) @map("created_on")
+
+  hero Hero @relation(fields: [heroId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, heroId])
+  @@map("user_heroes")
+}
+
+enum BattleStatus {
+  PENDING
+  IN_PROGRESS
+  FINISHED
+}
+
+model Battle {
+  id        Int         @id @default(autoincrement())
+  winnerId Int? @map("winner_id")
+  player1Id Int?         @map("player1_id")
+  player2Id Int?         @map("player2_id")
+  player1HeroId Int? @map("player1_hero_id")
+  player2HeroId Int? @map("player2_hero_id")
+  player1Health Int? @map("player1_health")
+  player2Health Int? @map("player2_health")
+  status    BattleStatus @default(PENDING)
+  createdOn DateTime    @default(now()) @map("created_on")
+
+  winner User? @relation("WonBattles", fields: [winnerId], references: [id], onDelete: SetNull)
+  player1 User? @relation("Player1Battles", fields: [player1Id], references: [id], onDelete: SetNull)
+  player2 User? @relation("Player2Battles", fields: [player2Id], references: [id], onDelete: SetNull)
+
+  player1Hero Hero? @relation("Player1HeroBattles", fields: [player1HeroId], references: [id], onDelete: SetNull)
+  player2Hero Hero? @relation("Player2HeroBattles", fields: [player2HeroId], references: [id], onDelete: SetNull)
+
+  @@map("battles")
+}

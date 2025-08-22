@@ -6,3 +6,4 @@ export * from "./leader.service";
 export * from "./wallet.service";
 export * from "./roulette.service";
 export * from "./check-in.service";
+export * from "./hero.service";

@@ -6,7 +6,6 @@ import {
 } from "@telegram-apps/sdk-react";
 import { type PropsWithChildren, useEffect } from "react";
 import { BaseLayout } from "@/components/layouts";
-import defaultBg from "/assets/backgrounds/default.jpg";
 
 export function Page({
   children,
@@ -34,7 +33,7 @@ export function Page({
 
   return (
     <BaseLayout
-      background={background || defaultBg}
+      background={background}
       withPadding={withPadding}
       className={className}
     >

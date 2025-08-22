@@ -32,8 +32,13 @@ import {
   BellOutlined,
   BankOutlined,
   GiftOutlined,
+  CrownOutlined,
 } from "@ant-design/icons";
 import { TaskCreate, TaskList, TaskShow, TaskEdit } from "./pages/task";
+import { HeroCreate } from "./pages/hero/create";
+import { HeroList } from "./pages/hero/list";
+import { HeroShow } from "./pages/hero/show";
+import { HeroEdit } from "./pages/hero/edit";
 
 const { Text } = Typography;
 
@@ -78,6 +83,17 @@ function App() {
                     icon: <CheckSquareOutlined />,
                   },
                 },
+                {
+                  name: "hero",
+                  list: "/hero",
+                  show: "/hero/show/:id",
+                  edit: "/hero/edit/:id",
+                  create: "/hero/create",
+                  meta: {
+                    canDelete: true,
+                    icon: <CrownOutlined />,
+                  },
+                },
               ]}
               options={{
                 syncWithLocation: true,
@@ -113,6 +129,12 @@ function App() {
                     <Route path="show/:id" element={<TaskShow />} />
                     <Route path="edit/:id" element={<TaskEdit />} />
                     <Route path="create" element={<TaskCreate />} />
+                  </Route>
+                  <Route path="/hero">
+                    <Route index element={<HeroList />} />
+                    <Route path="show/:id" element={<HeroShow />} />
+                    <Route path="edit/:id" element={<HeroEdit />} />
+                    <Route path="create" element={<HeroCreate />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>

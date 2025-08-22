@@ -18,7 +18,7 @@ export const navigationPages = [
   },
   {
     icon: BattleIcon,
-    url: PUBLIC_URL.battle(),
+    url: PUBLIC_URL.battleSelectHero(),
     label: "Battle",
   },
   {

@@ -18,6 +18,8 @@ import { LeaderModule } from './leader/leader.module';
 import { WalletModule } from './wallet/wallet.module';
 import { RouletteModule } from './roulette/roulette.module';
 import { CheckInModule } from './check-in/check-in.module';
+import { BattleModule } from './battle/battle.module';
+import { HeroModule } from './hero/hero.module';
 
 @Module({
   imports: [
@@ -53,6 +55,8 @@ import { CheckInModule } from './check-in/check-in.module';
     WalletModule,
     RouletteModule,
     CheckInModule,
+    BattleModule,
+    HeroModule,
   ],
   controllers: [AppController],
   providers: [AppService],

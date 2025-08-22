@@ -6,6 +6,7 @@ import { getFriendsQueryOptions } from "@/hooks";
 import { ButtonWithVibration } from "@/components/ui";
 import ShareIcon from "@/_assets/icons/share.svg?react";
 import { shareURL } from "@telegram-apps/sdk-react";
+import { BottomFixedButton } from "../BottomFixedButton";
 
 interface Props {
   className?: string;
@@ -19,20 +20,6 @@ export const InviteButton = ({ className }: Props) => {
   };
 
   return (
-    <div
-      className={cn(
-        "w-70 bottom-[120px] left-1/2 -translate-x-1/2 absolute",
-        className
-      )}
-    >
-      <ButtonWithVibration
-        variant={"default"}
-        size={"default"}
-        onClick={handleShare}
-        className="w-full"
-      >
-        INVITE FRIEND
-      </ButtonWithVibration>
-    </div>
+    <BottomFixedButton onClick={handleShare}>INVITE FRIEND</BottomFixedButton>
   );
 };

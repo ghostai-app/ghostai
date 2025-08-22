@@ -43,6 +43,21 @@ export type Task = $Result.DefaultSelection<Prisma.$TaskPayload>
  * 
  */
 export type UserTask = $Result.DefaultSelection<Prisma.$UserTaskPayload>
+/**
+ * Model Hero
+ * 
+ */
+export type Hero = $Result.DefaultSelection<Prisma.$HeroPayload>
+/**
+ * Model UserHero
+ * 
+ */
+export type UserHero = $Result.DefaultSelection<Prisma.$UserHeroPayload>
+/**
+ * Model Battle
+ * 
+ */
+export type Battle = $Result.DefaultSelection<Prisma.$BattlePayload>
 
 /**
  * Enums
@@ -63,6 +78,15 @@ export const TaskStatus: {
 
 export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]
 
+
+export const BattleStatus: {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  FINISHED: 'FINISHED'
+};
+
+export type BattleStatus = (typeof BattleStatus)[keyof typeof BattleStatus]
+
 }
 
 export type TaskType = $Enums.TaskType
@@ -72,6 +96,10 @@ export const TaskType: typeof $Enums.TaskType
 export type TaskStatus = $Enums.TaskStatus
 
 export const TaskStatus: typeof $Enums.TaskStatus
+
+export type BattleStatus = $Enums.BattleStatus
+
+export const BattleStatus: typeof $Enums.BattleStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -257,6 +285,36 @@ export class PrismaClient<
     * ```
     */
   get userTask(): Prisma.UserTaskDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hero`: Exposes CRUD operations for the **Hero** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Heroes
+    * const heroes = await prisma.hero.findMany()
+    * ```
+    */
+  get hero(): Prisma.HeroDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userHero`: Exposes CRUD operations for the **UserHero** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserHeroes
+    * const userHeroes = await prisma.userHero.findMany()
+    * ```
+    */
+  get userHero(): Prisma.UserHeroDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.battle`: Exposes CRUD operations for the **Battle** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Battles
+    * const battles = await prisma.battle.findMany()
+    * ```
+    */
+  get battle(): Prisma.BattleDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -702,7 +760,10 @@ export namespace Prisma {
     Friend: 'Friend',
     Mining: 'Mining',
     Task: 'Task',
-    UserTask: 'UserTask'
+    UserTask: 'UserTask',
+    Hero: 'Hero',
+    UserHero: 'UserHero',
+    Battle: 'Battle'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -721,7 +782,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "user" | "friend" | "mining" | "task" | "userTask"
+      modelProps: "admin" | "user" | "friend" | "mining" | "task" | "userTask" | "hero" | "userHero" | "battle"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1169,6 +1230,228 @@ export namespace Prisma {
           }
         }
       }
+      Hero: {
+        payload: Prisma.$HeroPayload<ExtArgs>
+        fields: Prisma.HeroFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HeroFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HeroFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload>
+          }
+          findFirst: {
+            args: Prisma.HeroFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HeroFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload>
+          }
+          findMany: {
+            args: Prisma.HeroFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload>[]
+          }
+          create: {
+            args: Prisma.HeroCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload>
+          }
+          createMany: {
+            args: Prisma.HeroCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HeroCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload>[]
+          }
+          delete: {
+            args: Prisma.HeroDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload>
+          }
+          update: {
+            args: Prisma.HeroUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload>
+          }
+          deleteMany: {
+            args: Prisma.HeroDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HeroUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HeroUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload>[]
+          }
+          upsert: {
+            args: Prisma.HeroUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HeroPayload>
+          }
+          aggregate: {
+            args: Prisma.HeroAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHero>
+          }
+          groupBy: {
+            args: Prisma.HeroGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HeroGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HeroCountArgs<ExtArgs>
+            result: $Utils.Optional<HeroCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserHero: {
+        payload: Prisma.$UserHeroPayload<ExtArgs>
+        fields: Prisma.UserHeroFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserHeroFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserHeroFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload>
+          }
+          findFirst: {
+            args: Prisma.UserHeroFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserHeroFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload>
+          }
+          findMany: {
+            args: Prisma.UserHeroFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload>[]
+          }
+          create: {
+            args: Prisma.UserHeroCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload>
+          }
+          createMany: {
+            args: Prisma.UserHeroCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserHeroCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload>[]
+          }
+          delete: {
+            args: Prisma.UserHeroDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload>
+          }
+          update: {
+            args: Prisma.UserHeroUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserHeroDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserHeroUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserHeroUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserHeroUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserHeroPayload>
+          }
+          aggregate: {
+            args: Prisma.UserHeroAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserHero>
+          }
+          groupBy: {
+            args: Prisma.UserHeroGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserHeroGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserHeroCountArgs<ExtArgs>
+            result: $Utils.Optional<UserHeroCountAggregateOutputType> | number
+          }
+        }
+      }
+      Battle: {
+        payload: Prisma.$BattlePayload<ExtArgs>
+        fields: Prisma.BattleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BattleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BattleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload>
+          }
+          findFirst: {
+            args: Prisma.BattleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BattleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload>
+          }
+          findMany: {
+            args: Prisma.BattleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload>[]
+          }
+          create: {
+            args: Prisma.BattleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload>
+          }
+          createMany: {
+            args: Prisma.BattleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BattleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload>[]
+          }
+          delete: {
+            args: Prisma.BattleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload>
+          }
+          update: {
+            args: Prisma.BattleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload>
+          }
+          deleteMany: {
+            args: Prisma.BattleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BattleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BattleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload>[]
+          }
+          upsert: {
+            args: Prisma.BattleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BattlePayload>
+          }
+          aggregate: {
+            args: Prisma.BattleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBattle>
+          }
+          groupBy: {
+            args: Prisma.BattleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BattleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BattleCountArgs<ExtArgs>
+            result: $Utils.Optional<BattleCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1259,6 +1542,9 @@ export namespace Prisma {
     mining?: MiningOmit
     task?: TaskOmit
     userTask?: UserTaskOmit
+    hero?: HeroOmit
+    userHero?: UserHeroOmit
+    battle?: BattleOmit
   }
 
   /* Types for Logging */
@@ -1356,12 +1642,20 @@ export namespace Prisma {
     invitedUsers: number
     minings: number
     userTasks: number
+    userHeroes: number
+    battlesAsPlayer1: number
+    battlesAsPlayer2: number
+    wonBattles: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     invitedUsers?: boolean | UserCountOutputTypeCountInvitedUsersArgs
     minings?: boolean | UserCountOutputTypeCountMiningsArgs
     userTasks?: boolean | UserCountOutputTypeCountUserTasksArgs
+    userHeroes?: boolean | UserCountOutputTypeCountUserHeroesArgs
+    battlesAsPlayer1?: boolean | UserCountOutputTypeCountBattlesAsPlayer1Args
+    battlesAsPlayer2?: boolean | UserCountOutputTypeCountBattlesAsPlayer2Args
+    wonBattles?: boolean | UserCountOutputTypeCountWonBattlesArgs
   }
 
   // Custom InputTypes
@@ -1396,6 +1690,34 @@ export namespace Prisma {
     where?: UserTaskWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUserHeroesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserHeroWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBattlesAsPlayer1Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BattleWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBattlesAsPlayer2Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BattleWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountWonBattlesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BattleWhereInput
+  }
+
 
   /**
    * Count Type TaskCountOutputType
@@ -1425,6 +1747,55 @@ export namespace Prisma {
    */
   export type TaskCountOutputTypeCountUserTasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserTaskWhereInput
+  }
+
+
+  /**
+   * Count Type HeroCountOutputType
+   */
+
+  export type HeroCountOutputType = {
+    battlesAsPlayer1: number
+    battlesAsPlayer2: number
+    userHeroes: number
+  }
+
+  export type HeroCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    battlesAsPlayer1?: boolean | HeroCountOutputTypeCountBattlesAsPlayer1Args
+    battlesAsPlayer2?: boolean | HeroCountOutputTypeCountBattlesAsPlayer2Args
+    userHeroes?: boolean | HeroCountOutputTypeCountUserHeroesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HeroCountOutputType without action
+   */
+  export type HeroCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HeroCountOutputType
+     */
+    select?: HeroCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HeroCountOutputType without action
+   */
+  export type HeroCountOutputTypeCountBattlesAsPlayer1Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BattleWhereInput
+  }
+
+  /**
+   * HeroCountOutputType without action
+   */
+  export type HeroCountOutputTypeCountBattlesAsPlayer2Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BattleWhereInput
+  }
+
+  /**
+   * HeroCountOutputType without action
+   */
+  export type HeroCountOutputTypeCountUserHeroesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserHeroWhereInput
   }
 
 
@@ -2753,6 +3124,10 @@ export namespace Prisma {
     friend?: boolean | User$friendArgs<ExtArgs>
     minings?: boolean | User$miningsArgs<ExtArgs>
     userTasks?: boolean | User$userTasksArgs<ExtArgs>
+    userHeroes?: boolean | User$userHeroesArgs<ExtArgs>
+    battlesAsPlayer1?: boolean | User$battlesAsPlayer1Args<ExtArgs>
+    battlesAsPlayer2?: boolean | User$battlesAsPlayer2Args<ExtArgs>
+    wonBattles?: boolean | User$wonBattlesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2822,6 +3197,10 @@ export namespace Prisma {
     friend?: boolean | User$friendArgs<ExtArgs>
     minings?: boolean | User$miningsArgs<ExtArgs>
     userTasks?: boolean | User$userTasksArgs<ExtArgs>
+    userHeroes?: boolean | User$userHeroesArgs<ExtArgs>
+    battlesAsPlayer1?: boolean | User$battlesAsPlayer1Args<ExtArgs>
+    battlesAsPlayer2?: boolean | User$battlesAsPlayer2Args<ExtArgs>
+    wonBattles?: boolean | User$wonBattlesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2834,6 +3213,10 @@ export namespace Prisma {
       friend: Prisma.$FriendPayload<ExtArgs> | null
       minings: Prisma.$MiningPayload<ExtArgs>[]
       userTasks: Prisma.$UserTaskPayload<ExtArgs>[]
+      userHeroes: Prisma.$UserHeroPayload<ExtArgs>[]
+      battlesAsPlayer1: Prisma.$BattlePayload<ExtArgs>[]
+      battlesAsPlayer2: Prisma.$BattlePayload<ExtArgs>[]
+      wonBattles: Prisma.$BattlePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3254,6 +3637,10 @@ export namespace Prisma {
     friend<T extends User$friendArgs<ExtArgs> = {}>(args?: Subset<T, User$friendArgs<ExtArgs>>): Prisma__FriendClient<$Result.GetResult<Prisma.$FriendPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     minings<T extends User$miningsArgs<ExtArgs> = {}>(args?: Subset<T, User$miningsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MiningPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     userTasks<T extends User$userTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$userTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    userHeroes<T extends User$userHeroesArgs<ExtArgs> = {}>(args?: Subset<T, User$userHeroesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    battlesAsPlayer1<T extends User$battlesAsPlayer1Args<ExtArgs> = {}>(args?: Subset<T, User$battlesAsPlayer1Args<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    battlesAsPlayer2<T extends User$battlesAsPlayer2Args<ExtArgs> = {}>(args?: Subset<T, User$battlesAsPlayer2Args<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    wonBattles<T extends User$wonBattlesArgs<ExtArgs> = {}>(args?: Subset<T, User$wonBattlesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3776,6 +4163,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserTaskScalarFieldEnum | UserTaskScalarFieldEnum[]
+  }
+
+  /**
+   * User.userHeroes
+   */
+  export type User$userHeroesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    where?: UserHeroWhereInput
+    orderBy?: UserHeroOrderByWithRelationInput | UserHeroOrderByWithRelationInput[]
+    cursor?: UserHeroWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserHeroScalarFieldEnum | UserHeroScalarFieldEnum[]
+  }
+
+  /**
+   * User.battlesAsPlayer1
+   */
+  export type User$battlesAsPlayer1Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    where?: BattleWhereInput
+    orderBy?: BattleOrderByWithRelationInput | BattleOrderByWithRelationInput[]
+    cursor?: BattleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BattleScalarFieldEnum | BattleScalarFieldEnum[]
+  }
+
+  /**
+   * User.battlesAsPlayer2
+   */
+  export type User$battlesAsPlayer2Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    where?: BattleWhereInput
+    orderBy?: BattleOrderByWithRelationInput | BattleOrderByWithRelationInput[]
+    cursor?: BattleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BattleScalarFieldEnum | BattleScalarFieldEnum[]
+  }
+
+  /**
+   * User.wonBattles
+   */
+  export type User$wonBattlesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    where?: BattleWhereInput
+    orderBy?: BattleOrderByWithRelationInput | BattleOrderByWithRelationInput[]
+    cursor?: BattleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BattleScalarFieldEnum | BattleScalarFieldEnum[]
   }
 
   /**
@@ -8278,6 +8761,3594 @@ export namespace Prisma {
 
 
   /**
+   * Model Hero
+   */
+
+  export type AggregateHero = {
+    _count: HeroCountAggregateOutputType | null
+    _avg: HeroAvgAggregateOutputType | null
+    _sum: HeroSumAggregateOutputType | null
+    _min: HeroMinAggregateOutputType | null
+    _max: HeroMaxAggregateOutputType | null
+  }
+
+  export type HeroAvgAggregateOutputType = {
+    id: number | null
+    health: number | null
+    attack: number | null
+  }
+
+  export type HeroSumAggregateOutputType = {
+    id: number | null
+    health: number | null
+    attack: number | null
+  }
+
+  export type HeroMinAggregateOutputType = {
+    id: number | null
+    health: number | null
+    attack: number | null
+    name: string | null
+    imageUrl: string | null
+    createdAt: Date | null
+  }
+
+  export type HeroMaxAggregateOutputType = {
+    id: number | null
+    health: number | null
+    attack: number | null
+    name: string | null
+    imageUrl: string | null
+    createdAt: Date | null
+  }
+
+  export type HeroCountAggregateOutputType = {
+    id: number
+    health: number
+    attack: number
+    name: number
+    imageUrl: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type HeroAvgAggregateInputType = {
+    id?: true
+    health?: true
+    attack?: true
+  }
+
+  export type HeroSumAggregateInputType = {
+    id?: true
+    health?: true
+    attack?: true
+  }
+
+  export type HeroMinAggregateInputType = {
+    id?: true
+    health?: true
+    attack?: true
+    name?: true
+    imageUrl?: true
+    createdAt?: true
+  }
+
+  export type HeroMaxAggregateInputType = {
+    id?: true
+    health?: true
+    attack?: true
+    name?: true
+    imageUrl?: true
+    createdAt?: true
+  }
+
+  export type HeroCountAggregateInputType = {
+    id?: true
+    health?: true
+    attack?: true
+    name?: true
+    imageUrl?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type HeroAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hero to aggregate.
+     */
+    where?: HeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Heroes to fetch.
+     */
+    orderBy?: HeroOrderByWithRelationInput | HeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Heroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Heroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Heroes
+    **/
+    _count?: true | HeroCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HeroAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HeroSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HeroMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HeroMaxAggregateInputType
+  }
+
+  export type GetHeroAggregateType<T extends HeroAggregateArgs> = {
+        [P in keyof T & keyof AggregateHero]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHero[P]>
+      : GetScalarType<T[P], AggregateHero[P]>
+  }
+
+
+
+
+  export type HeroGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HeroWhereInput
+    orderBy?: HeroOrderByWithAggregationInput | HeroOrderByWithAggregationInput[]
+    by: HeroScalarFieldEnum[] | HeroScalarFieldEnum
+    having?: HeroScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HeroCountAggregateInputType | true
+    _avg?: HeroAvgAggregateInputType
+    _sum?: HeroSumAggregateInputType
+    _min?: HeroMinAggregateInputType
+    _max?: HeroMaxAggregateInputType
+  }
+
+  export type HeroGroupByOutputType = {
+    id: number
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt: Date
+    _count: HeroCountAggregateOutputType | null
+    _avg: HeroAvgAggregateOutputType | null
+    _sum: HeroSumAggregateOutputType | null
+    _min: HeroMinAggregateOutputType | null
+    _max: HeroMaxAggregateOutputType | null
+  }
+
+  type GetHeroGroupByPayload<T extends HeroGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HeroGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HeroGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HeroGroupByOutputType[P]>
+            : GetScalarType<T[P], HeroGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HeroSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    health?: boolean
+    attack?: boolean
+    name?: boolean
+    imageUrl?: boolean
+    createdAt?: boolean
+    battlesAsPlayer1?: boolean | Hero$battlesAsPlayer1Args<ExtArgs>
+    battlesAsPlayer2?: boolean | Hero$battlesAsPlayer2Args<ExtArgs>
+    userHeroes?: boolean | Hero$userHeroesArgs<ExtArgs>
+    _count?: boolean | HeroCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hero"]>
+
+  export type HeroSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    health?: boolean
+    attack?: boolean
+    name?: boolean
+    imageUrl?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["hero"]>
+
+  export type HeroSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    health?: boolean
+    attack?: boolean
+    name?: boolean
+    imageUrl?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["hero"]>
+
+  export type HeroSelectScalar = {
+    id?: boolean
+    health?: boolean
+    attack?: boolean
+    name?: boolean
+    imageUrl?: boolean
+    createdAt?: boolean
+  }
+
+  export type HeroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "health" | "attack" | "name" | "imageUrl" | "createdAt", ExtArgs["result"]["hero"]>
+  export type HeroInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    battlesAsPlayer1?: boolean | Hero$battlesAsPlayer1Args<ExtArgs>
+    battlesAsPlayer2?: boolean | Hero$battlesAsPlayer2Args<ExtArgs>
+    userHeroes?: boolean | Hero$userHeroesArgs<ExtArgs>
+    _count?: boolean | HeroCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type HeroIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type HeroIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $HeroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Hero"
+    objects: {
+      battlesAsPlayer1: Prisma.$BattlePayload<ExtArgs>[]
+      battlesAsPlayer2: Prisma.$BattlePayload<ExtArgs>[]
+      userHeroes: Prisma.$UserHeroPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      health: number
+      attack: number
+      name: string
+      imageUrl: string
+      createdAt: Date
+    }, ExtArgs["result"]["hero"]>
+    composites: {}
+  }
+
+  type HeroGetPayload<S extends boolean | null | undefined | HeroDefaultArgs> = $Result.GetResult<Prisma.$HeroPayload, S>
+
+  type HeroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HeroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HeroCountAggregateInputType | true
+    }
+
+  export interface HeroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Hero'], meta: { name: 'Hero' } }
+    /**
+     * Find zero or one Hero that matches the filter.
+     * @param {HeroFindUniqueArgs} args - Arguments to find a Hero
+     * @example
+     * // Get one Hero
+     * const hero = await prisma.hero.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HeroFindUniqueArgs>(args: SelectSubset<T, HeroFindUniqueArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hero that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HeroFindUniqueOrThrowArgs} args - Arguments to find a Hero
+     * @example
+     * // Get one Hero
+     * const hero = await prisma.hero.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HeroFindUniqueOrThrowArgs>(args: SelectSubset<T, HeroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hero that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroFindFirstArgs} args - Arguments to find a Hero
+     * @example
+     * // Get one Hero
+     * const hero = await prisma.hero.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HeroFindFirstArgs>(args?: SelectSubset<T, HeroFindFirstArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hero that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroFindFirstOrThrowArgs} args - Arguments to find a Hero
+     * @example
+     * // Get one Hero
+     * const hero = await prisma.hero.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HeroFindFirstOrThrowArgs>(args?: SelectSubset<T, HeroFindFirstOrThrowArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Heroes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Heroes
+     * const heroes = await prisma.hero.findMany()
+     * 
+     * // Get first 10 Heroes
+     * const heroes = await prisma.hero.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const heroWithIdOnly = await prisma.hero.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HeroFindManyArgs>(args?: SelectSubset<T, HeroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hero.
+     * @param {HeroCreateArgs} args - Arguments to create a Hero.
+     * @example
+     * // Create one Hero
+     * const Hero = await prisma.hero.create({
+     *   data: {
+     *     // ... data to create a Hero
+     *   }
+     * })
+     * 
+     */
+    create<T extends HeroCreateArgs>(args: SelectSubset<T, HeroCreateArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Heroes.
+     * @param {HeroCreateManyArgs} args - Arguments to create many Heroes.
+     * @example
+     * // Create many Heroes
+     * const hero = await prisma.hero.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HeroCreateManyArgs>(args?: SelectSubset<T, HeroCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Heroes and returns the data saved in the database.
+     * @param {HeroCreateManyAndReturnArgs} args - Arguments to create many Heroes.
+     * @example
+     * // Create many Heroes
+     * const hero = await prisma.hero.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Heroes and only return the `id`
+     * const heroWithIdOnly = await prisma.hero.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HeroCreateManyAndReturnArgs>(args?: SelectSubset<T, HeroCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hero.
+     * @param {HeroDeleteArgs} args - Arguments to delete one Hero.
+     * @example
+     * // Delete one Hero
+     * const Hero = await prisma.hero.delete({
+     *   where: {
+     *     // ... filter to delete one Hero
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HeroDeleteArgs>(args: SelectSubset<T, HeroDeleteArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hero.
+     * @param {HeroUpdateArgs} args - Arguments to update one Hero.
+     * @example
+     * // Update one Hero
+     * const hero = await prisma.hero.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HeroUpdateArgs>(args: SelectSubset<T, HeroUpdateArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Heroes.
+     * @param {HeroDeleteManyArgs} args - Arguments to filter Heroes to delete.
+     * @example
+     * // Delete a few Heroes
+     * const { count } = await prisma.hero.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HeroDeleteManyArgs>(args?: SelectSubset<T, HeroDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Heroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Heroes
+     * const hero = await prisma.hero.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HeroUpdateManyArgs>(args: SelectSubset<T, HeroUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Heroes and returns the data updated in the database.
+     * @param {HeroUpdateManyAndReturnArgs} args - Arguments to update many Heroes.
+     * @example
+     * // Update many Heroes
+     * const hero = await prisma.hero.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Heroes and only return the `id`
+     * const heroWithIdOnly = await prisma.hero.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HeroUpdateManyAndReturnArgs>(args: SelectSubset<T, HeroUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hero.
+     * @param {HeroUpsertArgs} args - Arguments to update or create a Hero.
+     * @example
+     * // Update or create a Hero
+     * const hero = await prisma.hero.upsert({
+     *   create: {
+     *     // ... data to create a Hero
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hero we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HeroUpsertArgs>(args: SelectSubset<T, HeroUpsertArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Heroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroCountArgs} args - Arguments to filter Heroes to count.
+     * @example
+     * // Count the number of Heroes
+     * const count = await prisma.hero.count({
+     *   where: {
+     *     // ... the filter for the Heroes we want to count
+     *   }
+     * })
+    **/
+    count<T extends HeroCountArgs>(
+      args?: Subset<T, HeroCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HeroCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HeroAggregateArgs>(args: Subset<T, HeroAggregateArgs>): Prisma.PrismaPromise<GetHeroAggregateType<T>>
+
+    /**
+     * Group by Hero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HeroGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HeroGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HeroGroupByArgs['orderBy'] }
+        : { orderBy?: HeroGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HeroGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHeroGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Hero model
+   */
+  readonly fields: HeroFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Hero.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HeroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    battlesAsPlayer1<T extends Hero$battlesAsPlayer1Args<ExtArgs> = {}>(args?: Subset<T, Hero$battlesAsPlayer1Args<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    battlesAsPlayer2<T extends Hero$battlesAsPlayer2Args<ExtArgs> = {}>(args?: Subset<T, Hero$battlesAsPlayer2Args<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    userHeroes<T extends Hero$userHeroesArgs<ExtArgs> = {}>(args?: Subset<T, Hero$userHeroesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Hero model
+   */
+  interface HeroFieldRefs {
+    readonly id: FieldRef<"Hero", 'Int'>
+    readonly health: FieldRef<"Hero", 'Int'>
+    readonly attack: FieldRef<"Hero", 'Int'>
+    readonly name: FieldRef<"Hero", 'String'>
+    readonly imageUrl: FieldRef<"Hero", 'String'>
+    readonly createdAt: FieldRef<"Hero", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Hero findUnique
+   */
+  export type HeroFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    /**
+     * Filter, which Hero to fetch.
+     */
+    where: HeroWhereUniqueInput
+  }
+
+  /**
+   * Hero findUniqueOrThrow
+   */
+  export type HeroFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    /**
+     * Filter, which Hero to fetch.
+     */
+    where: HeroWhereUniqueInput
+  }
+
+  /**
+   * Hero findFirst
+   */
+  export type HeroFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    /**
+     * Filter, which Hero to fetch.
+     */
+    where?: HeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Heroes to fetch.
+     */
+    orderBy?: HeroOrderByWithRelationInput | HeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Heroes.
+     */
+    cursor?: HeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Heroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Heroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Heroes.
+     */
+    distinct?: HeroScalarFieldEnum | HeroScalarFieldEnum[]
+  }
+
+  /**
+   * Hero findFirstOrThrow
+   */
+  export type HeroFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    /**
+     * Filter, which Hero to fetch.
+     */
+    where?: HeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Heroes to fetch.
+     */
+    orderBy?: HeroOrderByWithRelationInput | HeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Heroes.
+     */
+    cursor?: HeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Heroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Heroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Heroes.
+     */
+    distinct?: HeroScalarFieldEnum | HeroScalarFieldEnum[]
+  }
+
+  /**
+   * Hero findMany
+   */
+  export type HeroFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    /**
+     * Filter, which Heroes to fetch.
+     */
+    where?: HeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Heroes to fetch.
+     */
+    orderBy?: HeroOrderByWithRelationInput | HeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Heroes.
+     */
+    cursor?: HeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Heroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Heroes.
+     */
+    skip?: number
+    distinct?: HeroScalarFieldEnum | HeroScalarFieldEnum[]
+  }
+
+  /**
+   * Hero create
+   */
+  export type HeroCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Hero.
+     */
+    data: XOR<HeroCreateInput, HeroUncheckedCreateInput>
+  }
+
+  /**
+   * Hero createMany
+   */
+  export type HeroCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Heroes.
+     */
+    data: HeroCreateManyInput | HeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Hero createManyAndReturn
+   */
+  export type HeroCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * The data used to create many Heroes.
+     */
+    data: HeroCreateManyInput | HeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Hero update
+   */
+  export type HeroUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Hero.
+     */
+    data: XOR<HeroUpdateInput, HeroUncheckedUpdateInput>
+    /**
+     * Choose, which Hero to update.
+     */
+    where: HeroWhereUniqueInput
+  }
+
+  /**
+   * Hero updateMany
+   */
+  export type HeroUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Heroes.
+     */
+    data: XOR<HeroUpdateManyMutationInput, HeroUncheckedUpdateManyInput>
+    /**
+     * Filter which Heroes to update
+     */
+    where?: HeroWhereInput
+    /**
+     * Limit how many Heroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hero updateManyAndReturn
+   */
+  export type HeroUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * The data used to update Heroes.
+     */
+    data: XOR<HeroUpdateManyMutationInput, HeroUncheckedUpdateManyInput>
+    /**
+     * Filter which Heroes to update
+     */
+    where?: HeroWhereInput
+    /**
+     * Limit how many Heroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hero upsert
+   */
+  export type HeroUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Hero to update in case it exists.
+     */
+    where: HeroWhereUniqueInput
+    /**
+     * In case the Hero found by the `where` argument doesn't exist, create a new Hero with this data.
+     */
+    create: XOR<HeroCreateInput, HeroUncheckedCreateInput>
+    /**
+     * In case the Hero was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HeroUpdateInput, HeroUncheckedUpdateInput>
+  }
+
+  /**
+   * Hero delete
+   */
+  export type HeroDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    /**
+     * Filter which Hero to delete.
+     */
+    where: HeroWhereUniqueInput
+  }
+
+  /**
+   * Hero deleteMany
+   */
+  export type HeroDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Heroes to delete
+     */
+    where?: HeroWhereInput
+    /**
+     * Limit how many Heroes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hero.battlesAsPlayer1
+   */
+  export type Hero$battlesAsPlayer1Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    where?: BattleWhereInput
+    orderBy?: BattleOrderByWithRelationInput | BattleOrderByWithRelationInput[]
+    cursor?: BattleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BattleScalarFieldEnum | BattleScalarFieldEnum[]
+  }
+
+  /**
+   * Hero.battlesAsPlayer2
+   */
+  export type Hero$battlesAsPlayer2Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    where?: BattleWhereInput
+    orderBy?: BattleOrderByWithRelationInput | BattleOrderByWithRelationInput[]
+    cursor?: BattleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BattleScalarFieldEnum | BattleScalarFieldEnum[]
+  }
+
+  /**
+   * Hero.userHeroes
+   */
+  export type Hero$userHeroesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    where?: UserHeroWhereInput
+    orderBy?: UserHeroOrderByWithRelationInput | UserHeroOrderByWithRelationInput[]
+    cursor?: UserHeroWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserHeroScalarFieldEnum | UserHeroScalarFieldEnum[]
+  }
+
+  /**
+   * Hero without action
+   */
+  export type HeroDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserHero
+   */
+
+  export type AggregateUserHero = {
+    _count: UserHeroCountAggregateOutputType | null
+    _avg: UserHeroAvgAggregateOutputType | null
+    _sum: UserHeroSumAggregateOutputType | null
+    _min: UserHeroMinAggregateOutputType | null
+    _max: UserHeroMaxAggregateOutputType | null
+  }
+
+  export type UserHeroAvgAggregateOutputType = {
+    id: number | null
+    heroId: number | null
+    userId: number | null
+  }
+
+  export type UserHeroSumAggregateOutputType = {
+    id: number | null
+    heroId: number | null
+    userId: number | null
+  }
+
+  export type UserHeroMinAggregateOutputType = {
+    id: number | null
+    heroId: number | null
+    userId: number | null
+    createdOn: Date | null
+  }
+
+  export type UserHeroMaxAggregateOutputType = {
+    id: number | null
+    heroId: number | null
+    userId: number | null
+    createdOn: Date | null
+  }
+
+  export type UserHeroCountAggregateOutputType = {
+    id: number
+    heroId: number
+    userId: number
+    createdOn: number
+    _all: number
+  }
+
+
+  export type UserHeroAvgAggregateInputType = {
+    id?: true
+    heroId?: true
+    userId?: true
+  }
+
+  export type UserHeroSumAggregateInputType = {
+    id?: true
+    heroId?: true
+    userId?: true
+  }
+
+  export type UserHeroMinAggregateInputType = {
+    id?: true
+    heroId?: true
+    userId?: true
+    createdOn?: true
+  }
+
+  export type UserHeroMaxAggregateInputType = {
+    id?: true
+    heroId?: true
+    userId?: true
+    createdOn?: true
+  }
+
+  export type UserHeroCountAggregateInputType = {
+    id?: true
+    heroId?: true
+    userId?: true
+    createdOn?: true
+    _all?: true
+  }
+
+  export type UserHeroAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserHero to aggregate.
+     */
+    where?: UserHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserHeroes to fetch.
+     */
+    orderBy?: UserHeroOrderByWithRelationInput | UserHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserHeroes
+    **/
+    _count?: true | UserHeroCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserHeroAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserHeroSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserHeroMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserHeroMaxAggregateInputType
+  }
+
+  export type GetUserHeroAggregateType<T extends UserHeroAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserHero]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserHero[P]>
+      : GetScalarType<T[P], AggregateUserHero[P]>
+  }
+
+
+
+
+  export type UserHeroGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserHeroWhereInput
+    orderBy?: UserHeroOrderByWithAggregationInput | UserHeroOrderByWithAggregationInput[]
+    by: UserHeroScalarFieldEnum[] | UserHeroScalarFieldEnum
+    having?: UserHeroScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserHeroCountAggregateInputType | true
+    _avg?: UserHeroAvgAggregateInputType
+    _sum?: UserHeroSumAggregateInputType
+    _min?: UserHeroMinAggregateInputType
+    _max?: UserHeroMaxAggregateInputType
+  }
+
+  export type UserHeroGroupByOutputType = {
+    id: number
+    heroId: number
+    userId: number
+    createdOn: Date
+    _count: UserHeroCountAggregateOutputType | null
+    _avg: UserHeroAvgAggregateOutputType | null
+    _sum: UserHeroSumAggregateOutputType | null
+    _min: UserHeroMinAggregateOutputType | null
+    _max: UserHeroMaxAggregateOutputType | null
+  }
+
+  type GetUserHeroGroupByPayload<T extends UserHeroGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserHeroGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserHeroGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserHeroGroupByOutputType[P]>
+            : GetScalarType<T[P], UserHeroGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserHeroSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heroId?: boolean
+    userId?: boolean
+    createdOn?: boolean
+    hero?: boolean | HeroDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userHero"]>
+
+  export type UserHeroSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heroId?: boolean
+    userId?: boolean
+    createdOn?: boolean
+    hero?: boolean | HeroDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userHero"]>
+
+  export type UserHeroSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    heroId?: boolean
+    userId?: boolean
+    createdOn?: boolean
+    hero?: boolean | HeroDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userHero"]>
+
+  export type UserHeroSelectScalar = {
+    id?: boolean
+    heroId?: boolean
+    userId?: boolean
+    createdOn?: boolean
+  }
+
+  export type UserHeroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "heroId" | "userId" | "createdOn", ExtArgs["result"]["userHero"]>
+  export type UserHeroInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hero?: boolean | HeroDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserHeroIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hero?: boolean | HeroDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserHeroIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hero?: boolean | HeroDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserHeroPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserHero"
+    objects: {
+      hero: Prisma.$HeroPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      heroId: number
+      userId: number
+      createdOn: Date
+    }, ExtArgs["result"]["userHero"]>
+    composites: {}
+  }
+
+  type UserHeroGetPayload<S extends boolean | null | undefined | UserHeroDefaultArgs> = $Result.GetResult<Prisma.$UserHeroPayload, S>
+
+  type UserHeroCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserHeroFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserHeroCountAggregateInputType | true
+    }
+
+  export interface UserHeroDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserHero'], meta: { name: 'UserHero' } }
+    /**
+     * Find zero or one UserHero that matches the filter.
+     * @param {UserHeroFindUniqueArgs} args - Arguments to find a UserHero
+     * @example
+     * // Get one UserHero
+     * const userHero = await prisma.userHero.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserHeroFindUniqueArgs>(args: SelectSubset<T, UserHeroFindUniqueArgs<ExtArgs>>): Prisma__UserHeroClient<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserHero that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserHeroFindUniqueOrThrowArgs} args - Arguments to find a UserHero
+     * @example
+     * // Get one UserHero
+     * const userHero = await prisma.userHero.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserHeroFindUniqueOrThrowArgs>(args: SelectSubset<T, UserHeroFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserHeroClient<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserHero that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserHeroFindFirstArgs} args - Arguments to find a UserHero
+     * @example
+     * // Get one UserHero
+     * const userHero = await prisma.userHero.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserHeroFindFirstArgs>(args?: SelectSubset<T, UserHeroFindFirstArgs<ExtArgs>>): Prisma__UserHeroClient<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserHero that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserHeroFindFirstOrThrowArgs} args - Arguments to find a UserHero
+     * @example
+     * // Get one UserHero
+     * const userHero = await prisma.userHero.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserHeroFindFirstOrThrowArgs>(args?: SelectSubset<T, UserHeroFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserHeroClient<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserHeroes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserHeroFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserHeroes
+     * const userHeroes = await prisma.userHero.findMany()
+     * 
+     * // Get first 10 UserHeroes
+     * const userHeroes = await prisma.userHero.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userHeroWithIdOnly = await prisma.userHero.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserHeroFindManyArgs>(args?: SelectSubset<T, UserHeroFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserHero.
+     * @param {UserHeroCreateArgs} args - Arguments to create a UserHero.
+     * @example
+     * // Create one UserHero
+     * const UserHero = await prisma.userHero.create({
+     *   data: {
+     *     // ... data to create a UserHero
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserHeroCreateArgs>(args: SelectSubset<T, UserHeroCreateArgs<ExtArgs>>): Prisma__UserHeroClient<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserHeroes.
+     * @param {UserHeroCreateManyArgs} args - Arguments to create many UserHeroes.
+     * @example
+     * // Create many UserHeroes
+     * const userHero = await prisma.userHero.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserHeroCreateManyArgs>(args?: SelectSubset<T, UserHeroCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserHeroes and returns the data saved in the database.
+     * @param {UserHeroCreateManyAndReturnArgs} args - Arguments to create many UserHeroes.
+     * @example
+     * // Create many UserHeroes
+     * const userHero = await prisma.userHero.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserHeroes and only return the `id`
+     * const userHeroWithIdOnly = await prisma.userHero.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserHeroCreateManyAndReturnArgs>(args?: SelectSubset<T, UserHeroCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserHero.
+     * @param {UserHeroDeleteArgs} args - Arguments to delete one UserHero.
+     * @example
+     * // Delete one UserHero
+     * const UserHero = await prisma.userHero.delete({
+     *   where: {
+     *     // ... filter to delete one UserHero
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserHeroDeleteArgs>(args: SelectSubset<T, UserHeroDeleteArgs<ExtArgs>>): Prisma__UserHeroClient<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserHero.
+     * @param {UserHeroUpdateArgs} args - Arguments to update one UserHero.
+     * @example
+     * // Update one UserHero
+     * const userHero = await prisma.userHero.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserHeroUpdateArgs>(args: SelectSubset<T, UserHeroUpdateArgs<ExtArgs>>): Prisma__UserHeroClient<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserHeroes.
+     * @param {UserHeroDeleteManyArgs} args - Arguments to filter UserHeroes to delete.
+     * @example
+     * // Delete a few UserHeroes
+     * const { count } = await prisma.userHero.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserHeroDeleteManyArgs>(args?: SelectSubset<T, UserHeroDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserHeroUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserHeroes
+     * const userHero = await prisma.userHero.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserHeroUpdateManyArgs>(args: SelectSubset<T, UserHeroUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserHeroes and returns the data updated in the database.
+     * @param {UserHeroUpdateManyAndReturnArgs} args - Arguments to update many UserHeroes.
+     * @example
+     * // Update many UserHeroes
+     * const userHero = await prisma.userHero.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserHeroes and only return the `id`
+     * const userHeroWithIdOnly = await prisma.userHero.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserHeroUpdateManyAndReturnArgs>(args: SelectSubset<T, UserHeroUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserHero.
+     * @param {UserHeroUpsertArgs} args - Arguments to update or create a UserHero.
+     * @example
+     * // Update or create a UserHero
+     * const userHero = await prisma.userHero.upsert({
+     *   create: {
+     *     // ... data to create a UserHero
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserHero we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserHeroUpsertArgs>(args: SelectSubset<T, UserHeroUpsertArgs<ExtArgs>>): Prisma__UserHeroClient<$Result.GetResult<Prisma.$UserHeroPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserHeroes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserHeroCountArgs} args - Arguments to filter UserHeroes to count.
+     * @example
+     * // Count the number of UserHeroes
+     * const count = await prisma.userHero.count({
+     *   where: {
+     *     // ... the filter for the UserHeroes we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserHeroCountArgs>(
+      args?: Subset<T, UserHeroCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserHeroCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserHeroAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserHeroAggregateArgs>(args: Subset<T, UserHeroAggregateArgs>): Prisma.PrismaPromise<GetUserHeroAggregateType<T>>
+
+    /**
+     * Group by UserHero.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserHeroGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserHeroGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserHeroGroupByArgs['orderBy'] }
+        : { orderBy?: UserHeroGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserHeroGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserHeroGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserHero model
+   */
+  readonly fields: UserHeroFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserHero.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserHeroClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hero<T extends HeroDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HeroDefaultArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserHero model
+   */
+  interface UserHeroFieldRefs {
+    readonly id: FieldRef<"UserHero", 'Int'>
+    readonly heroId: FieldRef<"UserHero", 'Int'>
+    readonly userId: FieldRef<"UserHero", 'Int'>
+    readonly createdOn: FieldRef<"UserHero", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserHero findUnique
+   */
+  export type UserHeroFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    /**
+     * Filter, which UserHero to fetch.
+     */
+    where: UserHeroWhereUniqueInput
+  }
+
+  /**
+   * UserHero findUniqueOrThrow
+   */
+  export type UserHeroFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    /**
+     * Filter, which UserHero to fetch.
+     */
+    where: UserHeroWhereUniqueInput
+  }
+
+  /**
+   * UserHero findFirst
+   */
+  export type UserHeroFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    /**
+     * Filter, which UserHero to fetch.
+     */
+    where?: UserHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserHeroes to fetch.
+     */
+    orderBy?: UserHeroOrderByWithRelationInput | UserHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserHeroes.
+     */
+    cursor?: UserHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserHeroes.
+     */
+    distinct?: UserHeroScalarFieldEnum | UserHeroScalarFieldEnum[]
+  }
+
+  /**
+   * UserHero findFirstOrThrow
+   */
+  export type UserHeroFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    /**
+     * Filter, which UserHero to fetch.
+     */
+    where?: UserHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserHeroes to fetch.
+     */
+    orderBy?: UserHeroOrderByWithRelationInput | UserHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserHeroes.
+     */
+    cursor?: UserHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserHeroes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserHeroes.
+     */
+    distinct?: UserHeroScalarFieldEnum | UserHeroScalarFieldEnum[]
+  }
+
+  /**
+   * UserHero findMany
+   */
+  export type UserHeroFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    /**
+     * Filter, which UserHeroes to fetch.
+     */
+    where?: UserHeroWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserHeroes to fetch.
+     */
+    orderBy?: UserHeroOrderByWithRelationInput | UserHeroOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserHeroes.
+     */
+    cursor?: UserHeroWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserHeroes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserHeroes.
+     */
+    skip?: number
+    distinct?: UserHeroScalarFieldEnum | UserHeroScalarFieldEnum[]
+  }
+
+  /**
+   * UserHero create
+   */
+  export type UserHeroCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserHero.
+     */
+    data: XOR<UserHeroCreateInput, UserHeroUncheckedCreateInput>
+  }
+
+  /**
+   * UserHero createMany
+   */
+  export type UserHeroCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserHeroes.
+     */
+    data: UserHeroCreateManyInput | UserHeroCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserHero createManyAndReturn
+   */
+  export type UserHeroCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserHeroes.
+     */
+    data: UserHeroCreateManyInput | UserHeroCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserHero update
+   */
+  export type UserHeroUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserHero.
+     */
+    data: XOR<UserHeroUpdateInput, UserHeroUncheckedUpdateInput>
+    /**
+     * Choose, which UserHero to update.
+     */
+    where: UserHeroWhereUniqueInput
+  }
+
+  /**
+   * UserHero updateMany
+   */
+  export type UserHeroUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserHeroes.
+     */
+    data: XOR<UserHeroUpdateManyMutationInput, UserHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which UserHeroes to update
+     */
+    where?: UserHeroWhereInput
+    /**
+     * Limit how many UserHeroes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserHero updateManyAndReturn
+   */
+  export type UserHeroUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * The data used to update UserHeroes.
+     */
+    data: XOR<UserHeroUpdateManyMutationInput, UserHeroUncheckedUpdateManyInput>
+    /**
+     * Filter which UserHeroes to update
+     */
+    where?: UserHeroWhereInput
+    /**
+     * Limit how many UserHeroes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserHero upsert
+   */
+  export type UserHeroUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserHero to update in case it exists.
+     */
+    where: UserHeroWhereUniqueInput
+    /**
+     * In case the UserHero found by the `where` argument doesn't exist, create a new UserHero with this data.
+     */
+    create: XOR<UserHeroCreateInput, UserHeroUncheckedCreateInput>
+    /**
+     * In case the UserHero was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserHeroUpdateInput, UserHeroUncheckedUpdateInput>
+  }
+
+  /**
+   * UserHero delete
+   */
+  export type UserHeroDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+    /**
+     * Filter which UserHero to delete.
+     */
+    where: UserHeroWhereUniqueInput
+  }
+
+  /**
+   * UserHero deleteMany
+   */
+  export type UserHeroDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserHeroes to delete
+     */
+    where?: UserHeroWhereInput
+    /**
+     * Limit how many UserHeroes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserHero without action
+   */
+  export type UserHeroDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserHero
+     */
+    select?: UserHeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserHero
+     */
+    omit?: UserHeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserHeroInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Battle
+   */
+
+  export type AggregateBattle = {
+    _count: BattleCountAggregateOutputType | null
+    _avg: BattleAvgAggregateOutputType | null
+    _sum: BattleSumAggregateOutputType | null
+    _min: BattleMinAggregateOutputType | null
+    _max: BattleMaxAggregateOutputType | null
+  }
+
+  export type BattleAvgAggregateOutputType = {
+    id: number | null
+    winnerId: number | null
+    player1Id: number | null
+    player2Id: number | null
+    player1HeroId: number | null
+    player2HeroId: number | null
+    player1Health: number | null
+    player2Health: number | null
+  }
+
+  export type BattleSumAggregateOutputType = {
+    id: number | null
+    winnerId: number | null
+    player1Id: number | null
+    player2Id: number | null
+    player1HeroId: number | null
+    player2HeroId: number | null
+    player1Health: number | null
+    player2Health: number | null
+  }
+
+  export type BattleMinAggregateOutputType = {
+    id: number | null
+    winnerId: number | null
+    player1Id: number | null
+    player2Id: number | null
+    player1HeroId: number | null
+    player2HeroId: number | null
+    player1Health: number | null
+    player2Health: number | null
+    status: $Enums.BattleStatus | null
+    createdOn: Date | null
+  }
+
+  export type BattleMaxAggregateOutputType = {
+    id: number | null
+    winnerId: number | null
+    player1Id: number | null
+    player2Id: number | null
+    player1HeroId: number | null
+    player2HeroId: number | null
+    player1Health: number | null
+    player2Health: number | null
+    status: $Enums.BattleStatus | null
+    createdOn: Date | null
+  }
+
+  export type BattleCountAggregateOutputType = {
+    id: number
+    winnerId: number
+    player1Id: number
+    player2Id: number
+    player1HeroId: number
+    player2HeroId: number
+    player1Health: number
+    player2Health: number
+    status: number
+    createdOn: number
+    _all: number
+  }
+
+
+  export type BattleAvgAggregateInputType = {
+    id?: true
+    winnerId?: true
+    player1Id?: true
+    player2Id?: true
+    player1HeroId?: true
+    player2HeroId?: true
+    player1Health?: true
+    player2Health?: true
+  }
+
+  export type BattleSumAggregateInputType = {
+    id?: true
+    winnerId?: true
+    player1Id?: true
+    player2Id?: true
+    player1HeroId?: true
+    player2HeroId?: true
+    player1Health?: true
+    player2Health?: true
+  }
+
+  export type BattleMinAggregateInputType = {
+    id?: true
+    winnerId?: true
+    player1Id?: true
+    player2Id?: true
+    player1HeroId?: true
+    player2HeroId?: true
+    player1Health?: true
+    player2Health?: true
+    status?: true
+    createdOn?: true
+  }
+
+  export type BattleMaxAggregateInputType = {
+    id?: true
+    winnerId?: true
+    player1Id?: true
+    player2Id?: true
+    player1HeroId?: true
+    player2HeroId?: true
+    player1Health?: true
+    player2Health?: true
+    status?: true
+    createdOn?: true
+  }
+
+  export type BattleCountAggregateInputType = {
+    id?: true
+    winnerId?: true
+    player1Id?: true
+    player2Id?: true
+    player1HeroId?: true
+    player2HeroId?: true
+    player1Health?: true
+    player2Health?: true
+    status?: true
+    createdOn?: true
+    _all?: true
+  }
+
+  export type BattleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Battle to aggregate.
+     */
+    where?: BattleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Battles to fetch.
+     */
+    orderBy?: BattleOrderByWithRelationInput | BattleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BattleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Battles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Battles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Battles
+    **/
+    _count?: true | BattleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BattleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BattleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BattleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BattleMaxAggregateInputType
+  }
+
+  export type GetBattleAggregateType<T extends BattleAggregateArgs> = {
+        [P in keyof T & keyof AggregateBattle]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBattle[P]>
+      : GetScalarType<T[P], AggregateBattle[P]>
+  }
+
+
+
+
+  export type BattleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BattleWhereInput
+    orderBy?: BattleOrderByWithAggregationInput | BattleOrderByWithAggregationInput[]
+    by: BattleScalarFieldEnum[] | BattleScalarFieldEnum
+    having?: BattleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BattleCountAggregateInputType | true
+    _avg?: BattleAvgAggregateInputType
+    _sum?: BattleSumAggregateInputType
+    _min?: BattleMinAggregateInputType
+    _max?: BattleMaxAggregateInputType
+  }
+
+  export type BattleGroupByOutputType = {
+    id: number
+    winnerId: number | null
+    player1Id: number | null
+    player2Id: number | null
+    player1HeroId: number | null
+    player2HeroId: number | null
+    player1Health: number | null
+    player2Health: number | null
+    status: $Enums.BattleStatus
+    createdOn: Date
+    _count: BattleCountAggregateOutputType | null
+    _avg: BattleAvgAggregateOutputType | null
+    _sum: BattleSumAggregateOutputType | null
+    _min: BattleMinAggregateOutputType | null
+    _max: BattleMaxAggregateOutputType | null
+  }
+
+  type GetBattleGroupByPayload<T extends BattleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BattleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BattleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BattleGroupByOutputType[P]>
+            : GetScalarType<T[P], BattleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BattleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    winnerId?: boolean
+    player1Id?: boolean
+    player2Id?: boolean
+    player1HeroId?: boolean
+    player2HeroId?: boolean
+    player1Health?: boolean
+    player2Health?: boolean
+    status?: boolean
+    createdOn?: boolean
+    winner?: boolean | Battle$winnerArgs<ExtArgs>
+    player1?: boolean | Battle$player1Args<ExtArgs>
+    player2?: boolean | Battle$player2Args<ExtArgs>
+    player1Hero?: boolean | Battle$player1HeroArgs<ExtArgs>
+    player2Hero?: boolean | Battle$player2HeroArgs<ExtArgs>
+  }, ExtArgs["result"]["battle"]>
+
+  export type BattleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    winnerId?: boolean
+    player1Id?: boolean
+    player2Id?: boolean
+    player1HeroId?: boolean
+    player2HeroId?: boolean
+    player1Health?: boolean
+    player2Health?: boolean
+    status?: boolean
+    createdOn?: boolean
+    winner?: boolean | Battle$winnerArgs<ExtArgs>
+    player1?: boolean | Battle$player1Args<ExtArgs>
+    player2?: boolean | Battle$player2Args<ExtArgs>
+    player1Hero?: boolean | Battle$player1HeroArgs<ExtArgs>
+    player2Hero?: boolean | Battle$player2HeroArgs<ExtArgs>
+  }, ExtArgs["result"]["battle"]>
+
+  export type BattleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    winnerId?: boolean
+    player1Id?: boolean
+    player2Id?: boolean
+    player1HeroId?: boolean
+    player2HeroId?: boolean
+    player1Health?: boolean
+    player2Health?: boolean
+    status?: boolean
+    createdOn?: boolean
+    winner?: boolean | Battle$winnerArgs<ExtArgs>
+    player1?: boolean | Battle$player1Args<ExtArgs>
+    player2?: boolean | Battle$player2Args<ExtArgs>
+    player1Hero?: boolean | Battle$player1HeroArgs<ExtArgs>
+    player2Hero?: boolean | Battle$player2HeroArgs<ExtArgs>
+  }, ExtArgs["result"]["battle"]>
+
+  export type BattleSelectScalar = {
+    id?: boolean
+    winnerId?: boolean
+    player1Id?: boolean
+    player2Id?: boolean
+    player1HeroId?: boolean
+    player2HeroId?: boolean
+    player1Health?: boolean
+    player2Health?: boolean
+    status?: boolean
+    createdOn?: boolean
+  }
+
+  export type BattleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "winnerId" | "player1Id" | "player2Id" | "player1HeroId" | "player2HeroId" | "player1Health" | "player2Health" | "status" | "createdOn", ExtArgs["result"]["battle"]>
+  export type BattleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    winner?: boolean | Battle$winnerArgs<ExtArgs>
+    player1?: boolean | Battle$player1Args<ExtArgs>
+    player2?: boolean | Battle$player2Args<ExtArgs>
+    player1Hero?: boolean | Battle$player1HeroArgs<ExtArgs>
+    player2Hero?: boolean | Battle$player2HeroArgs<ExtArgs>
+  }
+  export type BattleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    winner?: boolean | Battle$winnerArgs<ExtArgs>
+    player1?: boolean | Battle$player1Args<ExtArgs>
+    player2?: boolean | Battle$player2Args<ExtArgs>
+    player1Hero?: boolean | Battle$player1HeroArgs<ExtArgs>
+    player2Hero?: boolean | Battle$player2HeroArgs<ExtArgs>
+  }
+  export type BattleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    winner?: boolean | Battle$winnerArgs<ExtArgs>
+    player1?: boolean | Battle$player1Args<ExtArgs>
+    player2?: boolean | Battle$player2Args<ExtArgs>
+    player1Hero?: boolean | Battle$player1HeroArgs<ExtArgs>
+    player2Hero?: boolean | Battle$player2HeroArgs<ExtArgs>
+  }
+
+  export type $BattlePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Battle"
+    objects: {
+      winner: Prisma.$UserPayload<ExtArgs> | null
+      player1: Prisma.$UserPayload<ExtArgs> | null
+      player2: Prisma.$UserPayload<ExtArgs> | null
+      player1Hero: Prisma.$HeroPayload<ExtArgs> | null
+      player2Hero: Prisma.$HeroPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      winnerId: number | null
+      player1Id: number | null
+      player2Id: number | null
+      player1HeroId: number | null
+      player2HeroId: number | null
+      player1Health: number | null
+      player2Health: number | null
+      status: $Enums.BattleStatus
+      createdOn: Date
+    }, ExtArgs["result"]["battle"]>
+    composites: {}
+  }
+
+  type BattleGetPayload<S extends boolean | null | undefined | BattleDefaultArgs> = $Result.GetResult<Prisma.$BattlePayload, S>
+
+  type BattleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BattleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BattleCountAggregateInputType | true
+    }
+
+  export interface BattleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Battle'], meta: { name: 'Battle' } }
+    /**
+     * Find zero or one Battle that matches the filter.
+     * @param {BattleFindUniqueArgs} args - Arguments to find a Battle
+     * @example
+     * // Get one Battle
+     * const battle = await prisma.battle.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BattleFindUniqueArgs>(args: SelectSubset<T, BattleFindUniqueArgs<ExtArgs>>): Prisma__BattleClient<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Battle that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BattleFindUniqueOrThrowArgs} args - Arguments to find a Battle
+     * @example
+     * // Get one Battle
+     * const battle = await prisma.battle.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BattleFindUniqueOrThrowArgs>(args: SelectSubset<T, BattleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BattleClient<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Battle that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BattleFindFirstArgs} args - Arguments to find a Battle
+     * @example
+     * // Get one Battle
+     * const battle = await prisma.battle.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BattleFindFirstArgs>(args?: SelectSubset<T, BattleFindFirstArgs<ExtArgs>>): Prisma__BattleClient<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Battle that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BattleFindFirstOrThrowArgs} args - Arguments to find a Battle
+     * @example
+     * // Get one Battle
+     * const battle = await prisma.battle.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BattleFindFirstOrThrowArgs>(args?: SelectSubset<T, BattleFindFirstOrThrowArgs<ExtArgs>>): Prisma__BattleClient<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Battles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BattleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Battles
+     * const battles = await prisma.battle.findMany()
+     * 
+     * // Get first 10 Battles
+     * const battles = await prisma.battle.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const battleWithIdOnly = await prisma.battle.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BattleFindManyArgs>(args?: SelectSubset<T, BattleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Battle.
+     * @param {BattleCreateArgs} args - Arguments to create a Battle.
+     * @example
+     * // Create one Battle
+     * const Battle = await prisma.battle.create({
+     *   data: {
+     *     // ... data to create a Battle
+     *   }
+     * })
+     * 
+     */
+    create<T extends BattleCreateArgs>(args: SelectSubset<T, BattleCreateArgs<ExtArgs>>): Prisma__BattleClient<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Battles.
+     * @param {BattleCreateManyArgs} args - Arguments to create many Battles.
+     * @example
+     * // Create many Battles
+     * const battle = await prisma.battle.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BattleCreateManyArgs>(args?: SelectSubset<T, BattleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Battles and returns the data saved in the database.
+     * @param {BattleCreateManyAndReturnArgs} args - Arguments to create many Battles.
+     * @example
+     * // Create many Battles
+     * const battle = await prisma.battle.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Battles and only return the `id`
+     * const battleWithIdOnly = await prisma.battle.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BattleCreateManyAndReturnArgs>(args?: SelectSubset<T, BattleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Battle.
+     * @param {BattleDeleteArgs} args - Arguments to delete one Battle.
+     * @example
+     * // Delete one Battle
+     * const Battle = await prisma.battle.delete({
+     *   where: {
+     *     // ... filter to delete one Battle
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BattleDeleteArgs>(args: SelectSubset<T, BattleDeleteArgs<ExtArgs>>): Prisma__BattleClient<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Battle.
+     * @param {BattleUpdateArgs} args - Arguments to update one Battle.
+     * @example
+     * // Update one Battle
+     * const battle = await prisma.battle.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BattleUpdateArgs>(args: SelectSubset<T, BattleUpdateArgs<ExtArgs>>): Prisma__BattleClient<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Battles.
+     * @param {BattleDeleteManyArgs} args - Arguments to filter Battles to delete.
+     * @example
+     * // Delete a few Battles
+     * const { count } = await prisma.battle.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BattleDeleteManyArgs>(args?: SelectSubset<T, BattleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Battles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BattleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Battles
+     * const battle = await prisma.battle.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BattleUpdateManyArgs>(args: SelectSubset<T, BattleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Battles and returns the data updated in the database.
+     * @param {BattleUpdateManyAndReturnArgs} args - Arguments to update many Battles.
+     * @example
+     * // Update many Battles
+     * const battle = await prisma.battle.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Battles and only return the `id`
+     * const battleWithIdOnly = await prisma.battle.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BattleUpdateManyAndReturnArgs>(args: SelectSubset<T, BattleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Battle.
+     * @param {BattleUpsertArgs} args - Arguments to update or create a Battle.
+     * @example
+     * // Update or create a Battle
+     * const battle = await prisma.battle.upsert({
+     *   create: {
+     *     // ... data to create a Battle
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Battle we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BattleUpsertArgs>(args: SelectSubset<T, BattleUpsertArgs<ExtArgs>>): Prisma__BattleClient<$Result.GetResult<Prisma.$BattlePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Battles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BattleCountArgs} args - Arguments to filter Battles to count.
+     * @example
+     * // Count the number of Battles
+     * const count = await prisma.battle.count({
+     *   where: {
+     *     // ... the filter for the Battles we want to count
+     *   }
+     * })
+    **/
+    count<T extends BattleCountArgs>(
+      args?: Subset<T, BattleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BattleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Battle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BattleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BattleAggregateArgs>(args: Subset<T, BattleAggregateArgs>): Prisma.PrismaPromise<GetBattleAggregateType<T>>
+
+    /**
+     * Group by Battle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BattleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BattleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BattleGroupByArgs['orderBy'] }
+        : { orderBy?: BattleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BattleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBattleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Battle model
+   */
+  readonly fields: BattleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Battle.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BattleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    winner<T extends Battle$winnerArgs<ExtArgs> = {}>(args?: Subset<T, Battle$winnerArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    player1<T extends Battle$player1Args<ExtArgs> = {}>(args?: Subset<T, Battle$player1Args<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    player2<T extends Battle$player2Args<ExtArgs> = {}>(args?: Subset<T, Battle$player2Args<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    player1Hero<T extends Battle$player1HeroArgs<ExtArgs> = {}>(args?: Subset<T, Battle$player1HeroArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    player2Hero<T extends Battle$player2HeroArgs<ExtArgs> = {}>(args?: Subset<T, Battle$player2HeroArgs<ExtArgs>>): Prisma__HeroClient<$Result.GetResult<Prisma.$HeroPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Battle model
+   */
+  interface BattleFieldRefs {
+    readonly id: FieldRef<"Battle", 'Int'>
+    readonly winnerId: FieldRef<"Battle", 'Int'>
+    readonly player1Id: FieldRef<"Battle", 'Int'>
+    readonly player2Id: FieldRef<"Battle", 'Int'>
+    readonly player1HeroId: FieldRef<"Battle", 'Int'>
+    readonly player2HeroId: FieldRef<"Battle", 'Int'>
+    readonly player1Health: FieldRef<"Battle", 'Int'>
+    readonly player2Health: FieldRef<"Battle", 'Int'>
+    readonly status: FieldRef<"Battle", 'BattleStatus'>
+    readonly createdOn: FieldRef<"Battle", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Battle findUnique
+   */
+  export type BattleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    /**
+     * Filter, which Battle to fetch.
+     */
+    where: BattleWhereUniqueInput
+  }
+
+  /**
+   * Battle findUniqueOrThrow
+   */
+  export type BattleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    /**
+     * Filter, which Battle to fetch.
+     */
+    where: BattleWhereUniqueInput
+  }
+
+  /**
+   * Battle findFirst
+   */
+  export type BattleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    /**
+     * Filter, which Battle to fetch.
+     */
+    where?: BattleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Battles to fetch.
+     */
+    orderBy?: BattleOrderByWithRelationInput | BattleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Battles.
+     */
+    cursor?: BattleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Battles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Battles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Battles.
+     */
+    distinct?: BattleScalarFieldEnum | BattleScalarFieldEnum[]
+  }
+
+  /**
+   * Battle findFirstOrThrow
+   */
+  export type BattleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    /**
+     * Filter, which Battle to fetch.
+     */
+    where?: BattleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Battles to fetch.
+     */
+    orderBy?: BattleOrderByWithRelationInput | BattleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Battles.
+     */
+    cursor?: BattleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Battles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Battles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Battles.
+     */
+    distinct?: BattleScalarFieldEnum | BattleScalarFieldEnum[]
+  }
+
+  /**
+   * Battle findMany
+   */
+  export type BattleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    /**
+     * Filter, which Battles to fetch.
+     */
+    where?: BattleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Battles to fetch.
+     */
+    orderBy?: BattleOrderByWithRelationInput | BattleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Battles.
+     */
+    cursor?: BattleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Battles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Battles.
+     */
+    skip?: number
+    distinct?: BattleScalarFieldEnum | BattleScalarFieldEnum[]
+  }
+
+  /**
+   * Battle create
+   */
+  export type BattleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Battle.
+     */
+    data?: XOR<BattleCreateInput, BattleUncheckedCreateInput>
+  }
+
+  /**
+   * Battle createMany
+   */
+  export type BattleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Battles.
+     */
+    data: BattleCreateManyInput | BattleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Battle createManyAndReturn
+   */
+  export type BattleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * The data used to create many Battles.
+     */
+    data: BattleCreateManyInput | BattleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Battle update
+   */
+  export type BattleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Battle.
+     */
+    data: XOR<BattleUpdateInput, BattleUncheckedUpdateInput>
+    /**
+     * Choose, which Battle to update.
+     */
+    where: BattleWhereUniqueInput
+  }
+
+  /**
+   * Battle updateMany
+   */
+  export type BattleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Battles.
+     */
+    data: XOR<BattleUpdateManyMutationInput, BattleUncheckedUpdateManyInput>
+    /**
+     * Filter which Battles to update
+     */
+    where?: BattleWhereInput
+    /**
+     * Limit how many Battles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Battle updateManyAndReturn
+   */
+  export type BattleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * The data used to update Battles.
+     */
+    data: XOR<BattleUpdateManyMutationInput, BattleUncheckedUpdateManyInput>
+    /**
+     * Filter which Battles to update
+     */
+    where?: BattleWhereInput
+    /**
+     * Limit how many Battles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Battle upsert
+   */
+  export type BattleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Battle to update in case it exists.
+     */
+    where: BattleWhereUniqueInput
+    /**
+     * In case the Battle found by the `where` argument doesn't exist, create a new Battle with this data.
+     */
+    create: XOR<BattleCreateInput, BattleUncheckedCreateInput>
+    /**
+     * In case the Battle was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BattleUpdateInput, BattleUncheckedUpdateInput>
+  }
+
+  /**
+   * Battle delete
+   */
+  export type BattleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+    /**
+     * Filter which Battle to delete.
+     */
+    where: BattleWhereUniqueInput
+  }
+
+  /**
+   * Battle deleteMany
+   */
+  export type BattleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Battles to delete
+     */
+    where?: BattleWhereInput
+    /**
+     * Limit how many Battles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Battle.winner
+   */
+  export type Battle$winnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Battle.player1
+   */
+  export type Battle$player1Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Battle.player2
+   */
+  export type Battle$player2Args<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Battle.player1Hero
+   */
+  export type Battle$player1HeroArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    where?: HeroWhereInput
+  }
+
+  /**
+   * Battle.player2Hero
+   */
+  export type Battle$player2HeroArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hero
+     */
+    select?: HeroSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hero
+     */
+    omit?: HeroOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HeroInclude<ExtArgs> | null
+    where?: HeroWhereInput
+  }
+
+  /**
+   * Battle without action
+   */
+  export type BattleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Battle
+     */
+    select?: BattleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Battle
+     */
+    omit?: BattleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BattleInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -8369,6 +12440,44 @@ export namespace Prisma {
   };
 
   export type UserTaskScalarFieldEnum = (typeof UserTaskScalarFieldEnum)[keyof typeof UserTaskScalarFieldEnum]
+
+
+  export const HeroScalarFieldEnum: {
+    id: 'id',
+    health: 'health',
+    attack: 'attack',
+    name: 'name',
+    imageUrl: 'imageUrl',
+    createdAt: 'createdAt'
+  };
+
+  export type HeroScalarFieldEnum = (typeof HeroScalarFieldEnum)[keyof typeof HeroScalarFieldEnum]
+
+
+  export const UserHeroScalarFieldEnum: {
+    id: 'id',
+    heroId: 'heroId',
+    userId: 'userId',
+    createdOn: 'createdOn'
+  };
+
+  export type UserHeroScalarFieldEnum = (typeof UserHeroScalarFieldEnum)[keyof typeof UserHeroScalarFieldEnum]
+
+
+  export const BattleScalarFieldEnum: {
+    id: 'id',
+    winnerId: 'winnerId',
+    player1Id: 'player1Id',
+    player2Id: 'player2Id',
+    player1HeroId: 'player1HeroId',
+    player2HeroId: 'player2HeroId',
+    player1Health: 'player1Health',
+    player2Health: 'player2Health',
+    status: 'status',
+    createdOn: 'createdOn'
+  };
+
+  export type BattleScalarFieldEnum = (typeof BattleScalarFieldEnum)[keyof typeof BattleScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8489,6 +12598,20 @@ export namespace Prisma {
    */
   export type ListEnumTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TaskStatus[]'>
     
+
+
+  /**
+   * Reference to a field of type 'BattleStatus'
+   */
+  export type EnumBattleStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BattleStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'BattleStatus[]'
+   */
+  export type ListEnumBattleStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BattleStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -8563,6 +12686,10 @@ export namespace Prisma {
     friend?: XOR<FriendNullableScalarRelationFilter, FriendWhereInput> | null
     minings?: MiningListRelationFilter
     userTasks?: UserTaskListRelationFilter
+    userHeroes?: UserHeroListRelationFilter
+    battlesAsPlayer1?: BattleListRelationFilter
+    battlesAsPlayer2?: BattleListRelationFilter
+    wonBattles?: BattleListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8587,6 +12714,10 @@ export namespace Prisma {
     friend?: FriendOrderByWithRelationInput
     minings?: MiningOrderByRelationAggregateInput
     userTasks?: UserTaskOrderByRelationAggregateInput
+    userHeroes?: UserHeroOrderByRelationAggregateInput
+    battlesAsPlayer1?: BattleOrderByRelationAggregateInput
+    battlesAsPlayer2?: BattleOrderByRelationAggregateInput
+    wonBattles?: BattleOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8614,6 +12745,10 @@ export namespace Prisma {
     friend?: XOR<FriendNullableScalarRelationFilter, FriendWhereInput> | null
     minings?: MiningListRelationFilter
     userTasks?: UserTaskListRelationFilter
+    userHeroes?: UserHeroListRelationFilter
+    battlesAsPlayer1?: BattleListRelationFilter
+    battlesAsPlayer2?: BattleListRelationFilter
+    wonBattles?: BattleListRelationFilter
   }, "id" | "telegramId">
 
   export type UserOrderByWithAggregationInput = {
@@ -8919,6 +13054,224 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"UserTask"> | Date | string
   }
 
+  export type HeroWhereInput = {
+    AND?: HeroWhereInput | HeroWhereInput[]
+    OR?: HeroWhereInput[]
+    NOT?: HeroWhereInput | HeroWhereInput[]
+    id?: IntFilter<"Hero"> | number
+    health?: IntFilter<"Hero"> | number
+    attack?: IntFilter<"Hero"> | number
+    name?: StringFilter<"Hero"> | string
+    imageUrl?: StringFilter<"Hero"> | string
+    createdAt?: DateTimeFilter<"Hero"> | Date | string
+    battlesAsPlayer1?: BattleListRelationFilter
+    battlesAsPlayer2?: BattleListRelationFilter
+    userHeroes?: UserHeroListRelationFilter
+  }
+
+  export type HeroOrderByWithRelationInput = {
+    id?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    createdAt?: SortOrder
+    battlesAsPlayer1?: BattleOrderByRelationAggregateInput
+    battlesAsPlayer2?: BattleOrderByRelationAggregateInput
+    userHeroes?: UserHeroOrderByRelationAggregateInput
+  }
+
+  export type HeroWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    AND?: HeroWhereInput | HeroWhereInput[]
+    OR?: HeroWhereInput[]
+    NOT?: HeroWhereInput | HeroWhereInput[]
+    health?: IntFilter<"Hero"> | number
+    attack?: IntFilter<"Hero"> | number
+    imageUrl?: StringFilter<"Hero"> | string
+    createdAt?: DateTimeFilter<"Hero"> | Date | string
+    battlesAsPlayer1?: BattleListRelationFilter
+    battlesAsPlayer2?: BattleListRelationFilter
+    userHeroes?: UserHeroListRelationFilter
+  }, "id" | "name">
+
+  export type HeroOrderByWithAggregationInput = {
+    id?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    createdAt?: SortOrder
+    _count?: HeroCountOrderByAggregateInput
+    _avg?: HeroAvgOrderByAggregateInput
+    _max?: HeroMaxOrderByAggregateInput
+    _min?: HeroMinOrderByAggregateInput
+    _sum?: HeroSumOrderByAggregateInput
+  }
+
+  export type HeroScalarWhereWithAggregatesInput = {
+    AND?: HeroScalarWhereWithAggregatesInput | HeroScalarWhereWithAggregatesInput[]
+    OR?: HeroScalarWhereWithAggregatesInput[]
+    NOT?: HeroScalarWhereWithAggregatesInput | HeroScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Hero"> | number
+    health?: IntWithAggregatesFilter<"Hero"> | number
+    attack?: IntWithAggregatesFilter<"Hero"> | number
+    name?: StringWithAggregatesFilter<"Hero"> | string
+    imageUrl?: StringWithAggregatesFilter<"Hero"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Hero"> | Date | string
+  }
+
+  export type UserHeroWhereInput = {
+    AND?: UserHeroWhereInput | UserHeroWhereInput[]
+    OR?: UserHeroWhereInput[]
+    NOT?: UserHeroWhereInput | UserHeroWhereInput[]
+    id?: IntFilter<"UserHero"> | number
+    heroId?: IntFilter<"UserHero"> | number
+    userId?: IntFilter<"UserHero"> | number
+    createdOn?: DateTimeFilter<"UserHero"> | Date | string
+    hero?: XOR<HeroScalarRelationFilter, HeroWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UserHeroOrderByWithRelationInput = {
+    id?: SortOrder
+    heroId?: SortOrder
+    userId?: SortOrder
+    createdOn?: SortOrder
+    hero?: HeroOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UserHeroWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId_heroId?: UserHeroUserIdHeroIdCompoundUniqueInput
+    AND?: UserHeroWhereInput | UserHeroWhereInput[]
+    OR?: UserHeroWhereInput[]
+    NOT?: UserHeroWhereInput | UserHeroWhereInput[]
+    heroId?: IntFilter<"UserHero"> | number
+    userId?: IntFilter<"UserHero"> | number
+    createdOn?: DateTimeFilter<"UserHero"> | Date | string
+    hero?: XOR<HeroScalarRelationFilter, HeroWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_heroId">
+
+  export type UserHeroOrderByWithAggregationInput = {
+    id?: SortOrder
+    heroId?: SortOrder
+    userId?: SortOrder
+    createdOn?: SortOrder
+    _count?: UserHeroCountOrderByAggregateInput
+    _avg?: UserHeroAvgOrderByAggregateInput
+    _max?: UserHeroMaxOrderByAggregateInput
+    _min?: UserHeroMinOrderByAggregateInput
+    _sum?: UserHeroSumOrderByAggregateInput
+  }
+
+  export type UserHeroScalarWhereWithAggregatesInput = {
+    AND?: UserHeroScalarWhereWithAggregatesInput | UserHeroScalarWhereWithAggregatesInput[]
+    OR?: UserHeroScalarWhereWithAggregatesInput[]
+    NOT?: UserHeroScalarWhereWithAggregatesInput | UserHeroScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"UserHero"> | number
+    heroId?: IntWithAggregatesFilter<"UserHero"> | number
+    userId?: IntWithAggregatesFilter<"UserHero"> | number
+    createdOn?: DateTimeWithAggregatesFilter<"UserHero"> | Date | string
+  }
+
+  export type BattleWhereInput = {
+    AND?: BattleWhereInput | BattleWhereInput[]
+    OR?: BattleWhereInput[]
+    NOT?: BattleWhereInput | BattleWhereInput[]
+    id?: IntFilter<"Battle"> | number
+    winnerId?: IntNullableFilter<"Battle"> | number | null
+    player1Id?: IntNullableFilter<"Battle"> | number | null
+    player2Id?: IntNullableFilter<"Battle"> | number | null
+    player1HeroId?: IntNullableFilter<"Battle"> | number | null
+    player2HeroId?: IntNullableFilter<"Battle"> | number | null
+    player1Health?: IntNullableFilter<"Battle"> | number | null
+    player2Health?: IntNullableFilter<"Battle"> | number | null
+    status?: EnumBattleStatusFilter<"Battle"> | $Enums.BattleStatus
+    createdOn?: DateTimeFilter<"Battle"> | Date | string
+    winner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    player1?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    player2?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    player1Hero?: XOR<HeroNullableScalarRelationFilter, HeroWhereInput> | null
+    player2Hero?: XOR<HeroNullableScalarRelationFilter, HeroWhereInput> | null
+  }
+
+  export type BattleOrderByWithRelationInput = {
+    id?: SortOrder
+    winnerId?: SortOrderInput | SortOrder
+    player1Id?: SortOrderInput | SortOrder
+    player2Id?: SortOrderInput | SortOrder
+    player1HeroId?: SortOrderInput | SortOrder
+    player2HeroId?: SortOrderInput | SortOrder
+    player1Health?: SortOrderInput | SortOrder
+    player2Health?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdOn?: SortOrder
+    winner?: UserOrderByWithRelationInput
+    player1?: UserOrderByWithRelationInput
+    player2?: UserOrderByWithRelationInput
+    player1Hero?: HeroOrderByWithRelationInput
+    player2Hero?: HeroOrderByWithRelationInput
+  }
+
+  export type BattleWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BattleWhereInput | BattleWhereInput[]
+    OR?: BattleWhereInput[]
+    NOT?: BattleWhereInput | BattleWhereInput[]
+    winnerId?: IntNullableFilter<"Battle"> | number | null
+    player1Id?: IntNullableFilter<"Battle"> | number | null
+    player2Id?: IntNullableFilter<"Battle"> | number | null
+    player1HeroId?: IntNullableFilter<"Battle"> | number | null
+    player2HeroId?: IntNullableFilter<"Battle"> | number | null
+    player1Health?: IntNullableFilter<"Battle"> | number | null
+    player2Health?: IntNullableFilter<"Battle"> | number | null
+    status?: EnumBattleStatusFilter<"Battle"> | $Enums.BattleStatus
+    createdOn?: DateTimeFilter<"Battle"> | Date | string
+    winner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    player1?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    player2?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    player1Hero?: XOR<HeroNullableScalarRelationFilter, HeroWhereInput> | null
+    player2Hero?: XOR<HeroNullableScalarRelationFilter, HeroWhereInput> | null
+  }, "id">
+
+  export type BattleOrderByWithAggregationInput = {
+    id?: SortOrder
+    winnerId?: SortOrderInput | SortOrder
+    player1Id?: SortOrderInput | SortOrder
+    player2Id?: SortOrderInput | SortOrder
+    player1HeroId?: SortOrderInput | SortOrder
+    player2HeroId?: SortOrderInput | SortOrder
+    player1Health?: SortOrderInput | SortOrder
+    player2Health?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdOn?: SortOrder
+    _count?: BattleCountOrderByAggregateInput
+    _avg?: BattleAvgOrderByAggregateInput
+    _max?: BattleMaxOrderByAggregateInput
+    _min?: BattleMinOrderByAggregateInput
+    _sum?: BattleSumOrderByAggregateInput
+  }
+
+  export type BattleScalarWhereWithAggregatesInput = {
+    AND?: BattleScalarWhereWithAggregatesInput | BattleScalarWhereWithAggregatesInput[]
+    OR?: BattleScalarWhereWithAggregatesInput[]
+    NOT?: BattleScalarWhereWithAggregatesInput | BattleScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Battle"> | number
+    winnerId?: IntNullableWithAggregatesFilter<"Battle"> | number | null
+    player1Id?: IntNullableWithAggregatesFilter<"Battle"> | number | null
+    player2Id?: IntNullableWithAggregatesFilter<"Battle"> | number | null
+    player1HeroId?: IntNullableWithAggregatesFilter<"Battle"> | number | null
+    player2HeroId?: IntNullableWithAggregatesFilter<"Battle"> | number | null
+    player1Health?: IntNullableWithAggregatesFilter<"Battle"> | number | null
+    player2Health?: IntNullableWithAggregatesFilter<"Battle"> | number | null
+    status?: EnumBattleStatusWithAggregatesFilter<"Battle"> | $Enums.BattleStatus
+    createdOn?: DateTimeWithAggregatesFilter<"Battle"> | Date | string
+  }
+
   export type AdminCreateInput = {
     email: string
     password: string
@@ -8979,6 +13332,10 @@ export namespace Prisma {
     friend?: FriendCreateNestedOneWithoutUserInput
     minings?: MiningCreateNestedManyWithoutUserInput
     userTasks?: UserTaskCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleCreateNestedManyWithoutWinnerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -9003,6 +13360,10 @@ export namespace Prisma {
     friend?: FriendUncheckedCreateNestedOneWithoutUserInput
     minings?: MiningUncheckedCreateNestedManyWithoutUserInput
     userTasks?: UserTaskUncheckedCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleUncheckedCreateNestedManyWithoutWinnerInput
   }
 
   export type UserUpdateInput = {
@@ -9026,6 +13387,10 @@ export namespace Prisma {
     friend?: FriendUpdateOneWithoutUserNestedInput
     minings?: MiningUpdateManyWithoutUserNestedInput
     userTasks?: UserTaskUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUpdateManyWithoutWinnerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -9050,6 +13415,10 @@ export namespace Prisma {
     friend?: FriendUncheckedUpdateOneWithoutUserNestedInput
     minings?: MiningUncheckedUpdateManyWithoutUserNestedInput
     userTasks?: UserTaskUncheckedUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUncheckedUpdateManyWithoutWinnerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -9350,6 +13719,205 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type HeroCreateInput = {
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt?: Date | string
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1HeroInput
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2HeroInput
+    userHeroes?: UserHeroCreateNestedManyWithoutHeroInput
+  }
+
+  export type HeroUncheckedCreateInput = {
+    id?: number
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt?: Date | string
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1HeroInput
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2HeroInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutHeroInput
+  }
+
+  export type HeroUpdateInput = {
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1HeroNestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2HeroNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutHeroNestedInput
+  }
+
+  export type HeroUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1HeroNestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2HeroNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutHeroNestedInput
+  }
+
+  export type HeroCreateManyInput = {
+    id?: number
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt?: Date | string
+  }
+
+  export type HeroUpdateManyMutationInput = {
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HeroUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserHeroCreateInput = {
+    createdOn?: Date | string
+    hero: HeroCreateNestedOneWithoutUserHeroesInput
+    user: UserCreateNestedOneWithoutUserHeroesInput
+  }
+
+  export type UserHeroUncheckedCreateInput = {
+    id?: number
+    heroId: number
+    userId: number
+    createdOn?: Date | string
+  }
+
+  export type UserHeroUpdateInput = {
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    hero?: HeroUpdateOneRequiredWithoutUserHeroesNestedInput
+    user?: UserUpdateOneRequiredWithoutUserHeroesNestedInput
+  }
+
+  export type UserHeroUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    heroId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserHeroCreateManyInput = {
+    id?: number
+    heroId: number
+    userId: number
+    createdOn?: Date | string
+  }
+
+  export type UserHeroUpdateManyMutationInput = {
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserHeroUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    heroId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleCreateInput = {
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+    winner?: UserCreateNestedOneWithoutWonBattlesInput
+    player1?: UserCreateNestedOneWithoutBattlesAsPlayer1Input
+    player2?: UserCreateNestedOneWithoutBattlesAsPlayer2Input
+    player1Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer1Input
+    player2Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer2Input
+  }
+
+  export type BattleUncheckedCreateInput = {
+    id?: number
+    winnerId?: number | null
+    player1Id?: number | null
+    player2Id?: number | null
+    player1HeroId?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleUpdateInput = {
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: UserUpdateOneWithoutWonBattlesNestedInput
+    player1?: UserUpdateOneWithoutBattlesAsPlayer1NestedInput
+    player2?: UserUpdateOneWithoutBattlesAsPlayer2NestedInput
+    player1Hero?: HeroUpdateOneWithoutBattlesAsPlayer1NestedInput
+    player2Hero?: HeroUpdateOneWithoutBattlesAsPlayer2NestedInput
+  }
+
+  export type BattleUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleCreateManyInput = {
+    id?: number
+    winnerId?: number | null
+    player1Id?: number | null
+    player2Id?: number | null
+    player1HeroId?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleUpdateManyMutationInput = {
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9501,6 +14069,18 @@ export namespace Prisma {
     none?: UserTaskWhereInput
   }
 
+  export type UserHeroListRelationFilter = {
+    every?: UserHeroWhereInput
+    some?: UserHeroWhereInput
+    none?: UserHeroWhereInput
+  }
+
+  export type BattleListRelationFilter = {
+    every?: BattleWhereInput
+    some?: BattleWhereInput
+    none?: BattleWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -9515,6 +14095,14 @@ export namespace Prisma {
   }
 
   export type UserTaskOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserHeroOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BattleOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9882,6 +14470,203 @@ export namespace Prisma {
     _max?: NestedEnumTaskStatusFilter<$PrismaModel>
   }
 
+  export type HeroCountOrderByAggregateInput = {
+    id?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HeroAvgOrderByAggregateInput = {
+    id?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
+  }
+
+  export type HeroMaxOrderByAggregateInput = {
+    id?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HeroMinOrderByAggregateInput = {
+    id?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
+    name?: SortOrder
+    imageUrl?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HeroSumOrderByAggregateInput = {
+    id?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
+  }
+
+  export type HeroScalarRelationFilter = {
+    is?: HeroWhereInput
+    isNot?: HeroWhereInput
+  }
+
+  export type UserHeroUserIdHeroIdCompoundUniqueInput = {
+    userId: number
+    heroId: number
+  }
+
+  export type UserHeroCountOrderByAggregateInput = {
+    id?: SortOrder
+    heroId?: SortOrder
+    userId?: SortOrder
+    createdOn?: SortOrder
+  }
+
+  export type UserHeroAvgOrderByAggregateInput = {
+    id?: SortOrder
+    heroId?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type UserHeroMaxOrderByAggregateInput = {
+    id?: SortOrder
+    heroId?: SortOrder
+    userId?: SortOrder
+    createdOn?: SortOrder
+  }
+
+  export type UserHeroMinOrderByAggregateInput = {
+    id?: SortOrder
+    heroId?: SortOrder
+    userId?: SortOrder
+    createdOn?: SortOrder
+  }
+
+  export type UserHeroSumOrderByAggregateInput = {
+    id?: SortOrder
+    heroId?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type EnumBattleStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.BattleStatus | EnumBattleStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.BattleStatus[] | ListEnumBattleStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BattleStatus[] | ListEnumBattleStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumBattleStatusFilter<$PrismaModel> | $Enums.BattleStatus
+  }
+
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type HeroNullableScalarRelationFilter = {
+    is?: HeroWhereInput | null
+    isNot?: HeroWhereInput | null
+  }
+
+  export type BattleCountOrderByAggregateInput = {
+    id?: SortOrder
+    winnerId?: SortOrder
+    player1Id?: SortOrder
+    player2Id?: SortOrder
+    player1HeroId?: SortOrder
+    player2HeroId?: SortOrder
+    player1Health?: SortOrder
+    player2Health?: SortOrder
+    status?: SortOrder
+    createdOn?: SortOrder
+  }
+
+  export type BattleAvgOrderByAggregateInput = {
+    id?: SortOrder
+    winnerId?: SortOrder
+    player1Id?: SortOrder
+    player2Id?: SortOrder
+    player1HeroId?: SortOrder
+    player2HeroId?: SortOrder
+    player1Health?: SortOrder
+    player2Health?: SortOrder
+  }
+
+  export type BattleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    winnerId?: SortOrder
+    player1Id?: SortOrder
+    player2Id?: SortOrder
+    player1HeroId?: SortOrder
+    player2HeroId?: SortOrder
+    player1Health?: SortOrder
+    player2Health?: SortOrder
+    status?: SortOrder
+    createdOn?: SortOrder
+  }
+
+  export type BattleMinOrderByAggregateInput = {
+    id?: SortOrder
+    winnerId?: SortOrder
+    player1Id?: SortOrder
+    player2Id?: SortOrder
+    player1HeroId?: SortOrder
+    player2HeroId?: SortOrder
+    player1Health?: SortOrder
+    player2Health?: SortOrder
+    status?: SortOrder
+    createdOn?: SortOrder
+  }
+
+  export type BattleSumOrderByAggregateInput = {
+    id?: SortOrder
+    winnerId?: SortOrder
+    player1Id?: SortOrder
+    player2Id?: SortOrder
+    player1HeroId?: SortOrder
+    player2HeroId?: SortOrder
+    player1Health?: SortOrder
+    player2Health?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type EnumBattleStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BattleStatus | EnumBattleStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.BattleStatus[] | ListEnumBattleStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BattleStatus[] | ListEnumBattleStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumBattleStatusWithAggregatesFilter<$PrismaModel> | $Enums.BattleStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBattleStatusFilter<$PrismaModel>
+    _max?: NestedEnumBattleStatusFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -9921,6 +14706,34 @@ export namespace Prisma {
     connect?: UserTaskWhereUniqueInput | UserTaskWhereUniqueInput[]
   }
 
+  export type UserHeroCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserHeroCreateWithoutUserInput, UserHeroUncheckedCreateWithoutUserInput> | UserHeroCreateWithoutUserInput[] | UserHeroUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserHeroCreateOrConnectWithoutUserInput | UserHeroCreateOrConnectWithoutUserInput[]
+    createMany?: UserHeroCreateManyUserInputEnvelope
+    connect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+  }
+
+  export type BattleCreateNestedManyWithoutPlayer1Input = {
+    create?: XOR<BattleCreateWithoutPlayer1Input, BattleUncheckedCreateWithoutPlayer1Input> | BattleCreateWithoutPlayer1Input[] | BattleUncheckedCreateWithoutPlayer1Input[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer1Input | BattleCreateOrConnectWithoutPlayer1Input[]
+    createMany?: BattleCreateManyPlayer1InputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+  }
+
+  export type BattleCreateNestedManyWithoutPlayer2Input = {
+    create?: XOR<BattleCreateWithoutPlayer2Input, BattleUncheckedCreateWithoutPlayer2Input> | BattleCreateWithoutPlayer2Input[] | BattleUncheckedCreateWithoutPlayer2Input[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer2Input | BattleCreateOrConnectWithoutPlayer2Input[]
+    createMany?: BattleCreateManyPlayer2InputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+  }
+
+  export type BattleCreateNestedManyWithoutWinnerInput = {
+    create?: XOR<BattleCreateWithoutWinnerInput, BattleUncheckedCreateWithoutWinnerInput> | BattleCreateWithoutWinnerInput[] | BattleUncheckedCreateWithoutWinnerInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutWinnerInput | BattleCreateOrConnectWithoutWinnerInput[]
+    createMany?: BattleCreateManyWinnerInputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+  }
+
   export type FriendUncheckedCreateNestedManyWithoutInviterInput = {
     create?: XOR<FriendCreateWithoutInviterInput, FriendUncheckedCreateWithoutInviterInput> | FriendCreateWithoutInviterInput[] | FriendUncheckedCreateWithoutInviterInput[]
     connectOrCreate?: FriendCreateOrConnectWithoutInviterInput | FriendCreateOrConnectWithoutInviterInput[]
@@ -9946,6 +14759,34 @@ export namespace Prisma {
     connectOrCreate?: UserTaskCreateOrConnectWithoutUserInput | UserTaskCreateOrConnectWithoutUserInput[]
     createMany?: UserTaskCreateManyUserInputEnvelope
     connect?: UserTaskWhereUniqueInput | UserTaskWhereUniqueInput[]
+  }
+
+  export type UserHeroUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserHeroCreateWithoutUserInput, UserHeroUncheckedCreateWithoutUserInput> | UserHeroCreateWithoutUserInput[] | UserHeroUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserHeroCreateOrConnectWithoutUserInput | UserHeroCreateOrConnectWithoutUserInput[]
+    createMany?: UserHeroCreateManyUserInputEnvelope
+    connect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+  }
+
+  export type BattleUncheckedCreateNestedManyWithoutPlayer1Input = {
+    create?: XOR<BattleCreateWithoutPlayer1Input, BattleUncheckedCreateWithoutPlayer1Input> | BattleCreateWithoutPlayer1Input[] | BattleUncheckedCreateWithoutPlayer1Input[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer1Input | BattleCreateOrConnectWithoutPlayer1Input[]
+    createMany?: BattleCreateManyPlayer1InputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+  }
+
+  export type BattleUncheckedCreateNestedManyWithoutPlayer2Input = {
+    create?: XOR<BattleCreateWithoutPlayer2Input, BattleUncheckedCreateWithoutPlayer2Input> | BattleCreateWithoutPlayer2Input[] | BattleUncheckedCreateWithoutPlayer2Input[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer2Input | BattleCreateOrConnectWithoutPlayer2Input[]
+    createMany?: BattleCreateManyPlayer2InputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+  }
+
+  export type BattleUncheckedCreateNestedManyWithoutWinnerInput = {
+    create?: XOR<BattleCreateWithoutWinnerInput, BattleUncheckedCreateWithoutWinnerInput> | BattleCreateWithoutWinnerInput[] | BattleUncheckedCreateWithoutWinnerInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutWinnerInput | BattleCreateOrConnectWithoutWinnerInput[]
+    createMany?: BattleCreateManyWinnerInputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -10020,6 +14861,62 @@ export namespace Prisma {
     deleteMany?: UserTaskScalarWhereInput | UserTaskScalarWhereInput[]
   }
 
+  export type UserHeroUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserHeroCreateWithoutUserInput, UserHeroUncheckedCreateWithoutUserInput> | UserHeroCreateWithoutUserInput[] | UserHeroUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserHeroCreateOrConnectWithoutUserInput | UserHeroCreateOrConnectWithoutUserInput[]
+    upsert?: UserHeroUpsertWithWhereUniqueWithoutUserInput | UserHeroUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserHeroCreateManyUserInputEnvelope
+    set?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    disconnect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    delete?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    connect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    update?: UserHeroUpdateWithWhereUniqueWithoutUserInput | UserHeroUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserHeroUpdateManyWithWhereWithoutUserInput | UserHeroUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserHeroScalarWhereInput | UserHeroScalarWhereInput[]
+  }
+
+  export type BattleUpdateManyWithoutPlayer1NestedInput = {
+    create?: XOR<BattleCreateWithoutPlayer1Input, BattleUncheckedCreateWithoutPlayer1Input> | BattleCreateWithoutPlayer1Input[] | BattleUncheckedCreateWithoutPlayer1Input[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer1Input | BattleCreateOrConnectWithoutPlayer1Input[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutPlayer1Input | BattleUpsertWithWhereUniqueWithoutPlayer1Input[]
+    createMany?: BattleCreateManyPlayer1InputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutPlayer1Input | BattleUpdateWithWhereUniqueWithoutPlayer1Input[]
+    updateMany?: BattleUpdateManyWithWhereWithoutPlayer1Input | BattleUpdateManyWithWhereWithoutPlayer1Input[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
+  }
+
+  export type BattleUpdateManyWithoutPlayer2NestedInput = {
+    create?: XOR<BattleCreateWithoutPlayer2Input, BattleUncheckedCreateWithoutPlayer2Input> | BattleCreateWithoutPlayer2Input[] | BattleUncheckedCreateWithoutPlayer2Input[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer2Input | BattleCreateOrConnectWithoutPlayer2Input[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutPlayer2Input | BattleUpsertWithWhereUniqueWithoutPlayer2Input[]
+    createMany?: BattleCreateManyPlayer2InputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutPlayer2Input | BattleUpdateWithWhereUniqueWithoutPlayer2Input[]
+    updateMany?: BattleUpdateManyWithWhereWithoutPlayer2Input | BattleUpdateManyWithWhereWithoutPlayer2Input[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
+  }
+
+  export type BattleUpdateManyWithoutWinnerNestedInput = {
+    create?: XOR<BattleCreateWithoutWinnerInput, BattleUncheckedCreateWithoutWinnerInput> | BattleCreateWithoutWinnerInput[] | BattleUncheckedCreateWithoutWinnerInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutWinnerInput | BattleCreateOrConnectWithoutWinnerInput[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutWinnerInput | BattleUpsertWithWhereUniqueWithoutWinnerInput[]
+    createMany?: BattleCreateManyWinnerInputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutWinnerInput | BattleUpdateWithWhereUniqueWithoutWinnerInput[]
+    updateMany?: BattleUpdateManyWithWhereWithoutWinnerInput | BattleUpdateManyWithWhereWithoutWinnerInput[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
+  }
+
   export type FriendUncheckedUpdateManyWithoutInviterNestedInput = {
     create?: XOR<FriendCreateWithoutInviterInput, FriendUncheckedCreateWithoutInviterInput> | FriendCreateWithoutInviterInput[] | FriendUncheckedCreateWithoutInviterInput[]
     connectOrCreate?: FriendCreateOrConnectWithoutInviterInput | FriendCreateOrConnectWithoutInviterInput[]
@@ -10070,6 +14967,62 @@ export namespace Prisma {
     update?: UserTaskUpdateWithWhereUniqueWithoutUserInput | UserTaskUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: UserTaskUpdateManyWithWhereWithoutUserInput | UserTaskUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: UserTaskScalarWhereInput | UserTaskScalarWhereInput[]
+  }
+
+  export type UserHeroUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserHeroCreateWithoutUserInput, UserHeroUncheckedCreateWithoutUserInput> | UserHeroCreateWithoutUserInput[] | UserHeroUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserHeroCreateOrConnectWithoutUserInput | UserHeroCreateOrConnectWithoutUserInput[]
+    upsert?: UserHeroUpsertWithWhereUniqueWithoutUserInput | UserHeroUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserHeroCreateManyUserInputEnvelope
+    set?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    disconnect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    delete?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    connect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    update?: UserHeroUpdateWithWhereUniqueWithoutUserInput | UserHeroUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserHeroUpdateManyWithWhereWithoutUserInput | UserHeroUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserHeroScalarWhereInput | UserHeroScalarWhereInput[]
+  }
+
+  export type BattleUncheckedUpdateManyWithoutPlayer1NestedInput = {
+    create?: XOR<BattleCreateWithoutPlayer1Input, BattleUncheckedCreateWithoutPlayer1Input> | BattleCreateWithoutPlayer1Input[] | BattleUncheckedCreateWithoutPlayer1Input[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer1Input | BattleCreateOrConnectWithoutPlayer1Input[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutPlayer1Input | BattleUpsertWithWhereUniqueWithoutPlayer1Input[]
+    createMany?: BattleCreateManyPlayer1InputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutPlayer1Input | BattleUpdateWithWhereUniqueWithoutPlayer1Input[]
+    updateMany?: BattleUpdateManyWithWhereWithoutPlayer1Input | BattleUpdateManyWithWhereWithoutPlayer1Input[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
+  }
+
+  export type BattleUncheckedUpdateManyWithoutPlayer2NestedInput = {
+    create?: XOR<BattleCreateWithoutPlayer2Input, BattleUncheckedCreateWithoutPlayer2Input> | BattleCreateWithoutPlayer2Input[] | BattleUncheckedCreateWithoutPlayer2Input[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer2Input | BattleCreateOrConnectWithoutPlayer2Input[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutPlayer2Input | BattleUpsertWithWhereUniqueWithoutPlayer2Input[]
+    createMany?: BattleCreateManyPlayer2InputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutPlayer2Input | BattleUpdateWithWhereUniqueWithoutPlayer2Input[]
+    updateMany?: BattleUpdateManyWithWhereWithoutPlayer2Input | BattleUpdateManyWithWhereWithoutPlayer2Input[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
+  }
+
+  export type BattleUncheckedUpdateManyWithoutWinnerNestedInput = {
+    create?: XOR<BattleCreateWithoutWinnerInput, BattleUncheckedCreateWithoutWinnerInput> | BattleCreateWithoutWinnerInput[] | BattleUncheckedCreateWithoutWinnerInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutWinnerInput | BattleCreateOrConnectWithoutWinnerInput[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutWinnerInput | BattleUpsertWithWhereUniqueWithoutWinnerInput[]
+    createMany?: BattleCreateManyWinnerInputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutWinnerInput | BattleUpdateWithWhereUniqueWithoutWinnerInput[]
+    updateMany?: BattleUpdateManyWithWhereWithoutWinnerInput | BattleUpdateManyWithWhereWithoutWinnerInput[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutInvitedUsersInput = {
@@ -10194,6 +15147,252 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutUserTasksInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserTasksInput, UserUpdateWithoutUserTasksInput>, UserUncheckedUpdateWithoutUserTasksInput>
+  }
+
+  export type BattleCreateNestedManyWithoutPlayer1HeroInput = {
+    create?: XOR<BattleCreateWithoutPlayer1HeroInput, BattleUncheckedCreateWithoutPlayer1HeroInput> | BattleCreateWithoutPlayer1HeroInput[] | BattleUncheckedCreateWithoutPlayer1HeroInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer1HeroInput | BattleCreateOrConnectWithoutPlayer1HeroInput[]
+    createMany?: BattleCreateManyPlayer1HeroInputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+  }
+
+  export type BattleCreateNestedManyWithoutPlayer2HeroInput = {
+    create?: XOR<BattleCreateWithoutPlayer2HeroInput, BattleUncheckedCreateWithoutPlayer2HeroInput> | BattleCreateWithoutPlayer2HeroInput[] | BattleUncheckedCreateWithoutPlayer2HeroInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer2HeroInput | BattleCreateOrConnectWithoutPlayer2HeroInput[]
+    createMany?: BattleCreateManyPlayer2HeroInputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+  }
+
+  export type UserHeroCreateNestedManyWithoutHeroInput = {
+    create?: XOR<UserHeroCreateWithoutHeroInput, UserHeroUncheckedCreateWithoutHeroInput> | UserHeroCreateWithoutHeroInput[] | UserHeroUncheckedCreateWithoutHeroInput[]
+    connectOrCreate?: UserHeroCreateOrConnectWithoutHeroInput | UserHeroCreateOrConnectWithoutHeroInput[]
+    createMany?: UserHeroCreateManyHeroInputEnvelope
+    connect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+  }
+
+  export type BattleUncheckedCreateNestedManyWithoutPlayer1HeroInput = {
+    create?: XOR<BattleCreateWithoutPlayer1HeroInput, BattleUncheckedCreateWithoutPlayer1HeroInput> | BattleCreateWithoutPlayer1HeroInput[] | BattleUncheckedCreateWithoutPlayer1HeroInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer1HeroInput | BattleCreateOrConnectWithoutPlayer1HeroInput[]
+    createMany?: BattleCreateManyPlayer1HeroInputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+  }
+
+  export type BattleUncheckedCreateNestedManyWithoutPlayer2HeroInput = {
+    create?: XOR<BattleCreateWithoutPlayer2HeroInput, BattleUncheckedCreateWithoutPlayer2HeroInput> | BattleCreateWithoutPlayer2HeroInput[] | BattleUncheckedCreateWithoutPlayer2HeroInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer2HeroInput | BattleCreateOrConnectWithoutPlayer2HeroInput[]
+    createMany?: BattleCreateManyPlayer2HeroInputEnvelope
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+  }
+
+  export type UserHeroUncheckedCreateNestedManyWithoutHeroInput = {
+    create?: XOR<UserHeroCreateWithoutHeroInput, UserHeroUncheckedCreateWithoutHeroInput> | UserHeroCreateWithoutHeroInput[] | UserHeroUncheckedCreateWithoutHeroInput[]
+    connectOrCreate?: UserHeroCreateOrConnectWithoutHeroInput | UserHeroCreateOrConnectWithoutHeroInput[]
+    createMany?: UserHeroCreateManyHeroInputEnvelope
+    connect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+  }
+
+  export type BattleUpdateManyWithoutPlayer1HeroNestedInput = {
+    create?: XOR<BattleCreateWithoutPlayer1HeroInput, BattleUncheckedCreateWithoutPlayer1HeroInput> | BattleCreateWithoutPlayer1HeroInput[] | BattleUncheckedCreateWithoutPlayer1HeroInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer1HeroInput | BattleCreateOrConnectWithoutPlayer1HeroInput[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutPlayer1HeroInput | BattleUpsertWithWhereUniqueWithoutPlayer1HeroInput[]
+    createMany?: BattleCreateManyPlayer1HeroInputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutPlayer1HeroInput | BattleUpdateWithWhereUniqueWithoutPlayer1HeroInput[]
+    updateMany?: BattleUpdateManyWithWhereWithoutPlayer1HeroInput | BattleUpdateManyWithWhereWithoutPlayer1HeroInput[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
+  }
+
+  export type BattleUpdateManyWithoutPlayer2HeroNestedInput = {
+    create?: XOR<BattleCreateWithoutPlayer2HeroInput, BattleUncheckedCreateWithoutPlayer2HeroInput> | BattleCreateWithoutPlayer2HeroInput[] | BattleUncheckedCreateWithoutPlayer2HeroInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer2HeroInput | BattleCreateOrConnectWithoutPlayer2HeroInput[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutPlayer2HeroInput | BattleUpsertWithWhereUniqueWithoutPlayer2HeroInput[]
+    createMany?: BattleCreateManyPlayer2HeroInputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutPlayer2HeroInput | BattleUpdateWithWhereUniqueWithoutPlayer2HeroInput[]
+    updateMany?: BattleUpdateManyWithWhereWithoutPlayer2HeroInput | BattleUpdateManyWithWhereWithoutPlayer2HeroInput[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
+  }
+
+  export type UserHeroUpdateManyWithoutHeroNestedInput = {
+    create?: XOR<UserHeroCreateWithoutHeroInput, UserHeroUncheckedCreateWithoutHeroInput> | UserHeroCreateWithoutHeroInput[] | UserHeroUncheckedCreateWithoutHeroInput[]
+    connectOrCreate?: UserHeroCreateOrConnectWithoutHeroInput | UserHeroCreateOrConnectWithoutHeroInput[]
+    upsert?: UserHeroUpsertWithWhereUniqueWithoutHeroInput | UserHeroUpsertWithWhereUniqueWithoutHeroInput[]
+    createMany?: UserHeroCreateManyHeroInputEnvelope
+    set?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    disconnect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    delete?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    connect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    update?: UserHeroUpdateWithWhereUniqueWithoutHeroInput | UserHeroUpdateWithWhereUniqueWithoutHeroInput[]
+    updateMany?: UserHeroUpdateManyWithWhereWithoutHeroInput | UserHeroUpdateManyWithWhereWithoutHeroInput[]
+    deleteMany?: UserHeroScalarWhereInput | UserHeroScalarWhereInput[]
+  }
+
+  export type BattleUncheckedUpdateManyWithoutPlayer1HeroNestedInput = {
+    create?: XOR<BattleCreateWithoutPlayer1HeroInput, BattleUncheckedCreateWithoutPlayer1HeroInput> | BattleCreateWithoutPlayer1HeroInput[] | BattleUncheckedCreateWithoutPlayer1HeroInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer1HeroInput | BattleCreateOrConnectWithoutPlayer1HeroInput[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutPlayer1HeroInput | BattleUpsertWithWhereUniqueWithoutPlayer1HeroInput[]
+    createMany?: BattleCreateManyPlayer1HeroInputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutPlayer1HeroInput | BattleUpdateWithWhereUniqueWithoutPlayer1HeroInput[]
+    updateMany?: BattleUpdateManyWithWhereWithoutPlayer1HeroInput | BattleUpdateManyWithWhereWithoutPlayer1HeroInput[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
+  }
+
+  export type BattleUncheckedUpdateManyWithoutPlayer2HeroNestedInput = {
+    create?: XOR<BattleCreateWithoutPlayer2HeroInput, BattleUncheckedCreateWithoutPlayer2HeroInput> | BattleCreateWithoutPlayer2HeroInput[] | BattleUncheckedCreateWithoutPlayer2HeroInput[]
+    connectOrCreate?: BattleCreateOrConnectWithoutPlayer2HeroInput | BattleCreateOrConnectWithoutPlayer2HeroInput[]
+    upsert?: BattleUpsertWithWhereUniqueWithoutPlayer2HeroInput | BattleUpsertWithWhereUniqueWithoutPlayer2HeroInput[]
+    createMany?: BattleCreateManyPlayer2HeroInputEnvelope
+    set?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    disconnect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    delete?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    connect?: BattleWhereUniqueInput | BattleWhereUniqueInput[]
+    update?: BattleUpdateWithWhereUniqueWithoutPlayer2HeroInput | BattleUpdateWithWhereUniqueWithoutPlayer2HeroInput[]
+    updateMany?: BattleUpdateManyWithWhereWithoutPlayer2HeroInput | BattleUpdateManyWithWhereWithoutPlayer2HeroInput[]
+    deleteMany?: BattleScalarWhereInput | BattleScalarWhereInput[]
+  }
+
+  export type UserHeroUncheckedUpdateManyWithoutHeroNestedInput = {
+    create?: XOR<UserHeroCreateWithoutHeroInput, UserHeroUncheckedCreateWithoutHeroInput> | UserHeroCreateWithoutHeroInput[] | UserHeroUncheckedCreateWithoutHeroInput[]
+    connectOrCreate?: UserHeroCreateOrConnectWithoutHeroInput | UserHeroCreateOrConnectWithoutHeroInput[]
+    upsert?: UserHeroUpsertWithWhereUniqueWithoutHeroInput | UserHeroUpsertWithWhereUniqueWithoutHeroInput[]
+    createMany?: UserHeroCreateManyHeroInputEnvelope
+    set?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    disconnect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    delete?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    connect?: UserHeroWhereUniqueInput | UserHeroWhereUniqueInput[]
+    update?: UserHeroUpdateWithWhereUniqueWithoutHeroInput | UserHeroUpdateWithWhereUniqueWithoutHeroInput[]
+    updateMany?: UserHeroUpdateManyWithWhereWithoutHeroInput | UserHeroUpdateManyWithWhereWithoutHeroInput[]
+    deleteMany?: UserHeroScalarWhereInput | UserHeroScalarWhereInput[]
+  }
+
+  export type HeroCreateNestedOneWithoutUserHeroesInput = {
+    create?: XOR<HeroCreateWithoutUserHeroesInput, HeroUncheckedCreateWithoutUserHeroesInput>
+    connectOrCreate?: HeroCreateOrConnectWithoutUserHeroesInput
+    connect?: HeroWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutUserHeroesInput = {
+    create?: XOR<UserCreateWithoutUserHeroesInput, UserUncheckedCreateWithoutUserHeroesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserHeroesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type HeroUpdateOneRequiredWithoutUserHeroesNestedInput = {
+    create?: XOR<HeroCreateWithoutUserHeroesInput, HeroUncheckedCreateWithoutUserHeroesInput>
+    connectOrCreate?: HeroCreateOrConnectWithoutUserHeroesInput
+    upsert?: HeroUpsertWithoutUserHeroesInput
+    connect?: HeroWhereUniqueInput
+    update?: XOR<XOR<HeroUpdateToOneWithWhereWithoutUserHeroesInput, HeroUpdateWithoutUserHeroesInput>, HeroUncheckedUpdateWithoutUserHeroesInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutUserHeroesNestedInput = {
+    create?: XOR<UserCreateWithoutUserHeroesInput, UserUncheckedCreateWithoutUserHeroesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserHeroesInput
+    upsert?: UserUpsertWithoutUserHeroesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserHeroesInput, UserUpdateWithoutUserHeroesInput>, UserUncheckedUpdateWithoutUserHeroesInput>
+  }
+
+  export type UserCreateNestedOneWithoutWonBattlesInput = {
+    create?: XOR<UserCreateWithoutWonBattlesInput, UserUncheckedCreateWithoutWonBattlesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWonBattlesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutBattlesAsPlayer1Input = {
+    create?: XOR<UserCreateWithoutBattlesAsPlayer1Input, UserUncheckedCreateWithoutBattlesAsPlayer1Input>
+    connectOrCreate?: UserCreateOrConnectWithoutBattlesAsPlayer1Input
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutBattlesAsPlayer2Input = {
+    create?: XOR<UserCreateWithoutBattlesAsPlayer2Input, UserUncheckedCreateWithoutBattlesAsPlayer2Input>
+    connectOrCreate?: UserCreateOrConnectWithoutBattlesAsPlayer2Input
+    connect?: UserWhereUniqueInput
+  }
+
+  export type HeroCreateNestedOneWithoutBattlesAsPlayer1Input = {
+    create?: XOR<HeroCreateWithoutBattlesAsPlayer1Input, HeroUncheckedCreateWithoutBattlesAsPlayer1Input>
+    connectOrCreate?: HeroCreateOrConnectWithoutBattlesAsPlayer1Input
+    connect?: HeroWhereUniqueInput
+  }
+
+  export type HeroCreateNestedOneWithoutBattlesAsPlayer2Input = {
+    create?: XOR<HeroCreateWithoutBattlesAsPlayer2Input, HeroUncheckedCreateWithoutBattlesAsPlayer2Input>
+    connectOrCreate?: HeroCreateOrConnectWithoutBattlesAsPlayer2Input
+    connect?: HeroWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EnumBattleStatusFieldUpdateOperationsInput = {
+    set?: $Enums.BattleStatus
+  }
+
+  export type UserUpdateOneWithoutWonBattlesNestedInput = {
+    create?: XOR<UserCreateWithoutWonBattlesInput, UserUncheckedCreateWithoutWonBattlesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWonBattlesInput
+    upsert?: UserUpsertWithoutWonBattlesInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWonBattlesInput, UserUpdateWithoutWonBattlesInput>, UserUncheckedUpdateWithoutWonBattlesInput>
+  }
+
+  export type UserUpdateOneWithoutBattlesAsPlayer1NestedInput = {
+    create?: XOR<UserCreateWithoutBattlesAsPlayer1Input, UserUncheckedCreateWithoutBattlesAsPlayer1Input>
+    connectOrCreate?: UserCreateOrConnectWithoutBattlesAsPlayer1Input
+    upsert?: UserUpsertWithoutBattlesAsPlayer1Input
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBattlesAsPlayer1Input, UserUpdateWithoutBattlesAsPlayer1Input>, UserUncheckedUpdateWithoutBattlesAsPlayer1Input>
+  }
+
+  export type UserUpdateOneWithoutBattlesAsPlayer2NestedInput = {
+    create?: XOR<UserCreateWithoutBattlesAsPlayer2Input, UserUncheckedCreateWithoutBattlesAsPlayer2Input>
+    connectOrCreate?: UserCreateOrConnectWithoutBattlesAsPlayer2Input
+    upsert?: UserUpsertWithoutBattlesAsPlayer2Input
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBattlesAsPlayer2Input, UserUpdateWithoutBattlesAsPlayer2Input>, UserUncheckedUpdateWithoutBattlesAsPlayer2Input>
+  }
+
+  export type HeroUpdateOneWithoutBattlesAsPlayer1NestedInput = {
+    create?: XOR<HeroCreateWithoutBattlesAsPlayer1Input, HeroUncheckedCreateWithoutBattlesAsPlayer1Input>
+    connectOrCreate?: HeroCreateOrConnectWithoutBattlesAsPlayer1Input
+    upsert?: HeroUpsertWithoutBattlesAsPlayer1Input
+    disconnect?: HeroWhereInput | boolean
+    delete?: HeroWhereInput | boolean
+    connect?: HeroWhereUniqueInput
+    update?: XOR<XOR<HeroUpdateToOneWithWhereWithoutBattlesAsPlayer1Input, HeroUpdateWithoutBattlesAsPlayer1Input>, HeroUncheckedUpdateWithoutBattlesAsPlayer1Input>
+  }
+
+  export type HeroUpdateOneWithoutBattlesAsPlayer2NestedInput = {
+    create?: XOR<HeroCreateWithoutBattlesAsPlayer2Input, HeroUncheckedCreateWithoutBattlesAsPlayer2Input>
+    connectOrCreate?: HeroCreateOrConnectWithoutBattlesAsPlayer2Input
+    upsert?: HeroUpsertWithoutBattlesAsPlayer2Input
+    disconnect?: HeroWhereInput | boolean
+    delete?: HeroWhereInput | boolean
+    connect?: HeroWhereUniqueInput
+    update?: XOR<XOR<HeroUpdateToOneWithWhereWithoutBattlesAsPlayer2Input, HeroUpdateWithoutBattlesAsPlayer2Input>, HeroUncheckedUpdateWithoutBattlesAsPlayer2Input>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -10420,6 +15619,50 @@ export namespace Prisma {
     _max?: NestedEnumTaskStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumBattleStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.BattleStatus | EnumBattleStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.BattleStatus[] | ListEnumBattleStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BattleStatus[] | ListEnumBattleStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumBattleStatusFilter<$PrismaModel> | $Enums.BattleStatus
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumBattleStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BattleStatus | EnumBattleStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.BattleStatus[] | ListEnumBattleStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BattleStatus[] | ListEnumBattleStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumBattleStatusWithAggregatesFilter<$PrismaModel> | $Enums.BattleStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBattleStatusFilter<$PrismaModel>
+    _max?: NestedEnumBattleStatusFilter<$PrismaModel>
+  }
+
   export type FriendCreateWithoutInviterInput = {
     earned?: number
     createdOn?: Date | string
@@ -10506,6 +15749,126 @@ export namespace Prisma {
 
   export type UserTaskCreateManyUserInputEnvelope = {
     data: UserTaskCreateManyUserInput | UserTaskCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserHeroCreateWithoutUserInput = {
+    createdOn?: Date | string
+    hero: HeroCreateNestedOneWithoutUserHeroesInput
+  }
+
+  export type UserHeroUncheckedCreateWithoutUserInput = {
+    id?: number
+    heroId: number
+    createdOn?: Date | string
+  }
+
+  export type UserHeroCreateOrConnectWithoutUserInput = {
+    where: UserHeroWhereUniqueInput
+    create: XOR<UserHeroCreateWithoutUserInput, UserHeroUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserHeroCreateManyUserInputEnvelope = {
+    data: UserHeroCreateManyUserInput | UserHeroCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BattleCreateWithoutPlayer1Input = {
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+    winner?: UserCreateNestedOneWithoutWonBattlesInput
+    player2?: UserCreateNestedOneWithoutBattlesAsPlayer2Input
+    player1Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer1Input
+    player2Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer2Input
+  }
+
+  export type BattleUncheckedCreateWithoutPlayer1Input = {
+    id?: number
+    winnerId?: number | null
+    player2Id?: number | null
+    player1HeroId?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleCreateOrConnectWithoutPlayer1Input = {
+    where: BattleWhereUniqueInput
+    create: XOR<BattleCreateWithoutPlayer1Input, BattleUncheckedCreateWithoutPlayer1Input>
+  }
+
+  export type BattleCreateManyPlayer1InputEnvelope = {
+    data: BattleCreateManyPlayer1Input | BattleCreateManyPlayer1Input[]
+    skipDuplicates?: boolean
+  }
+
+  export type BattleCreateWithoutPlayer2Input = {
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+    winner?: UserCreateNestedOneWithoutWonBattlesInput
+    player1?: UserCreateNestedOneWithoutBattlesAsPlayer1Input
+    player1Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer1Input
+    player2Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer2Input
+  }
+
+  export type BattleUncheckedCreateWithoutPlayer2Input = {
+    id?: number
+    winnerId?: number | null
+    player1Id?: number | null
+    player1HeroId?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleCreateOrConnectWithoutPlayer2Input = {
+    where: BattleWhereUniqueInput
+    create: XOR<BattleCreateWithoutPlayer2Input, BattleUncheckedCreateWithoutPlayer2Input>
+  }
+
+  export type BattleCreateManyPlayer2InputEnvelope = {
+    data: BattleCreateManyPlayer2Input | BattleCreateManyPlayer2Input[]
+    skipDuplicates?: boolean
+  }
+
+  export type BattleCreateWithoutWinnerInput = {
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+    player1?: UserCreateNestedOneWithoutBattlesAsPlayer1Input
+    player2?: UserCreateNestedOneWithoutBattlesAsPlayer2Input
+    player1Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer1Input
+    player2Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer2Input
+  }
+
+  export type BattleUncheckedCreateWithoutWinnerInput = {
+    id?: number
+    player1Id?: number | null
+    player2Id?: number | null
+    player1HeroId?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleCreateOrConnectWithoutWinnerInput = {
+    where: BattleWhereUniqueInput
+    create: XOR<BattleCreateWithoutWinnerInput, BattleUncheckedCreateWithoutWinnerInput>
+  }
+
+  export type BattleCreateManyWinnerInputEnvelope = {
+    data: BattleCreateManyWinnerInput | BattleCreateManyWinnerInput[]
     skipDuplicates?: boolean
   }
 
@@ -10615,6 +15978,96 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"UserTask"> | Date | string
   }
 
+  export type UserHeroUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserHeroWhereUniqueInput
+    update: XOR<UserHeroUpdateWithoutUserInput, UserHeroUncheckedUpdateWithoutUserInput>
+    create: XOR<UserHeroCreateWithoutUserInput, UserHeroUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserHeroUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserHeroWhereUniqueInput
+    data: XOR<UserHeroUpdateWithoutUserInput, UserHeroUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserHeroUpdateManyWithWhereWithoutUserInput = {
+    where: UserHeroScalarWhereInput
+    data: XOR<UserHeroUpdateManyMutationInput, UserHeroUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type UserHeroScalarWhereInput = {
+    AND?: UserHeroScalarWhereInput | UserHeroScalarWhereInput[]
+    OR?: UserHeroScalarWhereInput[]
+    NOT?: UserHeroScalarWhereInput | UserHeroScalarWhereInput[]
+    id?: IntFilter<"UserHero"> | number
+    heroId?: IntFilter<"UserHero"> | number
+    userId?: IntFilter<"UserHero"> | number
+    createdOn?: DateTimeFilter<"UserHero"> | Date | string
+  }
+
+  export type BattleUpsertWithWhereUniqueWithoutPlayer1Input = {
+    where: BattleWhereUniqueInput
+    update: XOR<BattleUpdateWithoutPlayer1Input, BattleUncheckedUpdateWithoutPlayer1Input>
+    create: XOR<BattleCreateWithoutPlayer1Input, BattleUncheckedCreateWithoutPlayer1Input>
+  }
+
+  export type BattleUpdateWithWhereUniqueWithoutPlayer1Input = {
+    where: BattleWhereUniqueInput
+    data: XOR<BattleUpdateWithoutPlayer1Input, BattleUncheckedUpdateWithoutPlayer1Input>
+  }
+
+  export type BattleUpdateManyWithWhereWithoutPlayer1Input = {
+    where: BattleScalarWhereInput
+    data: XOR<BattleUpdateManyMutationInput, BattleUncheckedUpdateManyWithoutPlayer1Input>
+  }
+
+  export type BattleScalarWhereInput = {
+    AND?: BattleScalarWhereInput | BattleScalarWhereInput[]
+    OR?: BattleScalarWhereInput[]
+    NOT?: BattleScalarWhereInput | BattleScalarWhereInput[]
+    id?: IntFilter<"Battle"> | number
+    winnerId?: IntNullableFilter<"Battle"> | number | null
+    player1Id?: IntNullableFilter<"Battle"> | number | null
+    player2Id?: IntNullableFilter<"Battle"> | number | null
+    player1HeroId?: IntNullableFilter<"Battle"> | number | null
+    player2HeroId?: IntNullableFilter<"Battle"> | number | null
+    player1Health?: IntNullableFilter<"Battle"> | number | null
+    player2Health?: IntNullableFilter<"Battle"> | number | null
+    status?: EnumBattleStatusFilter<"Battle"> | $Enums.BattleStatus
+    createdOn?: DateTimeFilter<"Battle"> | Date | string
+  }
+
+  export type BattleUpsertWithWhereUniqueWithoutPlayer2Input = {
+    where: BattleWhereUniqueInput
+    update: XOR<BattleUpdateWithoutPlayer2Input, BattleUncheckedUpdateWithoutPlayer2Input>
+    create: XOR<BattleCreateWithoutPlayer2Input, BattleUncheckedCreateWithoutPlayer2Input>
+  }
+
+  export type BattleUpdateWithWhereUniqueWithoutPlayer2Input = {
+    where: BattleWhereUniqueInput
+    data: XOR<BattleUpdateWithoutPlayer2Input, BattleUncheckedUpdateWithoutPlayer2Input>
+  }
+
+  export type BattleUpdateManyWithWhereWithoutPlayer2Input = {
+    where: BattleScalarWhereInput
+    data: XOR<BattleUpdateManyMutationInput, BattleUncheckedUpdateManyWithoutPlayer2Input>
+  }
+
+  export type BattleUpsertWithWhereUniqueWithoutWinnerInput = {
+    where: BattleWhereUniqueInput
+    update: XOR<BattleUpdateWithoutWinnerInput, BattleUncheckedUpdateWithoutWinnerInput>
+    create: XOR<BattleCreateWithoutWinnerInput, BattleUncheckedCreateWithoutWinnerInput>
+  }
+
+  export type BattleUpdateWithWhereUniqueWithoutWinnerInput = {
+    where: BattleWhereUniqueInput
+    data: XOR<BattleUpdateWithoutWinnerInput, BattleUncheckedUpdateWithoutWinnerInput>
+  }
+
+  export type BattleUpdateManyWithWhereWithoutWinnerInput = {
+    where: BattleScalarWhereInput
+    data: XOR<BattleUpdateManyMutationInput, BattleUncheckedUpdateManyWithoutWinnerInput>
+  }
+
   export type UserCreateWithoutInvitedUsersInput = {
     photoUrl?: string | null
     telegramLanguage?: string
@@ -10635,6 +16088,10 @@ export namespace Prisma {
     friend?: FriendCreateNestedOneWithoutUserInput
     minings?: MiningCreateNestedManyWithoutUserInput
     userTasks?: UserTaskCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleCreateNestedManyWithoutWinnerInput
   }
 
   export type UserUncheckedCreateWithoutInvitedUsersInput = {
@@ -10658,6 +16115,10 @@ export namespace Prisma {
     friend?: FriendUncheckedCreateNestedOneWithoutUserInput
     minings?: MiningUncheckedCreateNestedManyWithoutUserInput
     userTasks?: UserTaskUncheckedCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleUncheckedCreateNestedManyWithoutWinnerInput
   }
 
   export type UserCreateOrConnectWithoutInvitedUsersInput = {
@@ -10685,6 +16146,10 @@ export namespace Prisma {
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
     minings?: MiningCreateNestedManyWithoutUserInput
     userTasks?: UserTaskCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleCreateNestedManyWithoutWinnerInput
   }
 
   export type UserUncheckedCreateWithoutFriendInput = {
@@ -10708,6 +16173,10 @@ export namespace Prisma {
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
     minings?: MiningUncheckedCreateNestedManyWithoutUserInput
     userTasks?: UserTaskUncheckedCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleUncheckedCreateNestedManyWithoutWinnerInput
   }
 
   export type UserCreateOrConnectWithoutFriendInput = {
@@ -10746,6 +16215,10 @@ export namespace Prisma {
     friend?: FriendUpdateOneWithoutUserNestedInput
     minings?: MiningUpdateManyWithoutUserNestedInput
     userTasks?: UserTaskUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUpdateManyWithoutWinnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvitedUsersInput = {
@@ -10769,6 +16242,10 @@ export namespace Prisma {
     friend?: FriendUncheckedUpdateOneWithoutUserNestedInput
     minings?: MiningUncheckedUpdateManyWithoutUserNestedInput
     userTasks?: UserTaskUncheckedUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUncheckedUpdateManyWithoutWinnerNestedInput
   }
 
   export type UserUpsertWithoutFriendInput = {
@@ -10802,6 +16279,10 @@ export namespace Prisma {
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
     minings?: MiningUpdateManyWithoutUserNestedInput
     userTasks?: UserTaskUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUpdateManyWithoutWinnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFriendInput = {
@@ -10825,6 +16306,10 @@ export namespace Prisma {
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
     minings?: MiningUncheckedUpdateManyWithoutUserNestedInput
     userTasks?: UserTaskUncheckedUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUncheckedUpdateManyWithoutWinnerNestedInput
   }
 
   export type UserCreateWithoutMiningsInput = {
@@ -10847,6 +16332,10 @@ export namespace Prisma {
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
     friend?: FriendCreateNestedOneWithoutUserInput
     userTasks?: UserTaskCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleCreateNestedManyWithoutWinnerInput
   }
 
   export type UserUncheckedCreateWithoutMiningsInput = {
@@ -10870,6 +16359,10 @@ export namespace Prisma {
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
     friend?: FriendUncheckedCreateNestedOneWithoutUserInput
     userTasks?: UserTaskUncheckedCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleUncheckedCreateNestedManyWithoutWinnerInput
   }
 
   export type UserCreateOrConnectWithoutMiningsInput = {
@@ -10908,6 +16401,10 @@ export namespace Prisma {
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
     friend?: FriendUpdateOneWithoutUserNestedInput
     userTasks?: UserTaskUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUpdateManyWithoutWinnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMiningsInput = {
@@ -10931,6 +16428,10 @@ export namespace Prisma {
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
     friend?: FriendUncheckedUpdateOneWithoutUserNestedInput
     userTasks?: UserTaskUncheckedUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUncheckedUpdateManyWithoutWinnerNestedInput
   }
 
   export type UserTaskCreateWithoutTaskInput = {
@@ -11018,6 +16519,10 @@ export namespace Prisma {
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
     friend?: FriendCreateNestedOneWithoutUserInput
     minings?: MiningCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleCreateNestedManyWithoutWinnerInput
   }
 
   export type UserUncheckedCreateWithoutUserTasksInput = {
@@ -11041,6 +16546,10 @@ export namespace Prisma {
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
     friend?: FriendUncheckedCreateNestedOneWithoutUserInput
     minings?: MiningUncheckedCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleUncheckedCreateNestedManyWithoutWinnerInput
   }
 
   export type UserCreateOrConnectWithoutUserTasksInput = {
@@ -11111,6 +16620,10 @@ export namespace Prisma {
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
     friend?: FriendUpdateOneWithoutUserNestedInput
     minings?: MiningUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUpdateManyWithoutWinnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserTasksInput = {
@@ -11134,6 +16647,807 @@ export namespace Prisma {
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
     friend?: FriendUncheckedUpdateOneWithoutUserNestedInput
     minings?: MiningUncheckedUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUncheckedUpdateManyWithoutWinnerNestedInput
+  }
+
+  export type BattleCreateWithoutPlayer1HeroInput = {
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+    winner?: UserCreateNestedOneWithoutWonBattlesInput
+    player1?: UserCreateNestedOneWithoutBattlesAsPlayer1Input
+    player2?: UserCreateNestedOneWithoutBattlesAsPlayer2Input
+    player2Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer2Input
+  }
+
+  export type BattleUncheckedCreateWithoutPlayer1HeroInput = {
+    id?: number
+    winnerId?: number | null
+    player1Id?: number | null
+    player2Id?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleCreateOrConnectWithoutPlayer1HeroInput = {
+    where: BattleWhereUniqueInput
+    create: XOR<BattleCreateWithoutPlayer1HeroInput, BattleUncheckedCreateWithoutPlayer1HeroInput>
+  }
+
+  export type BattleCreateManyPlayer1HeroInputEnvelope = {
+    data: BattleCreateManyPlayer1HeroInput | BattleCreateManyPlayer1HeroInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BattleCreateWithoutPlayer2HeroInput = {
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+    winner?: UserCreateNestedOneWithoutWonBattlesInput
+    player1?: UserCreateNestedOneWithoutBattlesAsPlayer1Input
+    player2?: UserCreateNestedOneWithoutBattlesAsPlayer2Input
+    player1Hero?: HeroCreateNestedOneWithoutBattlesAsPlayer1Input
+  }
+
+  export type BattleUncheckedCreateWithoutPlayer2HeroInput = {
+    id?: number
+    winnerId?: number | null
+    player1Id?: number | null
+    player2Id?: number | null
+    player1HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleCreateOrConnectWithoutPlayer2HeroInput = {
+    where: BattleWhereUniqueInput
+    create: XOR<BattleCreateWithoutPlayer2HeroInput, BattleUncheckedCreateWithoutPlayer2HeroInput>
+  }
+
+  export type BattleCreateManyPlayer2HeroInputEnvelope = {
+    data: BattleCreateManyPlayer2HeroInput | BattleCreateManyPlayer2HeroInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserHeroCreateWithoutHeroInput = {
+    createdOn?: Date | string
+    user: UserCreateNestedOneWithoutUserHeroesInput
+  }
+
+  export type UserHeroUncheckedCreateWithoutHeroInput = {
+    id?: number
+    userId: number
+    createdOn?: Date | string
+  }
+
+  export type UserHeroCreateOrConnectWithoutHeroInput = {
+    where: UserHeroWhereUniqueInput
+    create: XOR<UserHeroCreateWithoutHeroInput, UserHeroUncheckedCreateWithoutHeroInput>
+  }
+
+  export type UserHeroCreateManyHeroInputEnvelope = {
+    data: UserHeroCreateManyHeroInput | UserHeroCreateManyHeroInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BattleUpsertWithWhereUniqueWithoutPlayer1HeroInput = {
+    where: BattleWhereUniqueInput
+    update: XOR<BattleUpdateWithoutPlayer1HeroInput, BattleUncheckedUpdateWithoutPlayer1HeroInput>
+    create: XOR<BattleCreateWithoutPlayer1HeroInput, BattleUncheckedCreateWithoutPlayer1HeroInput>
+  }
+
+  export type BattleUpdateWithWhereUniqueWithoutPlayer1HeroInput = {
+    where: BattleWhereUniqueInput
+    data: XOR<BattleUpdateWithoutPlayer1HeroInput, BattleUncheckedUpdateWithoutPlayer1HeroInput>
+  }
+
+  export type BattleUpdateManyWithWhereWithoutPlayer1HeroInput = {
+    where: BattleScalarWhereInput
+    data: XOR<BattleUpdateManyMutationInput, BattleUncheckedUpdateManyWithoutPlayer1HeroInput>
+  }
+
+  export type BattleUpsertWithWhereUniqueWithoutPlayer2HeroInput = {
+    where: BattleWhereUniqueInput
+    update: XOR<BattleUpdateWithoutPlayer2HeroInput, BattleUncheckedUpdateWithoutPlayer2HeroInput>
+    create: XOR<BattleCreateWithoutPlayer2HeroInput, BattleUncheckedCreateWithoutPlayer2HeroInput>
+  }
+
+  export type BattleUpdateWithWhereUniqueWithoutPlayer2HeroInput = {
+    where: BattleWhereUniqueInput
+    data: XOR<BattleUpdateWithoutPlayer2HeroInput, BattleUncheckedUpdateWithoutPlayer2HeroInput>
+  }
+
+  export type BattleUpdateManyWithWhereWithoutPlayer2HeroInput = {
+    where: BattleScalarWhereInput
+    data: XOR<BattleUpdateManyMutationInput, BattleUncheckedUpdateManyWithoutPlayer2HeroInput>
+  }
+
+  export type UserHeroUpsertWithWhereUniqueWithoutHeroInput = {
+    where: UserHeroWhereUniqueInput
+    update: XOR<UserHeroUpdateWithoutHeroInput, UserHeroUncheckedUpdateWithoutHeroInput>
+    create: XOR<UserHeroCreateWithoutHeroInput, UserHeroUncheckedCreateWithoutHeroInput>
+  }
+
+  export type UserHeroUpdateWithWhereUniqueWithoutHeroInput = {
+    where: UserHeroWhereUniqueInput
+    data: XOR<UserHeroUpdateWithoutHeroInput, UserHeroUncheckedUpdateWithoutHeroInput>
+  }
+
+  export type UserHeroUpdateManyWithWhereWithoutHeroInput = {
+    where: UserHeroScalarWhereInput
+    data: XOR<UserHeroUpdateManyMutationInput, UserHeroUncheckedUpdateManyWithoutHeroInput>
+  }
+
+  export type HeroCreateWithoutUserHeroesInput = {
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt?: Date | string
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1HeroInput
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2HeroInput
+  }
+
+  export type HeroUncheckedCreateWithoutUserHeroesInput = {
+    id?: number
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt?: Date | string
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1HeroInput
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2HeroInput
+  }
+
+  export type HeroCreateOrConnectWithoutUserHeroesInput = {
+    where: HeroWhereUniqueInput
+    create: XOR<HeroCreateWithoutUserHeroesInput, HeroUncheckedCreateWithoutUserHeroesInput>
+  }
+
+  export type UserCreateWithoutUserHeroesInput = {
+    photoUrl?: string | null
+    telegramLanguage?: string
+    telegramId: string
+    username?: string | null
+    firstName: string
+    lastName?: string | null
+    createdAt?: Date | string
+    lastLoginAt?: Date | string
+    balance?: number
+    isPremium?: boolean
+    walletAddress?: string | null
+    ticketCount?: number
+    streak?: number
+    dailyAvaliable?: boolean
+    miningTimeInSeconds?: number
+    miningProfit?: number
+    invitedUsers?: FriendCreateNestedManyWithoutInviterInput
+    friend?: FriendCreateNestedOneWithoutUserInput
+    minings?: MiningCreateNestedManyWithoutUserInput
+    userTasks?: UserTaskCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleCreateNestedManyWithoutWinnerInput
+  }
+
+  export type UserUncheckedCreateWithoutUserHeroesInput = {
+    id?: number
+    photoUrl?: string | null
+    telegramLanguage?: string
+    telegramId: string
+    username?: string | null
+    firstName: string
+    lastName?: string | null
+    createdAt?: Date | string
+    lastLoginAt?: Date | string
+    balance?: number
+    isPremium?: boolean
+    walletAddress?: string | null
+    ticketCount?: number
+    streak?: number
+    dailyAvaliable?: boolean
+    miningTimeInSeconds?: number
+    miningProfit?: number
+    invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
+    friend?: FriendUncheckedCreateNestedOneWithoutUserInput
+    minings?: MiningUncheckedCreateNestedManyWithoutUserInput
+    userTasks?: UserTaskUncheckedCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleUncheckedCreateNestedManyWithoutWinnerInput
+  }
+
+  export type UserCreateOrConnectWithoutUserHeroesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUserHeroesInput, UserUncheckedCreateWithoutUserHeroesInput>
+  }
+
+  export type HeroUpsertWithoutUserHeroesInput = {
+    update: XOR<HeroUpdateWithoutUserHeroesInput, HeroUncheckedUpdateWithoutUserHeroesInput>
+    create: XOR<HeroCreateWithoutUserHeroesInput, HeroUncheckedCreateWithoutUserHeroesInput>
+    where?: HeroWhereInput
+  }
+
+  export type HeroUpdateToOneWithWhereWithoutUserHeroesInput = {
+    where?: HeroWhereInput
+    data: XOR<HeroUpdateWithoutUserHeroesInput, HeroUncheckedUpdateWithoutUserHeroesInput>
+  }
+
+  export type HeroUpdateWithoutUserHeroesInput = {
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1HeroNestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2HeroNestedInput
+  }
+
+  export type HeroUncheckedUpdateWithoutUserHeroesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1HeroNestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2HeroNestedInput
+  }
+
+  export type UserUpsertWithoutUserHeroesInput = {
+    update: XOR<UserUpdateWithoutUserHeroesInput, UserUncheckedUpdateWithoutUserHeroesInput>
+    create: XOR<UserCreateWithoutUserHeroesInput, UserUncheckedCreateWithoutUserHeroesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserHeroesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserHeroesInput, UserUncheckedUpdateWithoutUserHeroesInput>
+  }
+
+  export type UserUpdateWithoutUserHeroesInput = {
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramLanguage?: StringFieldUpdateOperationsInput | string
+    telegramId?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    balance?: FloatFieldUpdateOperationsInput | number
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketCount?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
+    miningProfit?: FloatFieldUpdateOperationsInput | number
+    invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
+    friend?: FriendUpdateOneWithoutUserNestedInput
+    minings?: MiningUpdateManyWithoutUserNestedInput
+    userTasks?: UserTaskUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUpdateManyWithoutWinnerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUserHeroesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramLanguage?: StringFieldUpdateOperationsInput | string
+    telegramId?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    balance?: FloatFieldUpdateOperationsInput | number
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketCount?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
+    miningProfit?: FloatFieldUpdateOperationsInput | number
+    invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
+    friend?: FriendUncheckedUpdateOneWithoutUserNestedInput
+    minings?: MiningUncheckedUpdateManyWithoutUserNestedInput
+    userTasks?: UserTaskUncheckedUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUncheckedUpdateManyWithoutWinnerNestedInput
+  }
+
+  export type UserCreateWithoutWonBattlesInput = {
+    photoUrl?: string | null
+    telegramLanguage?: string
+    telegramId: string
+    username?: string | null
+    firstName: string
+    lastName?: string | null
+    createdAt?: Date | string
+    lastLoginAt?: Date | string
+    balance?: number
+    isPremium?: boolean
+    walletAddress?: string | null
+    ticketCount?: number
+    streak?: number
+    dailyAvaliable?: boolean
+    miningTimeInSeconds?: number
+    miningProfit?: number
+    invitedUsers?: FriendCreateNestedManyWithoutInviterInput
+    friend?: FriendCreateNestedOneWithoutUserInput
+    minings?: MiningCreateNestedManyWithoutUserInput
+    userTasks?: UserTaskCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2Input
+  }
+
+  export type UserUncheckedCreateWithoutWonBattlesInput = {
+    id?: number
+    photoUrl?: string | null
+    telegramLanguage?: string
+    telegramId: string
+    username?: string | null
+    firstName: string
+    lastName?: string | null
+    createdAt?: Date | string
+    lastLoginAt?: Date | string
+    balance?: number
+    isPremium?: boolean
+    walletAddress?: string | null
+    ticketCount?: number
+    streak?: number
+    dailyAvaliable?: boolean
+    miningTimeInSeconds?: number
+    miningProfit?: number
+    invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
+    friend?: FriendUncheckedCreateNestedOneWithoutUserInput
+    minings?: MiningUncheckedCreateNestedManyWithoutUserInput
+    userTasks?: UserTaskUncheckedCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1Input
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2Input
+  }
+
+  export type UserCreateOrConnectWithoutWonBattlesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutWonBattlesInput, UserUncheckedCreateWithoutWonBattlesInput>
+  }
+
+  export type UserCreateWithoutBattlesAsPlayer1Input = {
+    photoUrl?: string | null
+    telegramLanguage?: string
+    telegramId: string
+    username?: string | null
+    firstName: string
+    lastName?: string | null
+    createdAt?: Date | string
+    lastLoginAt?: Date | string
+    balance?: number
+    isPremium?: boolean
+    walletAddress?: string | null
+    ticketCount?: number
+    streak?: number
+    dailyAvaliable?: boolean
+    miningTimeInSeconds?: number
+    miningProfit?: number
+    invitedUsers?: FriendCreateNestedManyWithoutInviterInput
+    friend?: FriendCreateNestedOneWithoutUserInput
+    minings?: MiningCreateNestedManyWithoutUserInput
+    userTasks?: UserTaskCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroCreateNestedManyWithoutUserInput
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleCreateNestedManyWithoutWinnerInput
+  }
+
+  export type UserUncheckedCreateWithoutBattlesAsPlayer1Input = {
+    id?: number
+    photoUrl?: string | null
+    telegramLanguage?: string
+    telegramId: string
+    username?: string | null
+    firstName: string
+    lastName?: string | null
+    createdAt?: Date | string
+    lastLoginAt?: Date | string
+    balance?: number
+    isPremium?: boolean
+    walletAddress?: string | null
+    ticketCount?: number
+    streak?: number
+    dailyAvaliable?: boolean
+    miningTimeInSeconds?: number
+    miningProfit?: number
+    invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
+    friend?: FriendUncheckedCreateNestedOneWithoutUserInput
+    minings?: MiningUncheckedCreateNestedManyWithoutUserInput
+    userTasks?: UserTaskUncheckedCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutUserInput
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2Input
+    wonBattles?: BattleUncheckedCreateNestedManyWithoutWinnerInput
+  }
+
+  export type UserCreateOrConnectWithoutBattlesAsPlayer1Input = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBattlesAsPlayer1Input, UserUncheckedCreateWithoutBattlesAsPlayer1Input>
+  }
+
+  export type UserCreateWithoutBattlesAsPlayer2Input = {
+    photoUrl?: string | null
+    telegramLanguage?: string
+    telegramId: string
+    username?: string | null
+    firstName: string
+    lastName?: string | null
+    createdAt?: Date | string
+    lastLoginAt?: Date | string
+    balance?: number
+    isPremium?: boolean
+    walletAddress?: string | null
+    ticketCount?: number
+    streak?: number
+    dailyAvaliable?: boolean
+    miningTimeInSeconds?: number
+    miningProfit?: number
+    invitedUsers?: FriendCreateNestedManyWithoutInviterInput
+    friend?: FriendCreateNestedOneWithoutUserInput
+    minings?: MiningCreateNestedManyWithoutUserInput
+    userTasks?: UserTaskCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1Input
+    wonBattles?: BattleCreateNestedManyWithoutWinnerInput
+  }
+
+  export type UserUncheckedCreateWithoutBattlesAsPlayer2Input = {
+    id?: number
+    photoUrl?: string | null
+    telegramLanguage?: string
+    telegramId: string
+    username?: string | null
+    firstName: string
+    lastName?: string | null
+    createdAt?: Date | string
+    lastLoginAt?: Date | string
+    balance?: number
+    isPremium?: boolean
+    walletAddress?: string | null
+    ticketCount?: number
+    streak?: number
+    dailyAvaliable?: boolean
+    miningTimeInSeconds?: number
+    miningProfit?: number
+    invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
+    friend?: FriendUncheckedCreateNestedOneWithoutUserInput
+    minings?: MiningUncheckedCreateNestedManyWithoutUserInput
+    userTasks?: UserTaskUncheckedCreateNestedManyWithoutUserInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutUserInput
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1Input
+    wonBattles?: BattleUncheckedCreateNestedManyWithoutWinnerInput
+  }
+
+  export type UserCreateOrConnectWithoutBattlesAsPlayer2Input = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBattlesAsPlayer2Input, UserUncheckedCreateWithoutBattlesAsPlayer2Input>
+  }
+
+  export type HeroCreateWithoutBattlesAsPlayer1Input = {
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt?: Date | string
+    battlesAsPlayer2?: BattleCreateNestedManyWithoutPlayer2HeroInput
+    userHeroes?: UserHeroCreateNestedManyWithoutHeroInput
+  }
+
+  export type HeroUncheckedCreateWithoutBattlesAsPlayer1Input = {
+    id?: number
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt?: Date | string
+    battlesAsPlayer2?: BattleUncheckedCreateNestedManyWithoutPlayer2HeroInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutHeroInput
+  }
+
+  export type HeroCreateOrConnectWithoutBattlesAsPlayer1Input = {
+    where: HeroWhereUniqueInput
+    create: XOR<HeroCreateWithoutBattlesAsPlayer1Input, HeroUncheckedCreateWithoutBattlesAsPlayer1Input>
+  }
+
+  export type HeroCreateWithoutBattlesAsPlayer2Input = {
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt?: Date | string
+    battlesAsPlayer1?: BattleCreateNestedManyWithoutPlayer1HeroInput
+    userHeroes?: UserHeroCreateNestedManyWithoutHeroInput
+  }
+
+  export type HeroUncheckedCreateWithoutBattlesAsPlayer2Input = {
+    id?: number
+    health: number
+    attack: number
+    name: string
+    imageUrl: string
+    createdAt?: Date | string
+    battlesAsPlayer1?: BattleUncheckedCreateNestedManyWithoutPlayer1HeroInput
+    userHeroes?: UserHeroUncheckedCreateNestedManyWithoutHeroInput
+  }
+
+  export type HeroCreateOrConnectWithoutBattlesAsPlayer2Input = {
+    where: HeroWhereUniqueInput
+    create: XOR<HeroCreateWithoutBattlesAsPlayer2Input, HeroUncheckedCreateWithoutBattlesAsPlayer2Input>
+  }
+
+  export type UserUpsertWithoutWonBattlesInput = {
+    update: XOR<UserUpdateWithoutWonBattlesInput, UserUncheckedUpdateWithoutWonBattlesInput>
+    create: XOR<UserCreateWithoutWonBattlesInput, UserUncheckedCreateWithoutWonBattlesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutWonBattlesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutWonBattlesInput, UserUncheckedUpdateWithoutWonBattlesInput>
+  }
+
+  export type UserUpdateWithoutWonBattlesInput = {
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramLanguage?: StringFieldUpdateOperationsInput | string
+    telegramId?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    balance?: FloatFieldUpdateOperationsInput | number
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketCount?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
+    miningProfit?: FloatFieldUpdateOperationsInput | number
+    invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
+    friend?: FriendUpdateOneWithoutUserNestedInput
+    minings?: MiningUpdateManyWithoutUserNestedInput
+    userTasks?: UserTaskUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2NestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutWonBattlesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramLanguage?: StringFieldUpdateOperationsInput | string
+    telegramId?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    balance?: FloatFieldUpdateOperationsInput | number
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketCount?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
+    miningProfit?: FloatFieldUpdateOperationsInput | number
+    invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
+    friend?: FriendUncheckedUpdateOneWithoutUserNestedInput
+    minings?: MiningUncheckedUpdateManyWithoutUserNestedInput
+    userTasks?: UserTaskUncheckedUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1NestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2NestedInput
+  }
+
+  export type UserUpsertWithoutBattlesAsPlayer1Input = {
+    update: XOR<UserUpdateWithoutBattlesAsPlayer1Input, UserUncheckedUpdateWithoutBattlesAsPlayer1Input>
+    create: XOR<UserCreateWithoutBattlesAsPlayer1Input, UserUncheckedCreateWithoutBattlesAsPlayer1Input>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBattlesAsPlayer1Input = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBattlesAsPlayer1Input, UserUncheckedUpdateWithoutBattlesAsPlayer1Input>
+  }
+
+  export type UserUpdateWithoutBattlesAsPlayer1Input = {
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramLanguage?: StringFieldUpdateOperationsInput | string
+    telegramId?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    balance?: FloatFieldUpdateOperationsInput | number
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketCount?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
+    miningProfit?: FloatFieldUpdateOperationsInput | number
+    invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
+    friend?: FriendUpdateOneWithoutUserNestedInput
+    minings?: MiningUpdateManyWithoutUserNestedInput
+    userTasks?: UserTaskUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutUserNestedInput
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUpdateManyWithoutWinnerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBattlesAsPlayer1Input = {
+    id?: IntFieldUpdateOperationsInput | number
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramLanguage?: StringFieldUpdateOperationsInput | string
+    telegramId?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    balance?: FloatFieldUpdateOperationsInput | number
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketCount?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
+    miningProfit?: FloatFieldUpdateOperationsInput | number
+    invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
+    friend?: FriendUncheckedUpdateOneWithoutUserNestedInput
+    minings?: MiningUncheckedUpdateManyWithoutUserNestedInput
+    userTasks?: UserTaskUncheckedUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutUserNestedInput
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2NestedInput
+    wonBattles?: BattleUncheckedUpdateManyWithoutWinnerNestedInput
+  }
+
+  export type UserUpsertWithoutBattlesAsPlayer2Input = {
+    update: XOR<UserUpdateWithoutBattlesAsPlayer2Input, UserUncheckedUpdateWithoutBattlesAsPlayer2Input>
+    create: XOR<UserCreateWithoutBattlesAsPlayer2Input, UserUncheckedCreateWithoutBattlesAsPlayer2Input>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBattlesAsPlayer2Input = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBattlesAsPlayer2Input, UserUncheckedUpdateWithoutBattlesAsPlayer2Input>
+  }
+
+  export type UserUpdateWithoutBattlesAsPlayer2Input = {
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramLanguage?: StringFieldUpdateOperationsInput | string
+    telegramId?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    balance?: FloatFieldUpdateOperationsInput | number
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketCount?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
+    miningProfit?: FloatFieldUpdateOperationsInput | number
+    invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
+    friend?: FriendUpdateOneWithoutUserNestedInput
+    minings?: MiningUpdateManyWithoutUserNestedInput
+    userTasks?: UserTaskUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1NestedInput
+    wonBattles?: BattleUpdateManyWithoutWinnerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBattlesAsPlayer2Input = {
+    id?: IntFieldUpdateOperationsInput | number
+    photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramLanguage?: StringFieldUpdateOperationsInput | string
+    telegramId?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastLoginAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    balance?: FloatFieldUpdateOperationsInput | number
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    ticketCount?: IntFieldUpdateOperationsInput | number
+    streak?: IntFieldUpdateOperationsInput | number
+    dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
+    miningProfit?: FloatFieldUpdateOperationsInput | number
+    invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
+    friend?: FriendUncheckedUpdateOneWithoutUserNestedInput
+    minings?: MiningUncheckedUpdateManyWithoutUserNestedInput
+    userTasks?: UserTaskUncheckedUpdateManyWithoutUserNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutUserNestedInput
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1NestedInput
+    wonBattles?: BattleUncheckedUpdateManyWithoutWinnerNestedInput
+  }
+
+  export type HeroUpsertWithoutBattlesAsPlayer1Input = {
+    update: XOR<HeroUpdateWithoutBattlesAsPlayer1Input, HeroUncheckedUpdateWithoutBattlesAsPlayer1Input>
+    create: XOR<HeroCreateWithoutBattlesAsPlayer1Input, HeroUncheckedCreateWithoutBattlesAsPlayer1Input>
+    where?: HeroWhereInput
+  }
+
+  export type HeroUpdateToOneWithWhereWithoutBattlesAsPlayer1Input = {
+    where?: HeroWhereInput
+    data: XOR<HeroUpdateWithoutBattlesAsPlayer1Input, HeroUncheckedUpdateWithoutBattlesAsPlayer1Input>
+  }
+
+  export type HeroUpdateWithoutBattlesAsPlayer1Input = {
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    battlesAsPlayer2?: BattleUpdateManyWithoutPlayer2HeroNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutHeroNestedInput
+  }
+
+  export type HeroUncheckedUpdateWithoutBattlesAsPlayer1Input = {
+    id?: IntFieldUpdateOperationsInput | number
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    battlesAsPlayer2?: BattleUncheckedUpdateManyWithoutPlayer2HeroNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutHeroNestedInput
+  }
+
+  export type HeroUpsertWithoutBattlesAsPlayer2Input = {
+    update: XOR<HeroUpdateWithoutBattlesAsPlayer2Input, HeroUncheckedUpdateWithoutBattlesAsPlayer2Input>
+    create: XOR<HeroCreateWithoutBattlesAsPlayer2Input, HeroUncheckedCreateWithoutBattlesAsPlayer2Input>
+    where?: HeroWhereInput
+  }
+
+  export type HeroUpdateToOneWithWhereWithoutBattlesAsPlayer2Input = {
+    where?: HeroWhereInput
+    data: XOR<HeroUpdateWithoutBattlesAsPlayer2Input, HeroUncheckedUpdateWithoutBattlesAsPlayer2Input>
+  }
+
+  export type HeroUpdateWithoutBattlesAsPlayer2Input = {
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    battlesAsPlayer1?: BattleUpdateManyWithoutPlayer1HeroNestedInput
+    userHeroes?: UserHeroUpdateManyWithoutHeroNestedInput
+  }
+
+  export type HeroUncheckedUpdateWithoutBattlesAsPlayer2Input = {
+    id?: IntFieldUpdateOperationsInput | number
+    health?: IntFieldUpdateOperationsInput | number
+    attack?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    battlesAsPlayer1?: BattleUncheckedUpdateManyWithoutPlayer1HeroNestedInput
+    userHeroes?: UserHeroUncheckedUpdateManyWithoutHeroNestedInput
   }
 
   export type FriendCreateManyInviterInput = {
@@ -11156,6 +17470,48 @@ export namespace Prisma {
     taskId: number
     status?: $Enums.TaskStatus
     createdAt?: Date | string
+  }
+
+  export type UserHeroCreateManyUserInput = {
+    id?: number
+    heroId: number
+    createdOn?: Date | string
+  }
+
+  export type BattleCreateManyPlayer1Input = {
+    id?: number
+    winnerId?: number | null
+    player2Id?: number | null
+    player1HeroId?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleCreateManyPlayer2Input = {
+    id?: number
+    winnerId?: number | null
+    player1Id?: number | null
+    player1HeroId?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleCreateManyWinnerInput = {
+    id?: number
+    player1Id?: number | null
+    player2Id?: number | null
+    player1HeroId?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
   }
 
   export type FriendUpdateWithoutInviterInput = {
@@ -11221,6 +17577,128 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserHeroUpdateWithoutUserInput = {
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    hero?: HeroUpdateOneRequiredWithoutUserHeroesNestedInput
+  }
+
+  export type UserHeroUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    heroId?: IntFieldUpdateOperationsInput | number
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserHeroUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    heroId?: IntFieldUpdateOperationsInput | number
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUpdateWithoutPlayer1Input = {
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: UserUpdateOneWithoutWonBattlesNestedInput
+    player2?: UserUpdateOneWithoutBattlesAsPlayer2NestedInput
+    player1Hero?: HeroUpdateOneWithoutBattlesAsPlayer1NestedInput
+    player2Hero?: HeroUpdateOneWithoutBattlesAsPlayer2NestedInput
+  }
+
+  export type BattleUncheckedUpdateWithoutPlayer1Input = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUncheckedUpdateManyWithoutPlayer1Input = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUpdateWithoutPlayer2Input = {
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: UserUpdateOneWithoutWonBattlesNestedInput
+    player1?: UserUpdateOneWithoutBattlesAsPlayer1NestedInput
+    player1Hero?: HeroUpdateOneWithoutBattlesAsPlayer1NestedInput
+    player2Hero?: HeroUpdateOneWithoutBattlesAsPlayer2NestedInput
+  }
+
+  export type BattleUncheckedUpdateWithoutPlayer2Input = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUncheckedUpdateManyWithoutPlayer2Input = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUpdateWithoutWinnerInput = {
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    player1?: UserUpdateOneWithoutBattlesAsPlayer1NestedInput
+    player2?: UserUpdateOneWithoutBattlesAsPlayer2NestedInput
+    player1Hero?: HeroUpdateOneWithoutBattlesAsPlayer1NestedInput
+    player2Hero?: HeroUpdateOneWithoutBattlesAsPlayer2NestedInput
+  }
+
+  export type BattleUncheckedUpdateWithoutWinnerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUncheckedUpdateManyWithoutWinnerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserTaskCreateManyTaskInput = {
     id?: number
     userId: number
@@ -11246,6 +17724,123 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     status?: EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleCreateManyPlayer1HeroInput = {
+    id?: number
+    winnerId?: number | null
+    player1Id?: number | null
+    player2Id?: number | null
+    player2HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type BattleCreateManyPlayer2HeroInput = {
+    id?: number
+    winnerId?: number | null
+    player1Id?: number | null
+    player2Id?: number | null
+    player1HeroId?: number | null
+    player1Health?: number | null
+    player2Health?: number | null
+    status?: $Enums.BattleStatus
+    createdOn?: Date | string
+  }
+
+  export type UserHeroCreateManyHeroInput = {
+    id?: number
+    userId: number
+    createdOn?: Date | string
+  }
+
+  export type BattleUpdateWithoutPlayer1HeroInput = {
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: UserUpdateOneWithoutWonBattlesNestedInput
+    player1?: UserUpdateOneWithoutBattlesAsPlayer1NestedInput
+    player2?: UserUpdateOneWithoutBattlesAsPlayer2NestedInput
+    player2Hero?: HeroUpdateOneWithoutBattlesAsPlayer2NestedInput
+  }
+
+  export type BattleUncheckedUpdateWithoutPlayer1HeroInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUncheckedUpdateManyWithoutPlayer1HeroInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUpdateWithoutPlayer2HeroInput = {
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    winner?: UserUpdateOneWithoutWonBattlesNestedInput
+    player1?: UserUpdateOneWithoutBattlesAsPlayer1NestedInput
+    player2?: UserUpdateOneWithoutBattlesAsPlayer2NestedInput
+    player1Hero?: HeroUpdateOneWithoutBattlesAsPlayer1NestedInput
+  }
+
+  export type BattleUncheckedUpdateWithoutPlayer2HeroInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BattleUncheckedUpdateManyWithoutPlayer2HeroInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    winnerId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Id?: NullableIntFieldUpdateOperationsInput | number | null
+    player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserHeroUpdateWithoutHeroInput = {
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserHeroesNestedInput
+  }
+
+  export type UserHeroUncheckedUpdateWithoutHeroInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserHeroUncheckedUpdateManyWithoutHeroInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

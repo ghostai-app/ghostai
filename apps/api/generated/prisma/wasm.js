@@ -182,6 +182,35 @@ exports.Prisma.UserTaskScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.HeroScalarFieldEnum = {
+  id: 'id',
+  health: 'health',
+  attack: 'attack',
+  name: 'name',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UserHeroScalarFieldEnum = {
+  id: 'id',
+  heroId: 'heroId',
+  userId: 'userId',
+  createdOn: 'createdOn'
+};
+
+exports.Prisma.BattleScalarFieldEnum = {
+  id: 'id',
+  winnerId: 'winnerId',
+  player1Id: 'player1Id',
+  player2Id: 'player2Id',
+  player1HeroId: 'player1HeroId',
+  player2HeroId: 'player2HeroId',
+  player1Health: 'player1Health',
+  player2Health: 'player2Health',
+  status: 'status',
+  createdOn: 'createdOn'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -206,13 +235,22 @@ exports.TaskStatus = exports.$Enums.TaskStatus = {
   COMPLETED: 'COMPLETED'
 };
 
+exports.BattleStatus = exports.$Enums.BattleStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  FINISHED: 'FINISHED'
+};
+
 exports.Prisma.ModelName = {
   Admin: 'Admin',
   User: 'User',
   Friend: 'Friend',
   Mining: 'Mining',
   Task: 'Task',
-  UserTask: 'UserTask'
+  UserTask: 'UserTask',
+  Hero: 'Hero',
+  UserHero: 'UserHero',
+  Battle: 'Battle'
 };
 
 /**

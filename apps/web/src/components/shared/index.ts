@@ -9,3 +9,5 @@ export * from "./friends";
 export * from "./roulette";
 export * from "./modals";
 export * from "./leaders";
+export { BottomFixedButton } from "./BottomFixedButton";
+export * from "./battle";

@@ -6,3 +6,5 @@ export * from "./task.types";
 export * from "./leader.types";
 export * from "./roulette.types";
 export * from "./check-in.types";
+export * from "./hero.types";
+export * from "./battle.types";
