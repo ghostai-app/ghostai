@@ -4,7 +4,6 @@
 /build
 /uploads
 /uploads/*
-generated/*
 
 # Logs
 logs
