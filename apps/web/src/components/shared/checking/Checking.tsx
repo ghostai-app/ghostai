@@ -77,7 +77,7 @@ export const Checking: React.FC<Props> = ({ className }) => {
         onClick={() => navigate("/reward")}
         className="mt-auto"
         size={"default"}
-        variant={completed ? "default" : "dark"}
+        variant={completed ? "default" : "accent"}
         disabled={!completed}
       >
         Continue

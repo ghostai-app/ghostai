@@ -2,13 +2,8 @@ import React from "react";
 import { cn } from "@/lib";
 import { Container } from "../Container";
 import { ButtonWithVibration } from "@/components/ui";
-import TonIcon from "@/_assets/icons/ton.svg?react";
-import ArrowIcon from "@/_assets/icons/arrow.svg?react";
-import BinanceIcon from "@/_assets/icons/wallets/binance.svg?react";
-import { useTonAddress } from "@tonconnect/ui-react";
 import { formatWallet } from "@/utils";
 import { useWallet } from "@/hooks";
-import { WalletButtons } from "../home";
 import { Card } from "../common";
 import { wallets } from "@/data";
 
