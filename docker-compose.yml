@@ -42,8 +42,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./apps/api/public:/apps/api/public
-      - ./apps/api/uploads:/apps/api/uploads
+      - ./apps/api/public:/app/apps/api/public
+      - ./apps/api/uploads:/app/apps/api/uploads
 
   nginx:
     image: nginx:latest
