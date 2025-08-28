@@ -21,21 +21,40 @@ export class TelegramUpdate {
     const webAppUrl = this.configService.getOrThrow<string>('WEB_APP_URL');
     const assetsUrl = this.configService.getOrThrow<string>('ASSETS_URL');
 
-    await ctx.replyWithPhoto(`${assetsUrl}/dotpengu1.jpg`, {
-      caption: `Welcome all to DOTPENGU!\n\nDOTPENGU is rising meme in BNB 🔥\n\nStart accumulating $DOTPG for airdrop!`,
+    await ctx.replyWithPhoto(`${assetsUrl}/ghostai.jpg`, {
+      caption: `
+WELCOME TO GHOSTAI
+
+BRIEF
+
+Mine and Earn
+Missions. Mine. Open cases. Upgrade. Stack $GAI.
+
+Select Your Soldier
+Open the Shop. Buy a soldier. Level up.
+
+Clash and Climb
+Real time battles. Drain. Earn. Rank.
+
+Referral
+Invite friends. Their ranks boost your bonus.
+
+Rewards per Hour
+Auto farm for 3 hours offline. Log in to refresh.
+`,
       reply_markup: {
         inline_keyboard: [
-          [{ text: 'Play DOTPENGU', url: webAppUrl }],
+          [{ text: 'Open GhostAI bot', url: webAppUrl }],
           [
             {
-              text: 'Join DOTPENGU TG',
-              url: 'https://t.me/DotPengu_meme',
+              text: 'GhostAI X',
+              url: 'https://x.com/ghostai_offcl',
             },
           ],
           [
             {
-              text: 'Follow DOTPENGU X',
-              url: 'https://x.com/dotpengu_meme',
+              text: 'Join GhostAI community',
+              url: 'https://t.me/GHOSTAI_OFFCL',
             },
           ],
         ],
