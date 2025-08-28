@@ -10,6 +10,22 @@ import { HeroEntity } from './entities/hero.entity';
 export class HeroService {
   constructor(private prisma: PrismaService) {}
 
+  async returnHeroes() {
+    return await this.prisma.hero.findMany({
+      select: {
+        id: true,
+        imageUrl: true,
+        name: true,
+        attack: true,
+        health: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
+
   async getUserHeroes(user: UserEntity): Promise<HeroEntity[]> {
     return await this.prisma.hero.findMany({
       where: {
