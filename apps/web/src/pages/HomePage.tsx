@@ -5,7 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import hero from "/assets/hero.jpg";
 
 export const HomePage = () => {
-  const { data: lastUserHero } = useQuery(getLastUserHeroQueryOptions());
+  const { data: lastUserHero, isLoading } = useQuery(
+    getLastUserHeroQueryOptions()
+  );
 
   return (
     <Page back={false}>
@@ -18,10 +20,12 @@ export const HomePage = () => {
           <div className="relative size-full">
             <div className="h-20 bg-gradient-to-t from-transparent to-background absolute top-0 inset-x-0 w-full z-1"></div>
             <div className="h-40 bg-gradient-to-b from-transparent to-background absolute bottom-0 inset-x-0 w-full z-1"></div>
-            <img
-              src={lastUserHero ?? hero}
-              className="inset-0 absolute size-full object-contain"
-            />
+            {!isLoading && (
+              <img
+                src={lastUserHero ?? hero}
+                className="inset-0 absolute size-full object-contain"
+              />
+            )}
           </div>
         </div>
       </Container>
