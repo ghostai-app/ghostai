@@ -6,6 +6,11 @@ class HeroService {
     const response = await axiosWithAuth.get<IHero[]>("/hero/user");
     return response.data;
   }
+
+  async getLastUserHero(): Promise<string> {
+    const response = await axiosWithAuth.get<string>("/hero/last");
+    return response.data;
+  }
 }
 
 export const heroService = new HeroService();

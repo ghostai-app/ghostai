@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { productService } from "@/services/product.service";
 import { ProductType } from "@/types";
-import { getUserHeroesQueryOptions } from "./hero";
+import { getLastUserHeroQueryOptions, getUserHeroesQueryOptions } from "./hero";
 import { getUserQueryOptions } from "./user";
 import toast from "react-hot-toast";
 
@@ -18,6 +18,7 @@ export const useBuyProduct = (id: number) => {
     onSuccess: () => {
       queryClient.invalidateQueries(getUserHeroesQueryOptions());
       queryClient.invalidateQueries(getUserQueryOptions());
+      queryClient.invalidateQueries(getLastUserHeroQueryOptions());
       toast.success("Product bought successfully");
     },
     onError: () => {

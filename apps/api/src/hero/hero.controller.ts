@@ -24,6 +24,14 @@ import { UserEntity } from 'src/user/entities/user.entity';
 export class HeroController {
   constructor(private readonly heroService: HeroService) {}
 
+  @Get('last')
+  @ApiOkResponse({ type: String })
+  @ApiBearerAuth()
+  @Auth()
+  getLastUserHero(@Req() req: { user: UserEntity }) {
+    return this.heroService.lastUserHero(req.user);
+  }
+
   @Get('all')
   getAllHeroes() {
     return this.heroService.returnHeroes();

@@ -142,8 +142,8 @@ model UserHero {
   userId    Int      @map("user_id")
   createdOn DateTime @default(now()) @map("created_on")
 
-  hero Hero @relation(fields: [heroId], references: [id])
-  user User @relation(fields: [userId], references: [id])
+  hero Hero @relation(fields: [heroId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, heroId])
   @@map("user_heroes")

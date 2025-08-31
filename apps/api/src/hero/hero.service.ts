@@ -5,10 +5,31 @@ import { UpdateHeroDto } from './dto/update-hero.dto';
 import { IQueryOptions } from 'src/shared/types/query-options.types';
 import { UserEntity } from 'src/user/entities/user.entity';
 import { HeroEntity } from './entities/hero.entity';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class HeroService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private configService: ConfigService,
+  ) {}
+
+  async lastUserHero(user: UserEntity): Promise<string | null> {
+    const hero = await this.prisma.hero.findFirst({
+      where: {
+        userHeroes: { some: { userId: user.id } },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    if (!hero) {
+      return null;
+    }
+
+    return hero.imageUrl;
+  }
 
   async returnHeroes() {
     return await this.prisma.hero.findMany({
