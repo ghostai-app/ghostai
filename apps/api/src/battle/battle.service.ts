@@ -37,6 +37,12 @@ export class BattleService {
         throw new BadRequestException();
       }
 
+      // Получаем бонусы от купленных предметов
+      const itemBonuses = await this.getUserItemBonuses(user.id);
+
+      const totalHealth = hero.hero.health + itemBonuses.health;
+      const totalAttack = hero.hero.attack + itemBonuses.attack;
+
       const existingBattle = await prisma.battle.findFirst({
         where: {
           OR: [{ player1Id: user.id }, { player2Id: user.id }],
@@ -62,7 +68,8 @@ export class BattleService {
           data: {
             player2Id: user.id,
             player2HeroId: heroId,
-            player2Health: hero.hero.health,
+            player2Health: totalHealth,
+            player2Attack: totalAttack,
             status: 'IN_PROGRESS',
           },
           include: {
@@ -90,7 +97,8 @@ export class BattleService {
           data: {
             player1Id: user.id,
             player1HeroId: heroId,
-            player1Health: hero.hero.health,
+            player1Health: totalHealth,
+            player1Attack: totalAttack,
             status: 'PENDING',
           },
           include: {
@@ -156,6 +164,8 @@ export class BattleService {
       include: {
         player1: true,
         player2: true,
+        player1Hero: true,
+        player2Hero: true,
       },
     });
   }
@@ -185,14 +195,46 @@ export class BattleService {
       userHealth: isPlayer1
         ? battle.player1Health || 0
         : battle.player2Health || 0,
-      userHero: isPlayer1 ? battle.player1Hero : battle.player2Hero,
+      userAttack: isPlayer1
+        ? (battle as any).player1Attack || 0
+        : (battle as any).player2Attack || 0,
+      userHero: isPlayer1 ? battle.player1Hero! : battle.player2Hero!,
       enemyName: isPlayer1
         ? battle.player2?.username || ''
         : battle.player1?.username || '',
       enemyHealth: isPlayer1
         ? battle.player2Health || 0
         : battle.player1Health || 0,
-      enemyHero: isPlayer1 ? battle.player2Hero : battle.player1Hero,
+      enemyAttack: isPlayer1
+        ? (battle as any).player2Attack || 0
+        : (battle as any).player1Attack || 0,
+      enemyHero: isPlayer1 ? battle.player2Hero! : battle.player1Hero!,
+    };
+  }
+
+  async getUserItemBonuses(
+    userId: number,
+  ): Promise<{ attack: number; health: number }> {
+    const userProducts = await this.prisma.userProduct.findMany({
+      where: { userId },
+      include: { product: true },
+    });
+
+    const validProducts = userProducts.filter((up) => up.product);
+
+    if (!validProducts.length) {
+      return { attack: 0, health: 0 };
+    }
+
+    return {
+      attack: validProducts.reduce(
+        (acc, userProduct) => acc + (userProduct.product.attack || 0),
+        0,
+      ),
+      health: validProducts.reduce(
+        (acc, userProduct) => acc + (userProduct.product.health || 0),
+        0,
+      ),
     };
   }
 
@@ -231,6 +273,9 @@ export class BattleService {
       userHealth: isPlayer1
         ? battle.player1Health || 0
         : battle.player2Health || 0,
+      userAttack: isPlayer1
+        ? (battle as any).player1Attack || 0
+        : (battle as any).player2Attack || 0,
       userHero: isPlayer1 ? battle.player1Hero! : battle.player2Hero!,
       enemyName: isPlayer1
         ? battle.player2?.username || ''
@@ -238,6 +283,9 @@ export class BattleService {
       enemyHealth: isPlayer1
         ? battle.player2Health || 0
         : battle.player1Health || 0,
+      enemyAttack: isPlayer1
+        ? (battle as any).player2Attack || 0
+        : (battle as any).player1Attack || 0,
       enemyHero: isPlayer1 ? battle.player2Hero! : battle.player1Hero!,
     };
 
@@ -252,6 +300,8 @@ export class BattleService {
         include: {
           player1Hero: true,
           player2Hero: true,
+          player1: true,
+          player2: true,
         },
       });
 
@@ -264,15 +314,15 @@ export class BattleService {
       }
 
       const isPlayer1 = battle.player1Id === user.id;
-      const heroDamage = isPlayer1
-        ? battle.player1Hero?.attack
-        : battle.player2Hero?.attack;
+      const heroAttack = isPlayer1
+        ? (battle as any).player1Attack
+        : (battle as any).player2Attack;
 
-      if (!heroDamage) {
+      if (!heroAttack) {
         throw new BadRequestException();
       }
 
-      const damage = clicks * heroDamage;
+      const damage = clicks * heroAttack;
       const targetField = isPlayer1 ? 'player2Health' : 'player1Health';
       const targetHealth = battle[targetField];
 

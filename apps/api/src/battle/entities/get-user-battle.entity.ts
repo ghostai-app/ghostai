@@ -16,6 +16,9 @@ export class GetUserBattleEntity {
   userHealth: number;
 
   @ApiProperty()
+  userAttack: number;
+
+  @ApiProperty()
   userHero: HeroEntity;
 
   @ApiProperty()
@@ -23,6 +26,9 @@ export class GetUserBattleEntity {
 
   @ApiProperty()
   enemyHealth: number;
+
+  @ApiProperty()
+  enemyAttack: number;
 
   @ApiProperty()
   enemyHero: HeroEntity;

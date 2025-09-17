@@ -105,10 +105,7 @@ export class ProductService {
 
     const result = products.map((product) => ({
       ...product,
-      isBought:
-        product.type === ProductType.HERO
-          ? product.userProducts.length > 0
-          : false,
+      isBought: product.userProducts.length > 0,
     }));
 
     return result.sort((a, b) => {

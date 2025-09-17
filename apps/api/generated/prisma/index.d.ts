@@ -99,7 +99,8 @@ export type BattleStatus = (typeof BattleStatus)[keyof typeof BattleStatus]
 
 
 export const ProductType: {
-  HERO: 'HERO'
+  HERO: 'HERO',
+  ITEM: 'ITEM'
 };
 
 export type ProductType = (typeof ProductType)[keyof typeof ProductType]
@@ -11330,6 +11331,8 @@ export namespace Prisma {
     player2HeroId: number | null
     player1Health: number | null
     player2Health: number | null
+    player1Attack: number | null
+    player2Attack: number | null
   }
 
   export type BattleSumAggregateOutputType = {
@@ -11341,6 +11344,8 @@ export namespace Prisma {
     player2HeroId: number | null
     player1Health: number | null
     player2Health: number | null
+    player1Attack: number | null
+    player2Attack: number | null
   }
 
   export type BattleMinAggregateOutputType = {
@@ -11352,6 +11357,8 @@ export namespace Prisma {
     player2HeroId: number | null
     player1Health: number | null
     player2Health: number | null
+    player1Attack: number | null
+    player2Attack: number | null
     status: $Enums.BattleStatus | null
     createdOn: Date | null
   }
@@ -11365,6 +11372,8 @@ export namespace Prisma {
     player2HeroId: number | null
     player1Health: number | null
     player2Health: number | null
+    player1Attack: number | null
+    player2Attack: number | null
     status: $Enums.BattleStatus | null
     createdOn: Date | null
   }
@@ -11378,6 +11387,8 @@ export namespace Prisma {
     player2HeroId: number
     player1Health: number
     player2Health: number
+    player1Attack: number
+    player2Attack: number
     status: number
     createdOn: number
     _all: number
@@ -11393,6 +11404,8 @@ export namespace Prisma {
     player2HeroId?: true
     player1Health?: true
     player2Health?: true
+    player1Attack?: true
+    player2Attack?: true
   }
 
   export type BattleSumAggregateInputType = {
@@ -11404,6 +11417,8 @@ export namespace Prisma {
     player2HeroId?: true
     player1Health?: true
     player2Health?: true
+    player1Attack?: true
+    player2Attack?: true
   }
 
   export type BattleMinAggregateInputType = {
@@ -11415,6 +11430,8 @@ export namespace Prisma {
     player2HeroId?: true
     player1Health?: true
     player2Health?: true
+    player1Attack?: true
+    player2Attack?: true
     status?: true
     createdOn?: true
   }
@@ -11428,6 +11445,8 @@ export namespace Prisma {
     player2HeroId?: true
     player1Health?: true
     player2Health?: true
+    player1Attack?: true
+    player2Attack?: true
     status?: true
     createdOn?: true
   }
@@ -11441,6 +11460,8 @@ export namespace Prisma {
     player2HeroId?: true
     player1Health?: true
     player2Health?: true
+    player1Attack?: true
+    player2Attack?: true
     status?: true
     createdOn?: true
     _all?: true
@@ -11541,6 +11562,8 @@ export namespace Prisma {
     player2HeroId: number | null
     player1Health: number | null
     player2Health: number | null
+    player1Attack: number | null
+    player2Attack: number | null
     status: $Enums.BattleStatus
     createdOn: Date
     _count: BattleCountAggregateOutputType | null
@@ -11573,6 +11596,8 @@ export namespace Prisma {
     player2HeroId?: boolean
     player1Health?: boolean
     player2Health?: boolean
+    player1Attack?: boolean
+    player2Attack?: boolean
     status?: boolean
     createdOn?: boolean
     winner?: boolean | Battle$winnerArgs<ExtArgs>
@@ -11591,6 +11616,8 @@ export namespace Prisma {
     player2HeroId?: boolean
     player1Health?: boolean
     player2Health?: boolean
+    player1Attack?: boolean
+    player2Attack?: boolean
     status?: boolean
     createdOn?: boolean
     winner?: boolean | Battle$winnerArgs<ExtArgs>
@@ -11609,6 +11636,8 @@ export namespace Prisma {
     player2HeroId?: boolean
     player1Health?: boolean
     player2Health?: boolean
+    player1Attack?: boolean
+    player2Attack?: boolean
     status?: boolean
     createdOn?: boolean
     winner?: boolean | Battle$winnerArgs<ExtArgs>
@@ -11627,11 +11656,13 @@ export namespace Prisma {
     player2HeroId?: boolean
     player1Health?: boolean
     player2Health?: boolean
+    player1Attack?: boolean
+    player2Attack?: boolean
     status?: boolean
     createdOn?: boolean
   }
 
-  export type BattleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "winnerId" | "player1Id" | "player2Id" | "player1HeroId" | "player2HeroId" | "player1Health" | "player2Health" | "status" | "createdOn", ExtArgs["result"]["battle"]>
+  export type BattleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "winnerId" | "player1Id" | "player2Id" | "player1HeroId" | "player2HeroId" | "player1Health" | "player2Health" | "player1Attack" | "player2Attack" | "status" | "createdOn", ExtArgs["result"]["battle"]>
   export type BattleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     winner?: boolean | Battle$winnerArgs<ExtArgs>
     player1?: boolean | Battle$player1Args<ExtArgs>
@@ -11672,6 +11703,8 @@ export namespace Prisma {
       player2HeroId: number | null
       player1Health: number | null
       player2Health: number | null
+      player1Attack: number | null
+      player2Attack: number | null
       status: $Enums.BattleStatus
       createdOn: Date
     }, ExtArgs["result"]["battle"]>
@@ -12110,6 +12143,8 @@ export namespace Prisma {
     readonly player2HeroId: FieldRef<"Battle", 'Int'>
     readonly player1Health: FieldRef<"Battle", 'Int'>
     readonly player2Health: FieldRef<"Battle", 'Int'>
+    readonly player1Attack: FieldRef<"Battle", 'Int'>
+    readonly player2Attack: FieldRef<"Battle", 'Int'>
     readonly status: FieldRef<"Battle", 'BattleStatus'>
     readonly createdOn: FieldRef<"Battle", 'DateTime'>
   }
@@ -12637,12 +12672,16 @@ export namespace Prisma {
     id: number | null
     price: number | null
     heroId: number | null
+    health: number | null
+    attack: number | null
   }
 
   export type ProductSumAggregateOutputType = {
     id: number | null
     price: number | null
     heroId: number | null
+    health: number | null
+    attack: number | null
   }
 
   export type ProductMinAggregateOutputType = {
@@ -12652,6 +12691,8 @@ export namespace Prisma {
     imageUrl: string | null
     createdAt: Date | null
     heroId: number | null
+    health: number | null
+    attack: number | null
     priceType: $Enums.PriceType | null
     type: $Enums.ProductType | null
   }
@@ -12663,6 +12704,8 @@ export namespace Prisma {
     imageUrl: string | null
     createdAt: Date | null
     heroId: number | null
+    health: number | null
+    attack: number | null
     priceType: $Enums.PriceType | null
     type: $Enums.ProductType | null
   }
@@ -12674,6 +12717,8 @@ export namespace Prisma {
     imageUrl: number
     createdAt: number
     heroId: number
+    health: number
+    attack: number
     priceType: number
     type: number
     _all: number
@@ -12684,12 +12729,16 @@ export namespace Prisma {
     id?: true
     price?: true
     heroId?: true
+    health?: true
+    attack?: true
   }
 
   export type ProductSumAggregateInputType = {
     id?: true
     price?: true
     heroId?: true
+    health?: true
+    attack?: true
   }
 
   export type ProductMinAggregateInputType = {
@@ -12699,6 +12748,8 @@ export namespace Prisma {
     imageUrl?: true
     createdAt?: true
     heroId?: true
+    health?: true
+    attack?: true
     priceType?: true
     type?: true
   }
@@ -12710,6 +12761,8 @@ export namespace Prisma {
     imageUrl?: true
     createdAt?: true
     heroId?: true
+    health?: true
+    attack?: true
     priceType?: true
     type?: true
   }
@@ -12721,6 +12774,8 @@ export namespace Prisma {
     imageUrl?: true
     createdAt?: true
     heroId?: true
+    health?: true
+    attack?: true
     priceType?: true
     type?: true
     _all?: true
@@ -12819,6 +12874,8 @@ export namespace Prisma {
     imageUrl: string
     createdAt: Date
     heroId: number | null
+    health: number | null
+    attack: number | null
     priceType: $Enums.PriceType
     type: $Enums.ProductType
     _count: ProductCountAggregateOutputType | null
@@ -12849,6 +12906,8 @@ export namespace Prisma {
     imageUrl?: boolean
     createdAt?: boolean
     heroId?: boolean
+    health?: boolean
+    attack?: boolean
     priceType?: boolean
     type?: boolean
     userProducts?: boolean | Product$userProductsArgs<ExtArgs>
@@ -12862,6 +12921,8 @@ export namespace Prisma {
     imageUrl?: boolean
     createdAt?: boolean
     heroId?: boolean
+    health?: boolean
+    attack?: boolean
     priceType?: boolean
     type?: boolean
   }, ExtArgs["result"]["product"]>
@@ -12873,6 +12934,8 @@ export namespace Prisma {
     imageUrl?: boolean
     createdAt?: boolean
     heroId?: boolean
+    health?: boolean
+    attack?: boolean
     priceType?: boolean
     type?: boolean
   }, ExtArgs["result"]["product"]>
@@ -12884,11 +12947,13 @@ export namespace Prisma {
     imageUrl?: boolean
     createdAt?: boolean
     heroId?: boolean
+    health?: boolean
+    attack?: boolean
     priceType?: boolean
     type?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "imageUrl" | "createdAt" | "heroId" | "priceType" | "type", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "imageUrl" | "createdAt" | "heroId" | "health" | "attack" | "priceType" | "type", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     userProducts?: boolean | Product$userProductsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -12908,6 +12973,8 @@ export namespace Prisma {
       imageUrl: string
       createdAt: Date
       heroId: number | null
+      health: number | null
+      attack: number | null
       priceType: $Enums.PriceType
       type: $Enums.ProductType
     }, ExtArgs["result"]["product"]>
@@ -13340,6 +13407,8 @@ export namespace Prisma {
     readonly imageUrl: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly heroId: FieldRef<"Product", 'Int'>
+    readonly health: FieldRef<"Product", 'Int'>
+    readonly attack: FieldRef<"Product", 'Int'>
     readonly priceType: FieldRef<"Product", 'PriceType'>
     readonly type: FieldRef<"Product", 'ProductType'>
   }
@@ -14992,6 +15061,8 @@ export namespace Prisma {
     player2HeroId: 'player2HeroId',
     player1Health: 'player1Health',
     player2Health: 'player2Health',
+    player1Attack: 'player1Attack',
+    player2Attack: 'player2Attack',
     status: 'status',
     createdOn: 'createdOn'
   };
@@ -15006,6 +15077,8 @@ export namespace Prisma {
     imageUrl: 'imageUrl',
     createdAt: 'createdAt',
     heroId: 'heroId',
+    health: 'health',
+    attack: 'attack',
     priceType: 'priceType',
     type: 'type'
   };
@@ -15764,6 +15837,8 @@ export namespace Prisma {
     player2HeroId?: IntNullableFilter<"Battle"> | number | null
     player1Health?: IntNullableFilter<"Battle"> | number | null
     player2Health?: IntNullableFilter<"Battle"> | number | null
+    player1Attack?: IntNullableFilter<"Battle"> | number | null
+    player2Attack?: IntNullableFilter<"Battle"> | number | null
     status?: EnumBattleStatusFilter<"Battle"> | $Enums.BattleStatus
     createdOn?: DateTimeFilter<"Battle"> | Date | string
     winner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -15782,6 +15857,8 @@ export namespace Prisma {
     player2HeroId?: SortOrderInput | SortOrder
     player1Health?: SortOrderInput | SortOrder
     player2Health?: SortOrderInput | SortOrder
+    player1Attack?: SortOrderInput | SortOrder
+    player2Attack?: SortOrderInput | SortOrder
     status?: SortOrder
     createdOn?: SortOrder
     winner?: UserOrderByWithRelationInput
@@ -15803,6 +15880,8 @@ export namespace Prisma {
     player2HeroId?: IntNullableFilter<"Battle"> | number | null
     player1Health?: IntNullableFilter<"Battle"> | number | null
     player2Health?: IntNullableFilter<"Battle"> | number | null
+    player1Attack?: IntNullableFilter<"Battle"> | number | null
+    player2Attack?: IntNullableFilter<"Battle"> | number | null
     status?: EnumBattleStatusFilter<"Battle"> | $Enums.BattleStatus
     createdOn?: DateTimeFilter<"Battle"> | Date | string
     winner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -15821,6 +15900,8 @@ export namespace Prisma {
     player2HeroId?: SortOrderInput | SortOrder
     player1Health?: SortOrderInput | SortOrder
     player2Health?: SortOrderInput | SortOrder
+    player1Attack?: SortOrderInput | SortOrder
+    player2Attack?: SortOrderInput | SortOrder
     status?: SortOrder
     createdOn?: SortOrder
     _count?: BattleCountOrderByAggregateInput
@@ -15842,6 +15923,8 @@ export namespace Prisma {
     player2HeroId?: IntNullableWithAggregatesFilter<"Battle"> | number | null
     player1Health?: IntNullableWithAggregatesFilter<"Battle"> | number | null
     player2Health?: IntNullableWithAggregatesFilter<"Battle"> | number | null
+    player1Attack?: IntNullableWithAggregatesFilter<"Battle"> | number | null
+    player2Attack?: IntNullableWithAggregatesFilter<"Battle"> | number | null
     status?: EnumBattleStatusWithAggregatesFilter<"Battle"> | $Enums.BattleStatus
     createdOn?: DateTimeWithAggregatesFilter<"Battle"> | Date | string
   }
@@ -15856,6 +15939,8 @@ export namespace Prisma {
     imageUrl?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
     heroId?: IntNullableFilter<"Product"> | number | null
+    health?: IntNullableFilter<"Product"> | number | null
+    attack?: IntNullableFilter<"Product"> | number | null
     priceType?: EnumPriceTypeFilter<"Product"> | $Enums.PriceType
     type?: EnumProductTypeFilter<"Product"> | $Enums.ProductType
     userProducts?: UserProductListRelationFilter
@@ -15868,6 +15953,8 @@ export namespace Prisma {
     imageUrl?: SortOrder
     createdAt?: SortOrder
     heroId?: SortOrderInput | SortOrder
+    health?: SortOrderInput | SortOrder
+    attack?: SortOrderInput | SortOrder
     priceType?: SortOrder
     type?: SortOrder
     userProducts?: UserProductOrderByRelationAggregateInput
@@ -15883,6 +15970,8 @@ export namespace Prisma {
     imageUrl?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
     heroId?: IntNullableFilter<"Product"> | number | null
+    health?: IntNullableFilter<"Product"> | number | null
+    attack?: IntNullableFilter<"Product"> | number | null
     priceType?: EnumPriceTypeFilter<"Product"> | $Enums.PriceType
     type?: EnumProductTypeFilter<"Product"> | $Enums.ProductType
     userProducts?: UserProductListRelationFilter
@@ -15895,6 +15984,8 @@ export namespace Prisma {
     imageUrl?: SortOrder
     createdAt?: SortOrder
     heroId?: SortOrderInput | SortOrder
+    health?: SortOrderInput | SortOrder
+    attack?: SortOrderInput | SortOrder
     priceType?: SortOrder
     type?: SortOrder
     _count?: ProductCountOrderByAggregateInput
@@ -15914,6 +16005,8 @@ export namespace Prisma {
     imageUrl?: StringWithAggregatesFilter<"Product"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     heroId?: IntNullableWithAggregatesFilter<"Product"> | number | null
+    health?: IntNullableWithAggregatesFilter<"Product"> | number | null
+    attack?: IntNullableWithAggregatesFilter<"Product"> | number | null
     priceType?: EnumPriceTypeWithAggregatesFilter<"Product"> | $Enums.PriceType
     type?: EnumProductTypeWithAggregatesFilter<"Product"> | $Enums.ProductType
   }
@@ -16543,6 +16636,8 @@ export namespace Prisma {
   export type BattleCreateInput = {
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
     winner?: UserCreateNestedOneWithoutWonBattlesInput
@@ -16561,6 +16656,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -16568,6 +16665,8 @@ export namespace Prisma {
   export type BattleUpdateInput = {
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
     winner?: UserUpdateOneWithoutWonBattlesNestedInput
@@ -16586,6 +16685,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16599,6 +16700,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -16606,6 +16709,8 @@ export namespace Prisma {
   export type BattleUpdateManyMutationInput = {
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16619,6 +16724,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16629,6 +16736,8 @@ export namespace Prisma {
     imageUrl: string
     createdAt?: Date | string
     heroId?: number | null
+    health?: number | null
+    attack?: number | null
     priceType?: $Enums.PriceType
     type?: $Enums.ProductType
     userProducts?: UserProductCreateNestedManyWithoutProductInput
@@ -16641,6 +16750,8 @@ export namespace Prisma {
     imageUrl: string
     createdAt?: Date | string
     heroId?: number | null
+    health?: number | null
+    attack?: number | null
     priceType?: $Enums.PriceType
     type?: $Enums.ProductType
     userProducts?: UserProductUncheckedCreateNestedManyWithoutProductInput
@@ -16652,6 +16763,8 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     heroId?: NullableIntFieldUpdateOperationsInput | number | null
+    health?: NullableIntFieldUpdateOperationsInput | number | null
+    attack?: NullableIntFieldUpdateOperationsInput | number | null
     priceType?: EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
     type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
     userProducts?: UserProductUpdateManyWithoutProductNestedInput
@@ -16664,6 +16777,8 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     heroId?: NullableIntFieldUpdateOperationsInput | number | null
+    health?: NullableIntFieldUpdateOperationsInput | number | null
+    attack?: NullableIntFieldUpdateOperationsInput | number | null
     priceType?: EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
     type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
     userProducts?: UserProductUncheckedUpdateManyWithoutProductNestedInput
@@ -16676,6 +16791,8 @@ export namespace Prisma {
     imageUrl: string
     createdAt?: Date | string
     heroId?: number | null
+    health?: number | null
+    attack?: number | null
     priceType?: $Enums.PriceType
     type?: $Enums.ProductType
   }
@@ -16686,6 +16803,8 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     heroId?: NullableIntFieldUpdateOperationsInput | number | null
+    health?: NullableIntFieldUpdateOperationsInput | number | null
+    attack?: NullableIntFieldUpdateOperationsInput | number | null
     priceType?: EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
     type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
   }
@@ -16697,6 +16816,8 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     heroId?: NullableIntFieldUpdateOperationsInput | number | null
+    health?: NullableIntFieldUpdateOperationsInput | number | null
+    attack?: NullableIntFieldUpdateOperationsInput | number | null
     priceType?: EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
     type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
   }
@@ -17426,6 +17547,8 @@ export namespace Prisma {
     player2HeroId?: SortOrder
     player1Health?: SortOrder
     player2Health?: SortOrder
+    player1Attack?: SortOrder
+    player2Attack?: SortOrder
     status?: SortOrder
     createdOn?: SortOrder
   }
@@ -17439,6 +17562,8 @@ export namespace Prisma {
     player2HeroId?: SortOrder
     player1Health?: SortOrder
     player2Health?: SortOrder
+    player1Attack?: SortOrder
+    player2Attack?: SortOrder
   }
 
   export type BattleMaxOrderByAggregateInput = {
@@ -17450,6 +17575,8 @@ export namespace Prisma {
     player2HeroId?: SortOrder
     player1Health?: SortOrder
     player2Health?: SortOrder
+    player1Attack?: SortOrder
+    player2Attack?: SortOrder
     status?: SortOrder
     createdOn?: SortOrder
   }
@@ -17463,6 +17590,8 @@ export namespace Prisma {
     player2HeroId?: SortOrder
     player1Health?: SortOrder
     player2Health?: SortOrder
+    player1Attack?: SortOrder
+    player2Attack?: SortOrder
     status?: SortOrder
     createdOn?: SortOrder
   }
@@ -17476,6 +17605,8 @@ export namespace Prisma {
     player2HeroId?: SortOrder
     player1Health?: SortOrder
     player2Health?: SortOrder
+    player1Attack?: SortOrder
+    player2Attack?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -17525,6 +17656,8 @@ export namespace Prisma {
     imageUrl?: SortOrder
     createdAt?: SortOrder
     heroId?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
     priceType?: SortOrder
     type?: SortOrder
   }
@@ -17533,6 +17666,8 @@ export namespace Prisma {
     id?: SortOrder
     price?: SortOrder
     heroId?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
@@ -17542,6 +17677,8 @@ export namespace Prisma {
     imageUrl?: SortOrder
     createdAt?: SortOrder
     heroId?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
     priceType?: SortOrder
     type?: SortOrder
   }
@@ -17553,6 +17690,8 @@ export namespace Prisma {
     imageUrl?: SortOrder
     createdAt?: SortOrder
     heroId?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
     priceType?: SortOrder
     type?: SortOrder
   }
@@ -17561,6 +17700,8 @@ export namespace Prisma {
     id?: SortOrder
     price?: SortOrder
     heroId?: SortOrder
+    health?: SortOrder
+    attack?: SortOrder
   }
 
   export type EnumPriceTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -18884,6 +19025,8 @@ export namespace Prisma {
   export type BattleCreateWithoutPlayer1Input = {
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
     winner?: UserCreateNestedOneWithoutWonBattlesInput
@@ -18900,6 +19043,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -18917,6 +19062,8 @@ export namespace Prisma {
   export type BattleCreateWithoutPlayer2Input = {
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
     winner?: UserCreateNestedOneWithoutWonBattlesInput
@@ -18933,6 +19080,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -18950,6 +19099,8 @@ export namespace Prisma {
   export type BattleCreateWithoutWinnerInput = {
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
     player1?: UserCreateNestedOneWithoutBattlesAsPlayer1Input
@@ -18966,6 +19117,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -19161,6 +19314,8 @@ export namespace Prisma {
     player2HeroId?: IntNullableFilter<"Battle"> | number | null
     player1Health?: IntNullableFilter<"Battle"> | number | null
     player2Health?: IntNullableFilter<"Battle"> | number | null
+    player1Attack?: IntNullableFilter<"Battle"> | number | null
+    player2Attack?: IntNullableFilter<"Battle"> | number | null
     status?: EnumBattleStatusFilter<"Battle"> | $Enums.BattleStatus
     createdOn?: DateTimeFilter<"Battle"> | Date | string
   }
@@ -19827,6 +19982,8 @@ export namespace Prisma {
   export type BattleCreateWithoutPlayer1HeroInput = {
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
     winner?: UserCreateNestedOneWithoutWonBattlesInput
@@ -19843,6 +20000,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -19860,6 +20019,8 @@ export namespace Prisma {
   export type BattleCreateWithoutPlayer2HeroInput = {
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
     winner?: UserCreateNestedOneWithoutWonBattlesInput
@@ -19876,6 +20037,8 @@ export namespace Prisma {
     player1HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -20740,6 +20903,8 @@ export namespace Prisma {
     imageUrl: string
     createdAt?: Date | string
     heroId?: number | null
+    health?: number | null
+    attack?: number | null
     priceType?: $Enums.PriceType
     type?: $Enums.ProductType
   }
@@ -20751,6 +20916,8 @@ export namespace Prisma {
     imageUrl: string
     createdAt?: Date | string
     heroId?: number | null
+    health?: number | null
+    attack?: number | null
     priceType?: $Enums.PriceType
     type?: $Enums.ProductType
   }
@@ -20843,6 +21010,8 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     heroId?: NullableIntFieldUpdateOperationsInput | number | null
+    health?: NullableIntFieldUpdateOperationsInput | number | null
+    attack?: NullableIntFieldUpdateOperationsInput | number | null
     priceType?: EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
     type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
   }
@@ -20854,6 +21023,8 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     heroId?: NullableIntFieldUpdateOperationsInput | number | null
+    health?: NullableIntFieldUpdateOperationsInput | number | null
+    attack?: NullableIntFieldUpdateOperationsInput | number | null
     priceType?: EnumPriceTypeFieldUpdateOperationsInput | $Enums.PriceType
     type?: EnumProductTypeFieldUpdateOperationsInput | $Enums.ProductType
   }
@@ -20894,6 +21065,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -20906,6 +21079,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -20918,6 +21093,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -21011,6 +21188,8 @@ export namespace Prisma {
   export type BattleUpdateWithoutPlayer1Input = {
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
     winner?: UserUpdateOneWithoutWonBattlesNestedInput
@@ -21027,6 +21206,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21039,6 +21220,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21046,6 +21229,8 @@ export namespace Prisma {
   export type BattleUpdateWithoutPlayer2Input = {
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
     winner?: UserUpdateOneWithoutWonBattlesNestedInput
@@ -21062,6 +21247,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21074,6 +21261,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21081,6 +21270,8 @@ export namespace Prisma {
   export type BattleUpdateWithoutWinnerInput = {
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
     player1?: UserUpdateOneWithoutBattlesAsPlayer1NestedInput
@@ -21097,6 +21288,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21109,6 +21302,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21165,6 +21360,8 @@ export namespace Prisma {
     player2HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -21177,6 +21374,8 @@ export namespace Prisma {
     player1HeroId?: number | null
     player1Health?: number | null
     player2Health?: number | null
+    player1Attack?: number | null
+    player2Attack?: number | null
     status?: $Enums.BattleStatus
     createdOn?: Date | string
   }
@@ -21190,6 +21389,8 @@ export namespace Prisma {
   export type BattleUpdateWithoutPlayer1HeroInput = {
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
     winner?: UserUpdateOneWithoutWonBattlesNestedInput
@@ -21206,6 +21407,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21218,6 +21421,8 @@ export namespace Prisma {
     player2HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21225,6 +21430,8 @@ export namespace Prisma {
   export type BattleUpdateWithoutPlayer2HeroInput = {
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
     winner?: UserUpdateOneWithoutWonBattlesNestedInput
@@ -21241,6 +21448,8 @@ export namespace Prisma {
     player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21253,6 +21462,8 @@ export namespace Prisma {
     player1HeroId?: NullableIntFieldUpdateOperationsInput | number | null
     player1Health?: NullableIntFieldUpdateOperationsInput | number | null
     player2Health?: NullableIntFieldUpdateOperationsInput | number | null
+    player1Attack?: NullableIntFieldUpdateOperationsInput | number | null
+    player2Attack?: NullableIntFieldUpdateOperationsInput | number | null
     status?: EnumBattleStatusFieldUpdateOperationsInput | $Enums.BattleStatus
     createdOn?: DateTimeFieldUpdateOperationsInput | Date | string
   }

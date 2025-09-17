@@ -207,6 +207,8 @@ exports.Prisma.BattleScalarFieldEnum = {
   player2HeroId: 'player2HeroId',
   player1Health: 'player1Health',
   player2Health: 'player2Health',
+  player1Attack: 'player1Attack',
+  player2Attack: 'player2Attack',
   status: 'status',
   createdOn: 'createdOn'
 };
@@ -218,6 +220,8 @@ exports.Prisma.ProductScalarFieldEnum = {
   imageUrl: 'imageUrl',
   createdAt: 'createdAt',
   heroId: 'heroId',
+  health: 'health',
+  attack: 'attack',
   priceType: 'priceType',
   type: 'type'
 };
@@ -265,7 +269,8 @@ exports.PriceType = exports.$Enums.PriceType = {
 };
 
 exports.ProductType = exports.$Enums.ProductType = {
-  HERO: 'HERO'
+  HERO: 'HERO',
+  ITEM: 'ITEM'
 };
 
 exports.Prisma.ModelName = {

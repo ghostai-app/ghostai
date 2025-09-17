@@ -9,4 +9,6 @@ export interface IBattle {
   enemyName: string;
   enemyHealth: number;
   enemyHero: IHero;
+  userAttack: number;
+  enemyAttack: number;
 }

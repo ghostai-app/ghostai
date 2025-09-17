@@ -16,7 +16,7 @@ export const BottomFixedButton = ({
   return (
     <div
       className={cn(
-        "w-70 bottom-[120px] left-1/2 -translate-x-1/2 absolute",
+        "w-70 bottom-[120px] left-1/2 -translate-x-1/2 fixed",
         className
       )}
     >

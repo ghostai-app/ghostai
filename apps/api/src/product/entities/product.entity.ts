@@ -25,4 +25,10 @@ export class ProductEntity implements Product {
 
   @ApiProperty()
   type: ProductType;
+
+  @ApiProperty()
+  health: number | null;
+
+  @ApiProperty()
+  attack: number | null;
 }

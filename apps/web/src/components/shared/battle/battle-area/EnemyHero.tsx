@@ -52,7 +52,7 @@ export const EnemyHero: React.FC<Props> = ({ className, battle }) => {
 
       const newEffect = {
         id: Date.now() + i,
-        value: battle.userHero.attack,
+        value: battle.userAttack,
         x,
         y,
       };
@@ -114,7 +114,7 @@ export const EnemyHero: React.FC<Props> = ({ className, battle }) => {
       <img
         src={battle?.enemyHero?.imageUrl}
         alt="Enemy Hero"
-        className="w-full h-[420px]"
+        className="w-full h-[420px] object-cover object-top"
       />
     </div>
   );

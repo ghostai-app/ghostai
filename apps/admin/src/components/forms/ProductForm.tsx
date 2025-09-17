@@ -14,6 +14,7 @@ enum PriceType {
 
 enum ProductType {
   HERO = "HERO",
+  ITEM = "ITEM",
 }
 
 export const ProductForm = ({ formProps }: ProductFormProps) => {
@@ -63,7 +64,16 @@ export const ProductForm = ({ formProps }: ProductFormProps) => {
       <Form.Item label="Type" name="type">
         <Select>
           <Select.Option value={ProductType.HERO}>Hero</Select.Option>
+          <Select.Option value={ProductType.ITEM}>Item</Select.Option>
         </Select>
+      </Form.Item>
+
+      <Form.Item label="Health" name="health">
+        <InputNumber min={0} style={{ width: "100%" }} />
+      </Form.Item>
+
+      <Form.Item label="Attack" name="attack">
+        <InputNumber min={0} style={{ width: "100%" }} />
       </Form.Item>
     </Form>
   );

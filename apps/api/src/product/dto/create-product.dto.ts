@@ -35,4 +35,16 @@ export class CreateProductDto {
     description: 'Тип продукта',
   })
   type: ProductType;
+
+  @ApiProperty({
+    example: 100,
+    description: 'Здоровье героя',
+  })
+  health?: number;
+
+  @ApiProperty({
+    example: 100,
+    description: 'Атака героя',
+  })
+  attack?: number;
 }

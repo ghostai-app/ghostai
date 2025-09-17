@@ -54,7 +54,7 @@ export const UserHeroItem = ({
       <div className="w-full rounded-lg aspect-square bg-dark">
         {hero.imageUrl ? (
           <img
-            className="w-full h-full object-cover rounded-lg"
+            className="w-full h-full object-cover rounded-lg object-top"
             alt="Hero Image"
             src={hero.imageUrl}
           />

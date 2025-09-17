@@ -16,13 +16,14 @@ export const useBuyProduct = (id: number) => {
   return useMutation({
     mutationFn: () => productService.buyProduct(id),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
       queryClient.invalidateQueries(getUserHeroesQueryOptions());
       queryClient.invalidateQueries(getUserQueryOptions());
       queryClient.invalidateQueries(getLastUserHeroQueryOptions());
       toast.success("Product bought successfully");
     },
-    onError: () => {
-      toast.error("Failed to buy product");
+    onError: (error: string) => {
+      toast.error(error);
     },
   });
 };

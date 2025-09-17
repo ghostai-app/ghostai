@@ -144,8 +144,8 @@ model UserHero {
   userId    Int      @map("user_id")
   createdOn DateTime @default(now()) @map("created_on")
 
-  hero Hero @relation(fields: [heroId], references: [id])
-  user User @relation(fields: [userId], references: [id])
+  hero Hero @relation(fields: [heroId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, heroId])
   @@map("user_heroes")
@@ -166,6 +166,8 @@ model Battle {
   player2HeroId Int?         @map("player2_hero_id")
   player1Health Int?         @map("player1_health")
   player2Health Int?         @map("player2_health")
+  player1Attack Int?         @map("player1_attack")
+  player2Attack Int?         @map("player2_attack")
   status        BattleStatus @default(PENDING)
   createdOn     DateTime     @default(now()) @map("created_on")
 
@@ -186,6 +188,8 @@ model Product {
   imageUrl     String        @map("image_url")
   createdAt    DateTime      @default(now()) @map("created_at")
   heroId       Int?          @map("hero_id")
+  health       Int?          @map("health")
+  attack       Int?          @map("attack")
   priceType    PriceType     @default(TOKEN)
   type         ProductType   @default(HERO)
   userProducts UserProduct[]
@@ -195,6 +199,7 @@ model Product {
 
 enum ProductType {
   HERO
+  ITEM
 }
 
 model UserProduct {
