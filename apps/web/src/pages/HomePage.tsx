@@ -22,7 +22,7 @@ export const HomePage = () => {
             <div className="h-40 bg-gradient-to-b from-transparent to-background absolute bottom-0 inset-x-0 w-full z-1"></div>
             {!isLoading && (
               <img
-                src={lastUserHero ?? hero}
+                src={lastUserHero || hero}
                 className="inset-0 absolute size-full object-contain"
               />
             )}

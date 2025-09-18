@@ -21,7 +21,7 @@ export class TelegramUpdate {
     const webAppUrl = this.configService.getOrThrow<string>('WEB_APP_URL');
     const assetsUrl = this.configService.getOrThrow<string>('ASSETS_URL');
 
-    await ctx.replyWithPhoto(`${assetsUrl}/welcome.jpg`, {
+    await ctx.replyWithPhoto(`${assetsUrl}/welcome-ghostai.jpg`, {
       caption: `
 WELCOME TO GHOSTAI
 

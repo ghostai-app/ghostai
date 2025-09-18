@@ -14,7 +14,7 @@ export const ShopPage = () => {
       <Container>
         <TypeSwitcher
           types={[
-            { title: "$GAME", value: "TOKEN" },
+            { title: "$GAI", value: "TOKEN" },
             { title: "CRYSTAL", value: "CRYSTAL" },
           ]}
           currentType={type}

@@ -42,7 +42,7 @@ export const DailyBox = ({ className }: Props) => {
           >
             <p className="text-muted">Your reward</p>
             <h3 className="!text-white">
-              {formatBalance(checkIn?.reward)} $CRYSTAL
+              {formatBalance(checkIn?.reward)} CRYSTAL
             </h3>
           </motion.div>
         </AnimatePresence>

@@ -21,7 +21,7 @@ export const ShopItem = ({ className, product }: Props) => {
         className
       )}
     >
-      <img src={product.imageUrl} className="h-[175px] w-full object-cover" />
+      <img src={product.imageUrl} className="h-[175px] w-full object-contain" />
       <div className="w-full p-3 flex items-end justify-between gap-3">
         <div className="flex flex-col gap-1">
           <p className="!text-xs !text-muted">{product.name}</p>

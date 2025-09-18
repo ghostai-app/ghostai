@@ -19,7 +19,7 @@ export class LeaderService {
         balance: true,
         createdAt: true,
       },
-      take: 10,
+      take: 20,
     });
 
     const rank = await this.prisma.user.count({
