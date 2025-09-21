@@ -22,25 +22,13 @@ export class TelegramUpdate {
     const assetsUrl = this.configService.getOrThrow<string>('ASSETS_URL');
 
     await ctx.replyWithPhoto(`${assetsUrl}/welcome-ghostai.jpg`, {
+      parse_mode: 'HTML',
       caption: `
-WELCOME TO GHOSTAI
+<b>Ghost AI is more than a game — it’s a decentralized battlefield.
 
-BRIEF
+Powered by Crystals and $GAI, players forge lethal gear and dive into Winner Takes All PvP combat where every move has real value.
 
-Mine and Earn
-Missions. Mine. Open cases. Upgrade. Stack $GAI.
-
-Select Your Soldier
-Open the Shop. Buy a soldier. Level up.
-
-Clash and Climb
-Real time battles. Drain. Earn. Rank.
-
-Referral
-Invite friends. Their ranks boost your bonus.
-
-Rewards per Hour
-Auto farm for 3 hours offline. Log in to refresh.
+Equip, stake, and dominate — in Ghost AI, victory means owning it all 🦾</b>
 `,
       reply_markup: {
         inline_keyboard: [

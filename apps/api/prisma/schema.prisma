@@ -206,8 +206,8 @@ model UserProduct {
   productId Int @map("product_id")
   createdAt DateTime @default(now()) @map("created_at")
 
-  user User @relation(fields: [userId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@map("user_products")
 }

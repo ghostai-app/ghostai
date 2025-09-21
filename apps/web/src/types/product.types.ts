@@ -7,4 +7,6 @@ export interface IProduct {
   price: number;
   createdAt: Date;
   isBought: boolean;
+  health: number;
+  attack: number;
 }

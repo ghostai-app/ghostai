@@ -95,6 +95,8 @@ export class ProductService {
         price: true,
         createdAt: true,
         type: true,
+        health: true,
+        attack: true,
         userProducts: {
           where: {
             userId: user.id,
