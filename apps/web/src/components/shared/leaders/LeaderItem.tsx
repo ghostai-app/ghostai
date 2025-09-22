@@ -17,12 +17,7 @@ export const LeaderItem = ({ className, leader }: Props) => {
           #{leader.rank} {leader?.firstName.toUpperCase() || "—"}
         </p>
 
-        <p className="w-2/3 !text-xs">{1}</p>
-
-        <p className="w-2/3 !text-xs text-accent">
-          {0}
-          <span className="text-white">/{0}</span>
-        </p>
+        {/* <p className="w-2/3 !text-xs">{1}</p> */}
 
         <p className="w-1/2 text-end !text-xs text-accent">
           {formatShortBalance(leader.balance)}
