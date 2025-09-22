@@ -15,8 +15,8 @@ export const LeaderList = ({ className }: Props) => {
     <div className={cn(className)}>
       <div className="w-full flex items-center text-muted">
         <p className="w-full !text-xs">USERNAME</p>
-        <p className="w-2/3 !text-xs">LVL</p>
-        <p className="w-2/3 !text-xs">W/L</p>
+        {/* <p className="w-2/3 !text-xs">LVL</p> */}
+        {/* <p className="w-2/3 !text-xs">W/L</p> */}
         <p className="w-1/2 text-end !text-xs">$GAI</p>
       </div>
 
