@@ -23,6 +23,13 @@ export class BattleService {
   // Добавление игрока в очередь боя
   async addToQueue(heroId: number, user: UserEntity) {
     return await this.prisma.$transaction(async (prisma) => {
+      // Проверяем баланс пользователя - минимум 500 для участия в боях
+      if (user.balance < 500) {
+        throw new BadRequestException(
+          'Недостаточно средств для участия в бою. Минимум 500 токенов',
+        );
+      }
+
       const hero = await prisma.userHero.findUnique({
         where: {
           userId_heroId: {
@@ -63,6 +70,32 @@ export class BattleService {
       });
 
       if (pendingBattle) {
+        // Получаем первого игрока для проверки баланса
+        const player1 = await prisma.user.findUnique({
+          where: { id: pendingBattle.player1Id! },
+          select: { balance: true },
+        });
+
+        // Проверяем баланс первого игрока
+        if (!player1 || player1.balance < 500) {
+          // Удаляем бой, если у первого игрока недостаточно средств
+          await prisma.battle.delete({ where: { id: pendingBattle.id } });
+          throw new BadRequestException(
+            'Первый игрок не имеет достаточно средств для боя',
+          );
+        }
+
+        // Списываем 500 с каждого игрока при начале боя
+        await prisma.user.update({
+          where: { id: pendingBattle.player1Id! },
+          data: { balance: { decrement: 500 } },
+        });
+
+        await prisma.user.update({
+          where: { id: user.id },
+          data: { balance: { decrement: 500 } },
+        });
+
         const battle = await prisma.battle.update({
           where: { id: pendingBattle.id },
           data: {
@@ -91,6 +124,12 @@ export class BattleService {
             status: 'IN_PROGRESS',
           },
           data: { status: 'FINISHED' },
+        });
+
+        // Списываем 500 токенов с игрока при создании нового боя
+        await prisma.user.update({
+          where: { id: user.id },
+          data: { balance: { decrement: 500 } },
         });
 
         const newBattle = await prisma.battle.create({
@@ -127,6 +166,12 @@ export class BattleService {
 
       if (battle && battle.status === 'PENDING') {
         try {
+          // Возвращаем 500 токенов игроку, если он выходит из очереди
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { balance: { increment: 500 } },
+          });
+
           await prisma.battle.delete({ where: { id: battle.id } });
         } catch (err) {
           console.error(err);
@@ -345,26 +390,16 @@ export class BattleService {
         const loserId = isPlayer1 ? battle.player2Id : battle.player1Id;
 
         if (loserId) {
-          // Получаем текущий баланс проигравшего
-          const loser = await prisma.user.findUnique({
-            where: { id: loserId },
-            select: { balance: true },
-          });
-
-          const currentBalance = loser?.balance || 0;
-          const penalty = Math.min(500, currentBalance); // Не больше чем есть на балансе
-
-          // Сбрасываем стрик проигравшего
+          // Сбрасываем стрик проигравшего (средства уже списаны при вступлении в бой)
           await prisma.user.update({
             where: { id: loserId },
             data: {
-              balance: { decrement: penalty },
               streak: 0,
             },
           });
         }
 
-        // Победитель получает награду
+        // Победитель получает все ставки (1000 - по 500 с каждого игрока)
         await prisma.user.update({
           where: { id: winnerId },
           data: {
