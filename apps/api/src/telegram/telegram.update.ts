@@ -42,6 +42,12 @@ Equip, stake, and dominate — in Ghost AI, victory means owning it all 🦾</b>
           [
             {
               text: 'Join GhostAI community',
+              url: 'https://t.me/GHOSTAI_CHAT',
+            },
+          ],
+          [
+            {
+              text: 'Join GhostAI ANN',
               url: 'https://t.me/GHOSTAI_OFFCL',
             },
           ],
