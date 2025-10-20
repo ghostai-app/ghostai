@@ -28,3 +28,23 @@ export const wallets = [
     wallet: "bitgetTonWallet",
   },
 ];
+
+export const walletsData = [
+  {
+    icon: TonConnectIcon,
+    logoColor: "#0A95F7",
+    className: "bg-[linear-gradient(135deg,_#161618_22.1%,_#203A72_118.78%)]",
+  },
+  {
+    icon: BinanceIcon,
+    logoColor: "#F3BA2F",
+    className: "bg-[linear-gradient(135deg,_#161618_22.1%,_#876E2D_118.78%)]",
+    wallet: "binanceWeb3TonWallet",
+  },
+  {
+    icon: OkxIcon,
+    logoColor: "#ffffff",
+    className: "bg-[linear-gradient(135deg,_#161618_22.1%,_#8A8A8A_118.78%)]",
+    wallet: "okxMiniWallet",
+  },
+];

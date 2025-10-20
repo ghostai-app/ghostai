@@ -5,7 +5,7 @@ import { ButtonWithVibration } from "@/components/ui";
 import { formatWallet } from "@/utils";
 import { useWallet } from "@/hooks";
 import { Card } from "../common";
-import { wallets } from "@/data";
+import { walletsData } from "@/data";
 
 interface Props {
   className?: string;
@@ -31,7 +31,7 @@ export const ConnectWalletBlock = ({ className }: Props) => {
       </Card>
 
       <div className="flex items-center gap-2 w-full">
-        {wallets.map((wallet) => (
+        {walletsData.map((wallet) => (
           <ButtonWithVibration
             className={cn("w-full flex-1 border-none", wallet.className)}
             key={wallet.wallet}
