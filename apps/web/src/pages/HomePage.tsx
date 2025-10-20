@@ -3,6 +3,7 @@ import { Balance, Container, MiningButton, Page } from "@/components";
 import { getLastUserHeroQueryOptions, getMiningQueryOptions } from "@/hooks";
 import { useQuery } from "@tanstack/react-query";
 import hero from "/assets/hero.jpg";
+import { WalletButtons } from "@/components/shared/home/WalletButtons";
 
 export const HomePage = () => {
   const { data: lastUserHero, isLoading } = useQuery(
@@ -12,6 +13,7 @@ export const HomePage = () => {
   return (
     <Page back={false}>
       <Container>
+        <WalletButtons className="fixed top-[var(--top-padding)] left-[var(--horizontal-padding)]" />
         <div className="left-1/2 -translate-x-1/2 w-70 absolute bottom-30 flex flex-col items-center gap-6">
           <Balance />
           <MiningButton />
