@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cn, PUBLIC_URL } from "@/lib";
 import openedBox from "/assets/opened-box.jpg";
 import closedBox from "/assets/closed-box.jpg";
+import dailyVideo from "@/_assets/images/daily.mov";
 import { useQuery } from "@tanstack/react-query";
 import {
   getCheckInQueryOptions,
@@ -30,6 +31,12 @@ export const DailyBox = ({ className }: Props) => {
     setIsOpened(true);
   };
 
+  useEffect(() => {
+    if (!user?.dailyAvaliable && !isOpened) {
+      navigate(PUBLIC_URL.home());
+    }
+  }, [user?.dailyAvaliable]);
+
   return (
     <>
       {isOpened && (
@@ -53,10 +60,18 @@ export const DailyBox = ({ className }: Props) => {
           className
         )}
       >
-        <img
-          src={isOpened ? openedBox : closedBox}
-          className="w-full h-3/4 object-cover z-[-1]"
-        />
+        {isOpened ? (
+          <video
+            src={dailyVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-3/4 object-cover z-[-1] scale-x-[-1]"
+          />
+        ) : (
+          <img src={closedBox} className="w-full h-3/4 object-cover z-[-1]" />
+        )}
       </div>
       {!isOpened ? (
         <BottomFixedButton onClick={handleClaimCheckIn}>

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib";
 import { wallets } from "@/data";
 import { useWallet } from "@/hooks";
-import walletButton from "/assets/wallets-button.png";
+import chestVideo from "@/_assets/images/chest.mp4";
 
 interface Props {
   className?: string;
@@ -12,6 +12,20 @@ interface Props {
 export const WalletButtons = ({ className }: Props) => {
   const { handleProccessWallet } = useWallet();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Кешируем состояние меню в localStorage
+  useEffect(() => {
+    const savedMenuState = localStorage.getItem("walletMenuOpen");
+    if (savedMenuState === "true") {
+      setIsMenuOpen(true);
+    }
+  }, []);
+
+  // Сохраняем состояние меню в localStorage
+  useEffect(() => {
+    localStorage.setItem("walletMenuOpen", isMenuOpen.toString());
+  }, [isMenuOpen]);
 
   const handleOpenWallet = (wallet: string) => {
     handleProccessWallet(wallet);
@@ -32,7 +46,16 @@ export const WalletButtons = ({ className }: Props) => {
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
-        <img src={walletButton} alt="Wallet Button" className="size-12" />
+        <video
+          ref={videoRef}
+          src={chestVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="size-12 object-cover rounded-lg"
+        />
       </motion.button>
 
       {/* Кошельки с анимацией */}

@@ -1,4 +1,10 @@
-import { Balance, Container, MiningButton, Page } from "@/components";
+import {
+  Balance,
+  Container,
+  MiningButton,
+  Page,
+  RoadmapButton,
+} from "@/components";
 
 import { getLastUserHeroQueryOptions, getMiningQueryOptions } from "@/hooks";
 import { useQuery } from "@tanstack/react-query";
@@ -14,6 +20,7 @@ export const HomePage = () => {
     <Page back={false}>
       <Container>
         <WalletButtons className="fixed top-[var(--top-padding)] left-[var(--horizontal-padding)]" />
+        {/* <RoadmapButton /> */}
         <div className="left-1/2 -translate-x-1/2 w-70 absolute bottom-30 flex flex-col items-center gap-6">
           <Balance />
           <MiningButton />

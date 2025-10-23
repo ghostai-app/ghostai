@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { PUBLIC_URL } from "@/lib";
 import { isDev, validateDevice } from "@/utils";
 import { useLoginUser } from "@/hooks";
+import loadingImage from "@/_assets/images/loading.jpg";
 
 export const LoadingPage = () => {
   const initDataRaw = useRawInitData();
@@ -23,7 +24,11 @@ export const LoadingPage = () => {
 
   return (
     <Page back={false}>
-      <Loading />
+      <img
+        src={loadingImage}
+        alt="Loading"
+        className="size-full object-cover inset-0 fixed"
+      />
     </Page>
   );
 };
