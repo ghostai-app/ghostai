@@ -89,12 +89,12 @@ export const WalletButtons = ({ className }: Props) => {
                 style={{
                   backgroundColor: wallet.bgIcon,
                 }}
-                className="cursor-pointer flex items-center justify-center size-10 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200"
+                className="cursor-pointer flex items-center justify-center size-12 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <wallet.icon
-                  className="size-6"
+                  className="size-8"
                   style={{ fill: wallet.logoIcon }}
                 />
               </motion.button>
