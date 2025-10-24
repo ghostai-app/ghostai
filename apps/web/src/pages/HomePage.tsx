@@ -21,7 +21,7 @@ export const HomePage = () => {
       <Container>
         <WalletButtons className="fixed top-[var(--top-padding)] left-[var(--horizontal-padding)]" />
         <InfoButton />
-        <div className="left-1/2 -translate-x-1/2 w-70 absolute bottom-30 flex flex-col items-center gap-6">
+        <div className="left-1/2 -translate-x-1/2 w-70 absolute bottom-30 flex flex-col items-center gap-3">
           <Balance />
           <MiningButton />
         </div>
