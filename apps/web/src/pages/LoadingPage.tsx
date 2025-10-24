@@ -40,7 +40,7 @@ export const LoadingPage = () => {
       } else {
         navigate(PUBLIC_URL.home());
       }
-    }, 2000);
+    }, 3000);
 
     return () => {
       clearTimeout(timer1);
