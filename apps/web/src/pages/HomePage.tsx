@@ -3,7 +3,7 @@ import {
   Container,
   MiningButton,
   Page,
-  RoadmapButton,
+  InfoButton,
 } from "@/components";
 
 import { getLastUserHeroQueryOptions, getMiningQueryOptions } from "@/hooks";
@@ -20,7 +20,7 @@ export const HomePage = () => {
     <Page back={false}>
       <Container>
         <WalletButtons className="fixed top-[var(--top-padding)] left-[var(--horizontal-padding)]" />
-        {/* <RoadmapButton /> */}
+        <InfoButton />
         <div className="left-1/2 -translate-x-1/2 w-70 absolute bottom-30 flex flex-col items-center gap-6">
           <Balance />
           <MiningButton />

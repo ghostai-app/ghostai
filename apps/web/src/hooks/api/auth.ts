@@ -10,12 +10,5 @@ export const useLoginUser = () => {
   return useMutation({
     mutationKey: ["login user"],
     mutationFn: (params: IAuthParams) => authService.auth(params),
-    onSuccess: (response) => {
-      if (response.user.dailyAvaliable) {
-        navigate(PUBLIC_URL.checkIn());
-      } else {
-        navigate(PUBLIC_URL.home());
-      }
-    },
   });
 };

@@ -19,8 +19,6 @@ export const getCheckInQueryOptions = () => {
 };
 
 export const useClaimCheckIn = () => {
-  const navigate = useNavigate();
-
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["claim-check-in"],
