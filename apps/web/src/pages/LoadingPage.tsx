@@ -32,7 +32,7 @@ export const LoadingPage = () => {
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setShowRoadmap(true);
-    }, 1000);
+    }, 1500);
 
     const timer2 = setTimeout(() => {
       if (user?.dailyAvaliable) {
@@ -50,17 +50,25 @@ export const LoadingPage = () => {
 
   return (
     <Page back={false}>
-      {showRoadmap && (
-        <Lottie
-          animationData={roadmapSlots}
-          className="h-[75%] top-[15%] object-cover inset-0 fixed z-2"
+      {showRoadmap ? (
+        <>
+          <Lottie
+            animationData={roadmapSlots}
+            className="h-[75%] top-[15%] object-cover inset-0 fixed z-2"
+          />
+          <img
+            src={roadmapBg}
+            alt="Loading"
+            className="size-full object-cover object-top inset-0 fixed transition-opacity duration-300"
+          />
+        </>
+      ) : (
+        <img
+          src={loadingImage}
+          alt="Loading"
+          className="size-full object-cover object-top inset-0 fixed transition-opacity duration-300"
         />
       )}
-      <img
-        src={showRoadmap ? roadmapBg : loadingImage}
-        alt="Loading"
-        className="size-full object-cover object-top inset-0 fixed transition-opacity duration-300"
-      />
     </Page>
   );
 };
