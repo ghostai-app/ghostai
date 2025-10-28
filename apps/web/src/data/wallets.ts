@@ -13,7 +13,7 @@ export const wallets = [
   {
     icon: OkxIcon,
     logoIcon: "#000000",
-    bgIcon: "#ffffff",
+    bgIcon: "#9AED2D",
     wallet: "okxMiniWallet",
   },
   {
