@@ -5,14 +5,9 @@ import BitgetIcon from "@/_assets/icons/wallets/bitget.svg?react";
 
 export const wallets = [
   {
-    icon: TonConnectIcon,
-    logoIcon: "#0A95F7",
-    bgIcon: "#ffffff",
-  },
-  {
     icon: BinanceIcon,
-    logoIcon: "#F3BA2F",
-    bgIcon: "#ffffff",
+    logoIcon: "#000000",
+    bgIcon: "#F3BA2F",
     wallet: "binanceWeb3TonWallet",
   },
   {
@@ -24,7 +19,7 @@ export const wallets = [
   {
     icon: BitgetIcon,
     logoIcon: "#000000",
-    bgIcon: "#ffffff",
+    bgIcon: "#00F0FF",
     wallet: "bitgetTonWallet",
   },
 ];
