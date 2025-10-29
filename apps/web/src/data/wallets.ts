@@ -22,6 +22,11 @@ export const wallets = [
     bgIcon: "#00F0FF",
     wallet: "bitgetTonWallet",
   },
+  {
+    icon: TonConnectIcon,
+    logoIcon: "#ffffff",
+    bgIcon: "#0A95F7",
+  },
 ];
 
 export const walletsData = [
