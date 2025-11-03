@@ -4,6 +4,7 @@ import { cn } from "@/lib";
 import { wallets } from "@/data";
 import { useWallet } from "@/hooks";
 import chestVideo from "@/_assets/images/chest.mp4";
+import WalletIcon from "@/_assets/icons/wallet.svg?react";
 
 interface Props {
   className?: string;
@@ -39,24 +40,27 @@ export const WalletButtons = ({ className }: Props) => {
   return (
     <div className={cn("z-10 flex items-center relative", className)}>
       {/* Бургер-кнопка */}
-      <motion.button
-        onClick={toggleMenu}
-        className="cursor-pointer relative transition-all duration-200"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      >
-        <video
-          ref={videoRef}
-          src={chestVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="size-12 object-cover rounded-lg"
-        />
-      </motion.button>
+      <div className="flex items-center gap-2">
+        <motion.button
+          onClick={toggleMenu}
+          className="cursor-pointer relative transition-all duration-200"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        >
+          <video
+            ref={videoRef}
+            src={chestVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="size-12 object-cover rounded-lg"
+          />
+        </motion.button>
+        <WalletIcon className="size-12" />
+      </div>
 
       {/* Кошельки с анимацией */}
       <AnimatePresence>
