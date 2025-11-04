@@ -4,7 +4,7 @@ import { cn } from "@/lib";
 import { wallets } from "@/data";
 import { useWallet } from "@/hooks";
 import chestVideo from "@/_assets/images/chest.mp4";
-import WalletIcon from "@/_assets/icons/wallet.svg?react";
+import WalletIcon from "@/_assets/icons/WALLET copy.svg?react";
 
 interface Props {
   className?: string;
@@ -40,7 +40,7 @@ export const WalletButtons = ({ className }: Props) => {
   return (
     <div className={cn("z-10 flex items-center relative", className)}>
       {/* Бургер-кнопка */}
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col items-center">
         <motion.button
           onClick={toggleMenu}
           className="cursor-pointer relative transition-all duration-200"
@@ -56,10 +56,10 @@ export const WalletButtons = ({ className }: Props) => {
             muted
             playsInline
             preload="auto"
-            className="size-12 object-cover rounded-lg"
+            className="size-16 object-cover rounded-lg"
           />
         </motion.button>
-        <WalletIcon className="size-12" />
+        <WalletIcon className="w-16" />
       </div>
 
       {/* Кошельки с анимацией */}

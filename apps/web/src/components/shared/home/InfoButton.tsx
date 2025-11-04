@@ -4,7 +4,7 @@ import { cn } from "@/lib";
 import infoButton from "/assets/info-button.png";
 import infoBg from "/assets/info-bg.png";
 import { ButtonWithVibration } from "@/components/ui";
-import TutorialIcon from "@/_assets/icons/tutorial.svg?react";
+import TutorialIcon from "@/_assets/icons/TUTORIAL copy.svg?react";
 
 interface Props {
   className?: string;
@@ -25,18 +25,18 @@ export const InfoButton = ({ className }: Props) => {
     <>
       <div
         className={cn(
-          "flex items-center gap-2 fixed top-[var(--top-padding)] right-[var(--horizontal-padding)]",
+          "flex flex-col items-center fixed top-[var(--top-padding)] right-[var(--horizontal-padding)]",
           className
         )}
       >
-        <TutorialIcon className="size-12" />
-        <button onClick={openModal} className="size-12 cursor-pointer">
+        <button onClick={openModal} className="size-16 cursor-pointer">
           <img
             src={infoButton}
             alt="Wallets Button"
             className="size-full object-contain"
           />
         </button>
+        <TutorialIcon className="w-16" />
       </div>
 
       <AnimatePresence>
