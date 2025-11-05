@@ -27,23 +27,41 @@ export const Navigation: React.FC<Props> = ({ className }) => {
         className
       )}
     >
-      <Container className="rounded-full py-1 px-3.5 bg-secondary border border-outline shadow-outline flex items-center justify-center relative overflow-hidden">
+      <Container className="rounded-full py-1 px-3.5 h-[70px] bg-secondary border border-outline shadow-outline flex items-center justify-center relative">
         <div className="relative flex items-center justify-center w-full">
           {navigationPages.map((page, index) => (
             <Link
               key={page.url}
               to={page.url}
               className={cn(
-                "flex flex-col gap-1 items-center justify-center size-15 rounded-full",
-                index === 2 && "accent-gradient",
+                "flex flex-col gap-1 items-center",
                 activeIndex !== index && index !== 2 && "opacity-55"
               )}
             >
-              <page.icon className="size-6 fill-white" />
-              {index !== 2 && (
+              <div
+                className={cn(
+                  "flex flex-col gap-1 items-center justify-center size-15 rounded-full",
+                  index === 2 && "accent-gradient size-[50px]"
+                )}
+              >
+                <page.icon
+                  className={cn("size-6 fill-white", index === 2 && "size-5")}
+                />
+                {index !== 2 && (
+                  <small
+                    className={cn(
+                      "text-white",
+                      activeIndex !== index && "opacity-55"
+                    )}
+                  >
+                    {page.label}
+                  </small>
+                )}
+              </div>
+              {index === 2 && (
                 <small
                   className={cn(
-                    "text-white",
+                    "text-white mb-6.5",
                     activeIndex !== index && "opacity-55"
                   )}
                 >

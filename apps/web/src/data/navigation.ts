@@ -19,7 +19,7 @@ export const navigationPages = [
   {
     icon: BattleIcon,
     url: PUBLIC_URL.battleSelectHero(),
-    label: "Battle",
+    label: "PVP Arena",
   },
   {
     icon: ShopIcon,
