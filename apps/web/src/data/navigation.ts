@@ -14,7 +14,7 @@ export const navigationPages = [
   {
     icon: RobotIcon,
     url: PUBLIC_URL.earn(),
-    label: "Ai Ghost",
+    label: "Tasks",
   },
   {
     icon: BattleIcon,
