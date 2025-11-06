@@ -21,22 +21,23 @@ model Admin {
 }
 
 model User {
-  id               Int      @id @default(autoincrement())
-  photoUrl         String?  @map("photo_url")
-  telegramLanguage String   @default("en") @map("telegram_language")
-  telegramId       String   @unique @map("telegram_id")
+  id               Int       @id @default(autoincrement())
+  photoUrl         String?   @map("photo_url")
+  telegramLanguage String    @default("en") @map("telegram_language")
+  telegramId       String    @unique @map("telegram_id")
   username         String?
-  firstName        String   @map("first_name")
-  lastName         String?  @map("last_name")
-  createdAt        DateTime @default(now()) @map("created_at")
-  lastLoginAt      DateTime @default(now()) @map("last_login_at")
-  balance          Int      @default(0)
-  crystal          Int      @default(0)
-  isPremium        Boolean  @default(false)
-  walletAddress    String?  @map("wallet_address")
+  firstName        String    @map("first_name")
+  lastName         String?   @map("last_name")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  lastLoginAt      DateTime  @default(now()) @map("last_login_at")
+  balance          Int       @default(0)
+  crystal          Int       @default(0)
+  isPremium        Boolean   @default(false)
+  walletAddress    String?   @map("wallet_address")
   // ticketCount   Int       @default(0) @map("ticket_count")
-  streak           Int      @default(1) @map("streak")
-  dailyAvaliable   Boolean  @default(true) @map("daily_avaliable")
+  streak           Int       @default(1) @map("streak")
+  dailyAvaliable   Boolean   @default(true) @map("daily_avaliable")
+  lastCheckInAt    DateTime? @map("last_check_in_at")
 
   /**
    * Mining

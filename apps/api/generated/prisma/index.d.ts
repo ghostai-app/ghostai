@@ -3098,6 +3098,7 @@ export namespace Prisma {
     walletAddress: string | null
     streak: number | null
     dailyAvaliable: boolean | null
+    lastCheckInAt: Date | null
     miningTimeInSeconds: number | null
     miningProfit: number | null
   }
@@ -3118,6 +3119,7 @@ export namespace Prisma {
     walletAddress: string | null
     streak: number | null
     dailyAvaliable: boolean | null
+    lastCheckInAt: Date | null
     miningTimeInSeconds: number | null
     miningProfit: number | null
   }
@@ -3138,6 +3140,7 @@ export namespace Prisma {
     walletAddress: number
     streak: number
     dailyAvaliable: number
+    lastCheckInAt: number
     miningTimeInSeconds: number
     miningProfit: number
     _all: number
@@ -3178,6 +3181,7 @@ export namespace Prisma {
     walletAddress?: true
     streak?: true
     dailyAvaliable?: true
+    lastCheckInAt?: true
     miningTimeInSeconds?: true
     miningProfit?: true
   }
@@ -3198,6 +3202,7 @@ export namespace Prisma {
     walletAddress?: true
     streak?: true
     dailyAvaliable?: true
+    lastCheckInAt?: true
     miningTimeInSeconds?: true
     miningProfit?: true
   }
@@ -3218,6 +3223,7 @@ export namespace Prisma {
     walletAddress?: true
     streak?: true
     dailyAvaliable?: true
+    lastCheckInAt?: true
     miningTimeInSeconds?: true
     miningProfit?: true
     _all?: true
@@ -3325,6 +3331,7 @@ export namespace Prisma {
     walletAddress: string | null
     streak: number
     dailyAvaliable: boolean
+    lastCheckInAt: Date | null
     miningTimeInSeconds: number
     miningProfit: number
     _count: UserCountAggregateOutputType | null
@@ -3364,6 +3371,7 @@ export namespace Prisma {
     walletAddress?: boolean
     streak?: boolean
     dailyAvaliable?: boolean
+    lastCheckInAt?: boolean
     miningTimeInSeconds?: boolean
     miningProfit?: boolean
     invitedUsers?: boolean | User$invitedUsersArgs<ExtArgs>
@@ -3394,6 +3402,7 @@ export namespace Prisma {
     walletAddress?: boolean
     streak?: boolean
     dailyAvaliable?: boolean
+    lastCheckInAt?: boolean
     miningTimeInSeconds?: boolean
     miningProfit?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3414,6 +3423,7 @@ export namespace Prisma {
     walletAddress?: boolean
     streak?: boolean
     dailyAvaliable?: boolean
+    lastCheckInAt?: boolean
     miningTimeInSeconds?: boolean
     miningProfit?: boolean
   }, ExtArgs["result"]["user"]>
@@ -3434,11 +3444,12 @@ export namespace Prisma {
     walletAddress?: boolean
     streak?: boolean
     dailyAvaliable?: boolean
+    lastCheckInAt?: boolean
     miningTimeInSeconds?: boolean
     miningProfit?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "photoUrl" | "telegramLanguage" | "telegramId" | "username" | "firstName" | "lastName" | "createdAt" | "lastLoginAt" | "balance" | "crystal" | "isPremium" | "walletAddress" | "streak" | "dailyAvaliable" | "miningTimeInSeconds" | "miningProfit", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "photoUrl" | "telegramLanguage" | "telegramId" | "username" | "firstName" | "lastName" | "createdAt" | "lastLoginAt" | "balance" | "crystal" | "isPremium" | "walletAddress" | "streak" | "dailyAvaliable" | "lastCheckInAt" | "miningTimeInSeconds" | "miningProfit", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     invitedUsers?: boolean | User$invitedUsersArgs<ExtArgs>
     friend?: boolean | User$friendArgs<ExtArgs>
@@ -3483,6 +3494,7 @@ export namespace Prisma {
       walletAddress: string | null
       streak: number
       dailyAvaliable: boolean
+      lastCheckInAt: Date | null
       /**
        * Mining
        */
@@ -3935,6 +3947,7 @@ export namespace Prisma {
     readonly walletAddress: FieldRef<"User", 'String'>
     readonly streak: FieldRef<"User", 'Int'>
     readonly dailyAvaliable: FieldRef<"User", 'Boolean'>
+    readonly lastCheckInAt: FieldRef<"User", 'DateTime'>
     readonly miningTimeInSeconds: FieldRef<"User", 'Int'>
     readonly miningProfit: FieldRef<"User", 'Float'>
   }
@@ -14975,6 +14988,7 @@ export namespace Prisma {
     walletAddress: 'walletAddress',
     streak: 'streak',
     dailyAvaliable: 'dailyAvaliable',
+    lastCheckInAt: 'lastCheckInAt',
     miningTimeInSeconds: 'miningTimeInSeconds',
     miningProfit: 'miningProfit'
   };
@@ -15324,6 +15338,7 @@ export namespace Prisma {
     walletAddress?: StringNullableFilter<"User"> | string | null
     streak?: IntFilter<"User"> | number
     dailyAvaliable?: BoolFilter<"User"> | boolean
+    lastCheckInAt?: DateTimeNullableFilter<"User"> | Date | string | null
     miningTimeInSeconds?: IntFilter<"User"> | number
     miningProfit?: FloatFilter<"User"> | number
     invitedUsers?: FriendListRelationFilter
@@ -15353,6 +15368,7 @@ export namespace Prisma {
     walletAddress?: SortOrderInput | SortOrder
     streak?: SortOrder
     dailyAvaliable?: SortOrder
+    lastCheckInAt?: SortOrderInput | SortOrder
     miningTimeInSeconds?: SortOrder
     miningProfit?: SortOrder
     invitedUsers?: FriendOrderByRelationAggregateInput
@@ -15385,6 +15401,7 @@ export namespace Prisma {
     walletAddress?: StringNullableFilter<"User"> | string | null
     streak?: IntFilter<"User"> | number
     dailyAvaliable?: BoolFilter<"User"> | boolean
+    lastCheckInAt?: DateTimeNullableFilter<"User"> | Date | string | null
     miningTimeInSeconds?: IntFilter<"User"> | number
     miningProfit?: FloatFilter<"User"> | number
     invitedUsers?: FriendListRelationFilter
@@ -15414,6 +15431,7 @@ export namespace Prisma {
     walletAddress?: SortOrderInput | SortOrder
     streak?: SortOrder
     dailyAvaliable?: SortOrder
+    lastCheckInAt?: SortOrderInput | SortOrder
     miningTimeInSeconds?: SortOrder
     miningProfit?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -15442,6 +15460,7 @@ export namespace Prisma {
     walletAddress?: StringNullableWithAggregatesFilter<"User"> | string | null
     streak?: IntWithAggregatesFilter<"User"> | number
     dailyAvaliable?: BoolWithAggregatesFilter<"User"> | boolean
+    lastCheckInAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     miningTimeInSeconds?: IntWithAggregatesFilter<"User"> | number
     miningProfit?: FloatWithAggregatesFilter<"User"> | number
   }
@@ -16120,6 +16139,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
@@ -16149,6 +16169,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
@@ -16177,6 +16198,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
@@ -16206,6 +16228,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
@@ -16235,6 +16258,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
   }
@@ -16254,6 +16278,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
   }
@@ -16274,6 +16299,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
   }
@@ -16983,6 +17009,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -17080,6 +17117,7 @@ export namespace Prisma {
     walletAddress?: SortOrder
     streak?: SortOrder
     dailyAvaliable?: SortOrder
+    lastCheckInAt?: SortOrder
     miningTimeInSeconds?: SortOrder
     miningProfit?: SortOrder
   }
@@ -17109,6 +17147,7 @@ export namespace Prisma {
     walletAddress?: SortOrder
     streak?: SortOrder
     dailyAvaliable?: SortOrder
+    lastCheckInAt?: SortOrder
     miningTimeInSeconds?: SortOrder
     miningProfit?: SortOrder
   }
@@ -17129,6 +17168,7 @@ export namespace Prisma {
     walletAddress?: SortOrder
     streak?: SortOrder
     dailyAvaliable?: SortOrder
+    lastCheckInAt?: SortOrder
     miningTimeInSeconds?: SortOrder
     miningProfit?: SortOrder
   }
@@ -17180,6 +17220,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -17241,17 +17295,6 @@ export namespace Prisma {
     earned?: SortOrder
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type MiningCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -17289,20 +17332,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     amount?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type EnumTaskTypeFilter<$PrismaModel = never> = {
@@ -17910,6 +17939,10 @@ export namespace Prisma {
     set?: boolean
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -18194,10 +18227,6 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutMiningsInput, UserUncheckedCreateWithoutMiningsInput>
     connectOrCreate?: UserCreateOrConnectWithoutMiningsInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type UserUpdateOneRequiredWithoutMiningsNestedInput = {
@@ -18709,6 +18738,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -18759,6 +18799,20 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -18773,31 +18827,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumTaskTypeFilter<$PrismaModel = never> = {
@@ -19393,6 +19422,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     friend?: FriendCreateNestedOneWithoutUserInput
@@ -19421,6 +19451,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     friend?: FriendUncheckedCreateNestedOneWithoutUserInput
@@ -19453,6 +19484,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
@@ -19481,6 +19513,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
@@ -19524,6 +19557,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     friend?: FriendUpdateOneWithoutUserNestedInput
@@ -19552,6 +19586,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     friend?: FriendUncheckedUpdateOneWithoutUserNestedInput
@@ -19590,6 +19625,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
@@ -19618,6 +19654,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
@@ -19645,6 +19682,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
@@ -19673,6 +19711,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
@@ -19716,6 +19755,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
@@ -19744,6 +19784,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
@@ -19836,6 +19877,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
@@ -19864,6 +19906,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
@@ -19939,6 +19982,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
@@ -19967,6 +20011,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
@@ -20163,6 +20208,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
@@ -20191,6 +20237,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
@@ -20266,6 +20313,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
@@ -20294,6 +20342,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
@@ -20321,6 +20370,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
@@ -20349,6 +20399,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
@@ -20381,6 +20432,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
@@ -20409,6 +20461,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
@@ -20441,6 +20494,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
@@ -20469,6 +20523,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
@@ -20564,6 +20619,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
@@ -20592,6 +20648,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
@@ -20630,6 +20687,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
@@ -20658,6 +20716,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
@@ -20696,6 +20755,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
@@ -20724,6 +20784,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
@@ -20852,6 +20913,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendCreateNestedManyWithoutInviterInput
@@ -20880,6 +20942,7 @@ export namespace Prisma {
     walletAddress?: string | null
     streak?: number
     dailyAvaliable?: boolean
+    lastCheckInAt?: Date | string | null
     miningTimeInSeconds?: number
     miningProfit?: number
     invitedUsers?: FriendUncheckedCreateNestedManyWithoutInviterInput
@@ -20953,6 +21016,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUpdateManyWithoutInviterNestedInput
@@ -20981,6 +21045,7 @@ export namespace Prisma {
     walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
     streak?: IntFieldUpdateOperationsInput | number
     dailyAvaliable?: BoolFieldUpdateOperationsInput | boolean
+    lastCheckInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     miningTimeInSeconds?: IntFieldUpdateOperationsInput | number
     miningProfit?: FloatFieldUpdateOperationsInput | number
     invitedUsers?: FriendUncheckedUpdateManyWithoutInviterNestedInput
