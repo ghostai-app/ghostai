@@ -5,7 +5,7 @@ export interface ICheckInDay {
 }
 
 export interface IGetCheckInResponse {
-  reward: number;
+  days: ICheckInDay[];
 }
 
 export interface ICheckInClaim {

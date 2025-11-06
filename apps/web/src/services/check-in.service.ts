@@ -7,7 +7,19 @@ class CheckInService {
   async getCheckIn() {
     const response = await axiosWithAuth.get<IGetCheckInResponse>("/check-in");
 
-    return response.data;
+    // Ensure we return the data with days array
+    const data = response.data;
+
+    // If response has days, return it, otherwise log for debugging
+    if (data && "days" in data && Array.isArray(data.days)) {
+      return data;
+    }
+
+    // Log if structure is unexpected
+    console.warn("Unexpected check-in response structure:", data);
+
+    // Return data as-is (might be old format or error)
+    return data;
   }
 
   async claimCheckIn() {

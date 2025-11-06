@@ -142,6 +142,7 @@ exports.Prisma.UserScalarFieldEnum = {
   walletAddress: 'walletAddress',
   streak: 'streak',
   dailyAvaliable: 'dailyAvaliable',
+  lastCheckInAt: 'lastCheckInAt',
   miningTimeInSeconds: 'miningTimeInSeconds',
   miningProfit: 'miningProfit'
 };

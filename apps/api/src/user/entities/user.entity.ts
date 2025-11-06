@@ -55,4 +55,7 @@ export class UserEntity implements User {
 
   @ApiProperty()
   dailyAvaliable: boolean;
+
+  @ApiProperty({ required: false })
+  lastCheckInAt: Date | null;
 }

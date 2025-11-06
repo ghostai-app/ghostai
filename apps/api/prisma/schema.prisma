@@ -37,6 +37,7 @@ model User {
   // ticketCount   Int       @default(0) @map("ticket_count")
   streak        Int       @default(1) @map("streak")
   dailyAvaliable Boolean   @default(true) @map("daily_avaliable")
+  lastCheckInAt DateTime? @map("last_check_in_at")
 
   /* Mining */
   miningTimeInSeconds    Int       @default(10800) @map("mining_time_in_seconds")

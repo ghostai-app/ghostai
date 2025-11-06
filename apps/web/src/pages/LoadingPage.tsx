@@ -23,6 +23,7 @@ export const LoadingPage = () => {
     const handleLogin = async () => {
       if (!initDataRaw || !lp) return;
       const response = await loginUser({ initDataRaw });
+      console.log("response.user", response.user);
       setUser(response.user);
     };
 
@@ -30,9 +31,12 @@ export const LoadingPage = () => {
   }, [lp]);
 
   useEffect(() => {
+    if (!user) return;
     const timer1 = setTimeout(() => {
       setShowRoadmap(true);
     }, 1500);
+
+    console.log(user?.dailyAvaliable);
 
     const timer2 = setTimeout(() => {
       if (user?.dailyAvaliable) {
@@ -46,7 +50,7 @@ export const LoadingPage = () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
     };
-  }, [navigate]);
+  }, [navigate, user]);
 
   return (
     <Page back={false}>
