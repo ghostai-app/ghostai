@@ -60,6 +60,12 @@ export class AuthService {
         },
       });
     } else {
+      const weakestHero = await this.prisma.hero.findFirst({
+        orderBy: {
+          health: 'asc',
+        },
+      });
+
       user = await this.prisma.user.create({
         data: {
           telegramId: initData.user?.id.toString(),
@@ -69,6 +75,15 @@ export class AuthService {
           telegramLanguage: initData.user?.language_code,
           isPremium: initData.user?.is_premium || false,
           photoUrl: initData.user?.photo_url,
+          ...(weakestHero
+            ? {
+                userHeroes: {
+                  create: {
+                    heroId: weakestHero.id,
+                  },
+                },
+              }
+            : {}),
         },
       });
 

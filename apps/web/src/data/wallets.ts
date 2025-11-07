@@ -47,4 +47,10 @@ export const walletsData = [
     className: "bg-[linear-gradient(135deg,_#161618_22.1%,_#8A8A8A_118.78%)]",
     wallet: "okxMiniWallet",
   },
+  {
+    icon: BitgetIcon,
+    logoColor: "#00F0FF",
+    className: "bg-[linear-gradient(135deg,_#161618_22.1%,_#00F0FF_118.78%)]",
+    wallet: "okxMiniWallet",
+  },
 ];
