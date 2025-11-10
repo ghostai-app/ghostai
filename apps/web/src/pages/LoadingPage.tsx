@@ -39,9 +39,8 @@ export const LoadingPage = () => {
     }, 1500);
 
     const timer2 = setTimeout(() => {
-      if (true) {
+      if (user?.dailyAvaliable) {
         open();
-        console.log("open");
       }
       navigate(PUBLIC_URL.home());
     }, 4500);
