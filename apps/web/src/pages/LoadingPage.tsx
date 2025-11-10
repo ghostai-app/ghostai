@@ -39,7 +39,7 @@ export const LoadingPage = () => {
     }, 1500);
 
     const timer2 = setTimeout(() => {
-      if (user?.dailyAvaliable) {
+      if (true) {
         open();
       }
       navigate(PUBLIC_URL.home());

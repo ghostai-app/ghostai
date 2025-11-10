@@ -14,6 +14,8 @@ import crystalIcon from "@/_assets/images/crystal.png";
 import { formatBalance } from "@/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCheckInModal } from "@/hooks/useCheckInModal";
+import XIcon from "@/_assets/icons/x.svg?react";
+import { openLink } from "@telegram-apps/sdk-react";
 
 interface Props {
   className?: string;
@@ -161,6 +163,14 @@ export const DailyBox = ({ className }: Props) => {
             className
           )}
         >
+          <button
+            type="button"
+            onClick={() => openLink("https://x.com/ghostai_offcl")}
+            className="cursor-pointer absolute top-4 right-4"
+          >
+            <XIcon className="w-6 h-6" />
+          </button>
+
           <h2 className="text-[24px] text-center">
             Open GhostAI every day to
             <br />
@@ -203,6 +213,7 @@ export const DailyBox = ({ className }: Props) => {
       )}
       {isOpen && (
         <motion.div
+          onClick={close}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
