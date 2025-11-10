@@ -203,9 +203,9 @@ export const DailyBox = ({ className }: Props) => {
               <ButtonWithVibration
                 variant="grayOutline"
                 size="default"
-                disabled
+                onClick={close}
               >
-                Already Claimed
+                Close
               </ButtonWithVibration>
             )}
           </div>
