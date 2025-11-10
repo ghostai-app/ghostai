@@ -8,7 +8,6 @@ import { BattleSelectHeroPage } from "@/pages/BattleSelectHeroPage";
 import { BattleAreaPage } from "@/pages/BattleAreaPage";
 import { BattleFinishPage } from "@/pages/BattleFinishPage";
 import { ShopPage } from "@/pages/ShopPage";
-import { CheckInPage } from "@/pages/CheckInPage";
 
 export function App() {
   return (
@@ -21,7 +20,6 @@ export function App() {
         <Route path="/battle/select" element={<BattleSelectHeroPage />} />
         <Route path="/shop" element={<ShopPage />} />
       </Route>
-      <Route path="/check-in" element={<CheckInPage />} />
       <Route path="/battle/:heroId" element={<BattleAreaPage />} />
       <Route path="/battle/finish/:id" element={<BattleFinishPage />} />
       <Route path="*" element={<Navigate to="/" />} />

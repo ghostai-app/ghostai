@@ -10,6 +10,7 @@ import roadmapBg from "@/_assets/images/roadmapBg.png";
 import { IUser } from "@/types";
 import roadmapSlots from "@/_assets/images/roadmapSlots.json";
 import Lottie from "lottie-react";
+import { useCheckInModal } from "@/hooks/useCheckInModal";
 
 export const LoadingPage = () => {
   const initDataRaw = useRawInitData();
@@ -18,6 +19,7 @@ export const LoadingPage = () => {
   const navigate = useNavigate();
   const [showRoadmap, setShowRoadmap] = useState(false);
   const [user, setUser] = useState<IUser | undefined>(undefined);
+  const { open } = useCheckInModal();
 
   useEffect(() => {
     const handleLogin = async () => {
@@ -36,15 +38,13 @@ export const LoadingPage = () => {
       setShowRoadmap(true);
     }, 1500);
 
-    console.log(user?.dailyAvaliable);
-
     const timer2 = setTimeout(() => {
-      if (user?.dailyAvaliable) {
-        navigate(PUBLIC_URL.checkIn());
-      } else {
-        navigate(PUBLIC_URL.home());
+      if (true) {
+        open();
+        console.log("open");
       }
-    }, 3000);
+      navigate(PUBLIC_URL.home());
+    }, 4500);
 
     return () => {
       clearTimeout(timer1);

@@ -4,6 +4,7 @@ import {
   MiningButton,
   Page,
   InfoButton,
+  DailyBox,
 } from "@/components";
 
 import { getLastUserHeroQueryOptions, getMiningQueryOptions } from "@/hooks";
@@ -18,6 +19,7 @@ export const HomePage = () => {
 
   return (
     <Page back={false}>
+      <DailyBox />
       <Container>
         <WalletButtons className="fixed top-[var(--top-padding)] left-[var(--horizontal-padding)]" />
         <InfoButton />

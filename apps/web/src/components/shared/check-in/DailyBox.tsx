@@ -12,6 +12,8 @@ import type { ICheckInDay } from "@/types";
 import crystalIcon from "@/_assets/images/crystal.png";
 
 import { formatBalance } from "@/utils";
+import { AnimatePresence, motion } from "framer-motion";
+import { useCheckInModal } from "@/hooks/useCheckInModal";
 
 interface Props {
   className?: string;
@@ -92,7 +94,7 @@ const CheckInCard = ({
   return (
     <div
       className={cn(
-        "flex flex-col items-center bg-black justify-center rounded-2xl border border-[#1C1C1C] transition-all duration-300 mx-auto"
+        "overflow-hidden relative flex flex-col items-center bg-black justify-center rounded-2xl border border-[#1C1C1C] transition-all duration-300 mx-auto"
       )}
       style={{
         width: `${width}px`,
@@ -107,7 +109,7 @@ const CheckInCard = ({
         position: "relative",
       }}
     >
-      {/* Empty card - just border and background */}
+      <motion.div className="opacity-70 absolute left-1/2 -translate-x-1/2 blur-2xl aspect-square top-[-50%] z-[-1] bg-[#FFAA00] w-full rounded-[100%]"></motion.div>
       <img src={crystalIcon} alt="Crystal" className="w-25 object-contain" />
       <h2 className="text-center mt-5 text-[24px]">
         {formatBalance(day.reward)}
@@ -118,9 +120,9 @@ const CheckInCard = ({
 };
 
 export const DailyBox = ({ className }: Props) => {
-  const [isOpened, setIsOpened] = useState(false);
   const navigate = useNavigate();
   const { data: user } = useQuery(getUserQueryOptions());
+  const { isOpen, open, close } = useCheckInModal();
   const {
     data: checkIn,
     isLoading,
@@ -132,94 +134,82 @@ export const DailyBox = ({ className }: Props) => {
   });
   const { mutateAsync: claimCheckIn } = useClaimCheckIn();
 
-  // Debug: log what we receive
-  React.useEffect(() => {
-    if (checkIn) {
-      console.log("CheckIn data received:", checkIn);
-      console.log("Days array:", checkIn.days);
-    }
-  }, [checkIn]);
-
   // Ensure we have days array
   const days = checkIn?.days || [];
   const centerIndex = days.findIndex((day) => day.current) ?? 2;
-  const canClaim = user?.dailyAvaliable && !isOpened;
+  const canClaim = user?.dailyAvaliable && !isOpen;
 
   const handleClaimCheckIn = async () => {
     try {
       await claimCheckIn();
-      navigate(PUBLIC_URL.home());
-    } catch (error) {
-      // Error is handled by the mutation
-    }
+      close();
+    } catch (error) {}
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <p className="text-muted">Loading...</p>
-      </div>
-    );
-  }
-
-  // Always show data if available, even if there's an error
-  // Backend should always return data now
-  if (!days || days.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <p className="text-muted">
-          {error ? "Error loading check-in data" : "No check-in data available"}
-        </p>
-        {checkIn && (
-          <pre className="text-xs mt-2 text-muted">
-            {JSON.stringify(checkIn, null, 2)}
-          </pre>
-        )}
-      </div>
-    );
-  }
-
   return (
-    <div
-      className={cn(
-        "flex flex-col min-h-[calc(100vh-var(--top-padding))] w-full",
-        className
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, translateY: "100%" }}
+          animate={{ opacity: 1, translateY: 0 }}
+          exit={{ opacity: 0, translateY: "100%" }}
+          transition={{
+            duration: 0.2,
+          }}
+          className={cn(
+            "border border-white/10 z-99 bg-background fixed left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col py-8 w-full rounded-[24px]",
+            className
+          )}
+        >
+          <h2 className="text-[24px] text-center">
+            Open GhostAI every day to
+            <br />
+            receive all daily bonuses!
+          </h2>
+
+          <div className="flex-1 flex items-center justify-center px-4 min-h-[360px]">
+            <div className="flex items-center gap-0 justify-center">
+              {days.map((day, index) => (
+                <CheckInCard
+                  key={day.day}
+                  day={day}
+                  index={index}
+                  centerIndex={centerIndex}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="pb-8 px-4 mt-auto mx-auto w-full max-w-50">
+            {canClaim ? (
+              <ButtonWithVibration
+                variant="default"
+                size="default"
+                onClick={handleClaimCheckIn}
+              >
+                Claim
+              </ButtonWithVibration>
+            ) : (
+              <ButtonWithVibration
+                variant="grayOutline"
+                size="default"
+                disabled
+              >
+                Already Claimed
+              </ButtonWithVibration>
+            )}
+          </div>
+        </motion.div>
       )}
-    >
-      <h2 className="text-[24px] text-center">
-        Open GhostAI every day to
-        <br />
-        receive all daily bonuses!
-      </h2>
-
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-1 flex items-center justify-center px-4 py-8 min-h-[400px]">
-        <div className="flex items-center gap-0 justify-center">
-          {days.map((day, index) => (
-            <CheckInCard
-              key={day.day}
-              day={day}
-              index={index}
-              centerIndex={centerIndex}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="pb-8 px-4 mt-auto mx-auto w-full max-w-50">
-        {canClaim ? (
-          <ButtonWithVibration
-            variant="default"
-            size="default"
-            onClick={handleClaimCheckIn}
-          >
-            Claim
-          </ButtonWithVibration>
-        ) : (
-          <ButtonWithVibration variant="grayOutline" size="default" disabled>
-            Already Claimed
-          </ButtonWithVibration>
-        )}
-      </div>
-    </div>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-80 bg-black/50"
+        ></motion.div>
+      )}
+    </AnimatePresence>
   );
 };

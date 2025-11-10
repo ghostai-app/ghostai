@@ -20,6 +20,7 @@ export const navigationPages = [
     icon: BattleIcon,
     url: PUBLIC_URL.battleSelectHero(),
     label: "PVP Arena",
+    isOpenModal: true,
   },
   {
     icon: ShopIcon,
