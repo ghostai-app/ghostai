@@ -6,7 +6,7 @@ import { PUBLIC_URL } from "@/lib";
 import { isDev, validateDevice } from "@/utils";
 import { useLoginUser } from "@/hooks";
 import loadingImage from "@/_assets/images/loading.jpg";
-import roadmapBg from "@/_assets/images/roadmapBg.png";
+import roadmapBg from "@/_assets/images/roadmapBg.jpg";
 import { IUser } from "@/types";
 import roadmapSlots from "@/_assets/images/roadmapSlots.json";
 import Lottie from "lottie-react";
@@ -57,12 +57,12 @@ export const LoadingPage = () => {
         <>
           <Lottie
             animationData={roadmapSlots}
-            className="h-[75%] top-[15%] object-cover inset-0 fixed z-2"
+            className="h-[65%] top-[25%] object-cover inset-0 fixed z-2"
           />
           <img
             src={roadmapBg}
             alt="Loading"
-            className="size-full object-cover object-top inset-0 fixed transition-opacity duration-300"
+            className="w-full object-contain inset-x-0 fixed transition-opacity duration-300"
           />
         </>
       ) : (
